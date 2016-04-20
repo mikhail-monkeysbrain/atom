@@ -1,0 +1,23 @@
+ref_entity:
+    title: Сущность
+    type: mongocode
+    validation:
+        NotBlank:
+            message: Сущность не может быть пустой
+ref_id:
+    title: Идентификатор
+    type: mongoid
+    validation:
+        NotBlank:
+            message: Идентификатор не может быть пустым
+ref_related:
+    title: Идентификаторы связанных элементов
+    type: mongoid
+    multiple: true
+content:
+    title: Контент
+    type: text
+    multiple: true
+    validation:
+        NotNull:
+            message: Контент не может быть null

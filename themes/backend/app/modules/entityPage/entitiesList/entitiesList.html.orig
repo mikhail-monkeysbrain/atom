@@ -1,0 +1,109 @@
+<div class="page page-table" style="position: relative;">
+  <div data-ng-hide="list.scheme" class="dummy-height"></div>
+  <section data-ng-show="list.scheme" class="panel panel-default table-dynamic">
+    <div style="position: relative;" class="panel-heading text-right">
+      <div id="table-title" style="position: absolute; left: 10px; top: 20px; font-weight: 600;"
+           data-ng-bind="tableTitle"></div>
+      <button class="btn btn-success btn-w-md listControlButtons" type="button" ng-click="new()">
+        Добавить
+      </button>
+      <!--go(,true);-->
+      <form action="{{'/atom/export/'+model}}" method="post" style="display: inline-block;">
+        <button data-ng-disabled="isSelectItems();" class="btn btn-primary btn-w-md listControlButtons"
+                data-ng-click="exportStack($event);" type="button">Выгрузить
+        </button>
+      </form>
+      <button data-ng-disabled="isSelectItems();" class="btn btn-danger  btn-w-md listControlButtons" data-ng-click="deleteStack();"
+              type="button">Удалить
+      </button>
+    </div>
+    <div data-ng-show="list.scheme" class="table-filters">
+      <div class="row">
+        <div class="col-sm-4 col-xs-6">
+
+        </div>
+        <!--<div class="col-sm-3 col-xs-6 filter-result-info">
+            <span>
+                Showing {{filteredStores.length}}/{{stores.length}} entries
+            </span>
+        </div>-->
+      </div>
+    </div>
+
+    <table id="table-{{model}}" class="table table-bordered table-striped table-responsive">
+      <thead>
+      <tr>
+        <th style="width: 15px; padding-left: 10px;">
+          <label style="margin-right: 0;" class="ui-checkbox">
+            <input class="remAll" type="checkbox" value="" data-ng-click="selectAllItems($event);">
+            <span></span>
+          </label>
+        </th>
+        <th ng-repeat="(fieldKey, field) in list.scheme" ng-if="field.sort && fieldKey !== 'enabled' ">
+          <div class="th">
+            {{field.title}}
+                        <span ng-show="field.sort" class="fa fa-angle-up"
+                              ng-click=" pagination.order(field.key,-1) "
+                              ng-class="{active: row == field.key && sT == -1 }"></span>
+                        <span ng-show="field.sort" class="fa fa-angle-down"
+                              ng-click=" pagination.order(field.key,1) "
+                              ng-class="{active: row == field.key && sT == 1 }"></span>
+          </div>
+        </th>
+        <th class="visible-td">
+          <div class="th">Доступность
+                        <span class="fa fa-angle-up"
+                              ng-click=" pagination.order('enabled',-1) "
+                              ng-class="{active: row == 'enabled' && sT == -1 }"></span>
+                        <span class="fa fa-angle-down"
+                              ng-click=" pagination.order('enabled',1) "
+                              ng-class="{active: row == 'enabled' && sT == 1 }"></span>
+          </div>
+        </th>
+        <th class="action-th">
+          <div class="th">Действия</div>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="item in renderData" >
+        <td style="width: 15px;  padding-right: 0;">
+          <label style="margin-right: 0;" class="ui-checkbox">
+            <input class="remBox" type="checkbox" value="{{ item._id.$id }}" ng-click="updateRemItems($event);">
+            <span></span>
+          </label>
+        </td>
+
+        <td list-wrapp="{{item[fieldKey]}}" ng-repeat="(fieldKey, field) in list.scheme" ng-if="field.sort && fieldKey !== 'enabled'" entity-list-markup entity="item[fieldKey]" entity-name="fieldKey" field="field" >{{item[fieldKey]}}</td>
+
+
+        <td class="visible-td">
+          <!--<label class="switch"  data-atom-toggle-visible="" data-model="{{model}}" data-id="{{itemId|ObjectKey:list.data}}" >-->
+          <label class="switch" data-atom-toggle-visible="" data-model="{{model}}" data-id="{{itemId}}">
+            <input type="checkbox" data-ng-model="item.enabled" ng-change="setEdited(item)">
+            <i class="slim"></i>
+          </label>
+        </td>
+        <td class="action-td">
+          <a class="btn-icon btn-icon-min-sm btn-edit" href="#/{{model}}/edit/{{item._id['$id']}}">
+            <i class="glyphicon glyphicon-pencil"></i>
+          </a>
+          <!--<a class="btn-icon btn-icon-min-sm btn-remove cursor-pointer" data-rem-id="{{itemId|ObjectKey:list.data}}" data-ng-click="delete($event);">-->
+          <a class="btn-icon btn-icon-min-sm btn-remove cursor-pointer" data-rem-id="{{itemId}}"
+             data-ng-click="deleteStack(item._id['$id']);">
+            <i class="glyphicon glyphicon-trash"></i>
+          </a>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+
+    <atom-pagination></atom-pagination>
+  </section>
+  <div data-ng-hide="list.scheme" class="form-group refresh-position">
+    <div class="col-md-12 text-center">
+      <span style="font-size: 24px" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+    </div>
+  </div>
+</div>

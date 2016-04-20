@@ -1,0 +1,22 @@
+<div class="page page-table" style="position: relative;">
+    <div data-ng-hide="list.scheme" class="dummy-height"></div>
+
+    <section data-ng-show="list.scheme" class="panel panel-default">
+        <div class="panel-heading">
+            <strong><span class="glyphicon glyphicon-th"></span> Текстовые страницы</strong>
+        </div>
+        <div class="panel-body">
+            <div ui-tree="options">
+                <ol ui-tree-nodes ng-model="data" data-nodrop-enabled>
+                    <li ng-repeat="item in data" ui-tree-node ng-include="'app/modules/entityPage/pagesList/items_renderer.html'"></li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <div data-ng-hide="list.scheme" class="form-group refresh-position">
+        <div class="col-md-12 text-center">
+            <span style="font-size: 24px" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+        </div>
+    </div>
+</div>

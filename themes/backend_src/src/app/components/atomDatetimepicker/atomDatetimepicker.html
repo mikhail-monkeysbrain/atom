@@ -1,0 +1,13 @@
+  <input
+    type="text"
+    class="form-control"
+    id="{{dataName}}"
+    name="{{dataName}}"
+   >
+
+  <span class="input-group-addon" >
+    <i class="fa " ng-class="{
+    'fa-calendar': (dataType === 'date' || dataType === 'datetime'),
+    'fa-clock-o':  dataType === 'time'
+    }" ></i>
+  </span>

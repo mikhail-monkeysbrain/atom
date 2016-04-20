@@ -1,0 +1,32 @@
+(function() {
+  'use strict';
+
+  angular.module('components.entity')
+    .service('EntityService', function($http, $httpParamSerializer, baseURL) {
+      this.getEntities = function() {
+        return $http.get(baseURL + '/atom/entities/');
+      };
+
+      this.getEntitiesList = function(entity) {
+        return $http.get(baseURL + '/' + entity + '/');
+      };
+
+      this.getEntityDescription = function(entity) {
+        return $http.get(baseURL + '/atom/entities/' + entity + '/');
+      };
+
+      this.getEntity = function(entity, id) {
+        return $http.get(baseURL + '/' + entity + '/' + id + '/');
+      };
+
+      this.saveEntity = function(entity, data) {
+        return $http.post(baseURL + '/' + entity + '/create/', $httpParamSerializer(data));
+      };
+
+      this.removeEntity = function(entity) {
+        return $http.post(baseURL + '/' + entity + '/delete/', $httpParamSerializer(data));
+      };
+
+    });
+
+})();

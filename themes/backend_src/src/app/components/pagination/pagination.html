@@ -1,0 +1,30 @@
+<footer class="table-footer">
+    <div class="row">
+        <div class="col-md-6 page-num-info">
+                    <span>
+                        Элементов на странице:&nbsp;
+                        <select data-ng-model="perPage"
+                                data-ng-options="num.title for num in numPerPageOpt track by num.value"
+                                data-ng-change="onNumPerPageChange()">
+                        </select>
+                    </span>
+        </div>
+        <div class="col-md-6 text-right pagination-container scrollme" id="pagination" ng-scrollable="scrollConfig">
+            <ul class="pagination-sm pagination">
+                <!--<li ng-class="{disabled: noPrevious()}"><a ng-click="prevPage(true);" href="">Первая</a>-->
+                <!--</li>-->
+                <!--<li ng-class="{disabled: noPrevious()}"><a ng-click="prevPage();" href="">‹</a>-->
+                <!--</li>-->
+                <li ng-repeat="(pageId,page) in pagesCountList"
+                    ng-class="{active: isActive(pageId)}"
+                    ng-show="isInRange(pageId)"
+                        >
+                    <a ng-bind="page" ng-click="goToPage(page - 1);" href=""></a>
+                </li>
+                <!--<li ng-class="{disabled: noNext()}"><a ng-click="nextPage();" href="">›</a></li>-->
+                <!--<li ng-class="{disabled: noNext()}"><a ng-click="nextPage(true);" href="">Последняя</a>-->
+                <!--</li>-->
+            </ul>
+        </div>
+    </div>
+</footer>
