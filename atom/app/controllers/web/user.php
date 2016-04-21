@@ -15,7 +15,7 @@
 		
 		public static function read(Request $request, Application $app){
 			if (!$app['user']->isAuth()){
-				return $app->abort(403, $app['translator']->trans('403'));
+				return $app->abort(403, $app['translator']->trans('http.403'));
 			}
 			parent::read($request, $app);
 			if (!$app['user']->isAdmin()){
@@ -74,16 +74,16 @@
 					)
 				));
 			}
-			return $app->abort(401, $app['translator']->trans('401'));
+			return $app->abort(401, $app['translator']->trans('http.401'));
 		}
 		
 		public static function checkPermissions(Request $request, Application $app){
 			static::authByToken($request, $app);
 			if (!$app['user']->hasAccess($request->get('_route'))){
 				if ($app['user']->isAuth()){
-					return $app->abort(403, $app['translator']->trans('403'));
+					return $app->abort(403, $app['translator']->trans('http.403'));
 				} else {
-					return $app->abort(401, $app['translator']->trans('401'));
+					return $app->abort(401, $app['translator']->trans('http.401'));
 				}
 			}
 		}

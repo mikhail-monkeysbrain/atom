@@ -20,7 +20,7 @@
 		),
 		'hash' => array(
 			'salt'	=> 'XJEnXG3Xi0n3eKXNe4xpYf',
-			'cost'	=> 1
+			'cost'	=> 4
 		),
 		'mailer'	=> array(
 			'from'	=> array('atom@hismith.ru' => 'AtomMailer'),

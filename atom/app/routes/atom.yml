@@ -1,9 +1,15 @@
-atom.entity.index:
+atom.entity:
     pattern: /entities/
     options:
         _controller: web\atom::entities
         _title: Просмотр свойств сущностей
-        _action: read
+    methods: GET
+
+atom.locale:
+    pattern: /locales/
+    options:
+        _controller: web\atom::locales
+        _title: Просмотр файлов локализаций
     methods: GET
 
 atom.filemanager:

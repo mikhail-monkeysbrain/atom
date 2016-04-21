@@ -13,6 +13,6 @@
 		}
 		
 		public static function error404(Request $request, Application $app){
-			return $app->abort(404, $app['translator']->trans('404'));
+			return $app->abort(404, $app['translator']->trans('http.404'));
 		}
 	}

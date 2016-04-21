@@ -125,6 +125,19 @@
 		}
 
 		/**
+		 * Check data value
+		 *
+		 * @param string $value Data value
+		 * @return boolean
+		 */
+		public function hasValue($value){
+			if (in_array($value, $this->data)){
+				return true;
+			}
+			return false;
+		}
+
+		/**
 		 * Has data _id
 		 *
 		 * @param boolean $checkType Check _id for MongoId object
