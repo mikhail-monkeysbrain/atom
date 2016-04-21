@@ -1,0 +1,8 @@
+{
+  "demo": {
+    "routes": {
+      "demo.read": {},
+      "demo.index": {}
+    }
+  }
+}
