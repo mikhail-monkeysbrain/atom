@@ -2,8 +2,8 @@
 'use strict';
 
   angular.module('authorization', [])
-    .config(function($stateProvider, $urlRouterProvider) {
-      $urlRouterProvider.otherwise('/');
+    .config(function($stateProvider) {
+
 //TODO: Refactor!
       $stateProvider
         .state('login', {

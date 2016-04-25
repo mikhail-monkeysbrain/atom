@@ -1,0 +1,27 @@
+{
+    "total": 1,
+    "data": [
+        {
+            "_id": {
+                "$id": "56a2b957bf741578108b45e2"
+            },
+            "content": "<div class=\"row\"><h1 class=\"demoTitle\">Текстовая страница для проверки</h1><p class=\"lead\">Текстовая страница на русском языке</p></div>",
+            "en_content": "<div class=\"row\"><h1 class=\"demoTitle\">Text page for development</h1><p class=\"lead\">English language text page</p></div>",
+            "en_title": "Test",
+            "enabled": true,
+            "title": "Тест",
+            "url": "/page1",
+            "pid": 0,
+            "level": 0,
+            "_created": {
+                "sec": 1453504855,
+                "usec": 366000
+            },
+            "_edited": {
+                "sec": 1458908950,
+                "usec": 83000
+            },
+            "position": 0
+        }
+    ]
+}

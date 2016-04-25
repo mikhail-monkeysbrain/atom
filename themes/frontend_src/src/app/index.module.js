@@ -19,6 +19,8 @@
     'rest.entity',
 
     'demo',
-    'authorization'
+    'authorization',
+    'page',
+    'errorPage'
   ]);
 })();

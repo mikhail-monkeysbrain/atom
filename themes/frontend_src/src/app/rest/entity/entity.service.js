@@ -84,6 +84,10 @@
         }
 
         return queries;
+      };
+
+      this.getTextPage = function(url) {
+        return $http.get(baseURL + '/page/?limit=0&condition[url]=' + url);
       }
     });
 

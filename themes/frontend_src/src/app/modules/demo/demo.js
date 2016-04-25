@@ -3,16 +3,7 @@
 
   angular
     .module('demo', [])
-    .config(function($stateProvider, $urlRouterProvider) {
-
-      $stateProvider
-        .state('app', {
-          url:        '/'
-          //, abstract: true
-        })
-      ;
-
-      $urlRouterProvider.otherwise('/');
+    .config(function($stateProvider) {
 
       $stateProvider
         .state('app.demo', {

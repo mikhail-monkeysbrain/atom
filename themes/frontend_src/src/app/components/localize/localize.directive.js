@@ -8,7 +8,7 @@
         restrict:    'E',
         templateUrl: 'app/components/localize/localize.html',
         link: function($scope, $element, attrs) {
-          $scope.lang = $cookies.get('curLocale') || 'en';
+          $scope.lang = $cookies.get('curLocale') || 'ru';
           changeText();
 
           $scope.changeLocale = function(locale) {

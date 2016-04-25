@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app" ng-strict-di>
+<html lang="en" ng-app="app">
 <head>
   <meta charset="UTF-8">
   <title>AtomFrontPlatform - %VERSION%</title>
@@ -7,13 +7,13 @@
 
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-  <!-- build:css({tmp/serve,src}) styles/vendor.css -->
+  <!-- build:css({tmp/serve,src}) /themes/frontend/styles/vendor.css -->
   <!-- bower:css -->
   <!-- run `gulp inject` to automatically populate bower styles dependencies -->
   <!-- endbower -->
   <!-- endbuild -->
 
-  <!-- build:css({tmp/serve,src}) styles/app.css -->
+  <!-- build:css({tmp/serve,src}) /themes/frontend/styles/app.css -->
   <!-- inject:css -->
   <!-- css files will be automatically insert here -->
   <!-- endinject -->
@@ -53,13 +53,13 @@
     <div class="starter-template" ui-view="content"></div>
   </div>
 
-  <!-- build:js(src) scripts/vendor.js -->
+  <!-- build:js(src) /themes/frontend/scripts/vendor.js -->
   <!-- bower:js -->
   <!-- run `gulp inject` to automatically populate bower script dependencies -->
   <!-- endbower -->
   <!-- endbuild -->
 
-  <!-- build:js({tmp/serve,tmp/partials,src}) scripts/app.js -->
+  <!-- build:js({tmp/serve,tmp/partials,src}) /themes/frontend/scripts/app.js -->
   <!-- inject:js -->
   <!-- js files will be automatically insert here -->
   <!-- endinject -->

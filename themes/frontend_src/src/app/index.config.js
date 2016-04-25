@@ -2,25 +2,42 @@
   'use strict';
 
   angular.module('app')
-    .config(function($logProvider, $httpProvider, $stateProvider, $locationProvider, $translateProvider, toastr, $provide, baseURL, debug) {
+
+    .config(function($stateProvider, $urlRouterProvider) {
+      $stateProvider
+        .state('app', {
+          url:        '/'
+        })
+      ;
+
+      $urlRouterProvider.otherwise(function($injector) {
+        $injector.get('$state').go('customHandler');
+      });
+    })
+
+    .config(function($translateProvider, baseURL, debug) {
       var $cookies;
       angular.injector(['ngCookies']).invoke(['$cookies', function(_$cookies_) {
         $cookies = _$cookies_;
       }]);
 
-
-      $locationProvider.html5Mode(true);
-
-      $httpProvider.defaults.headers.post = {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded'};
-      $httpProvider.defaults.headers.get = {'Accept': 'application/json'};
-
       var lang = $cookies.get('curLocale') || 'en';
-      if(debug) {
+      if(debug === debug) {
         $translateProvider.useUrlLoader('app/rest/localize/fixture/translate_' + lang + '.json');
       } else {
         $translateProvider.useUrlLoader(baseURL + '/atom/localize/' + lang);
       }
       $translateProvider.preferredLanguage(lang);
+    })
+
+    .config(function($locationProvider) {
+      $locationProvider.html5Mode(true);
+    })
+
+    .config(function($logProvider, $httpProvider, $stateProvider, toastr) {
+
+      $httpProvider.defaults.headers.post = {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded'};
+      $httpProvider.defaults.headers.get = {'Accept': 'application/json'};
 
       $httpProvider.interceptors.push(function($q, $injector, loginPeriod) {
         return {
@@ -53,6 +70,9 @@
             } else if(rejection.status == 400) {
               if(rejection.data.error.message)
                 toastr.error(rejection.data.error.message);
+            } else if(rejection.status == 404) {
+              $injector.get('$rootScope').errorMessage = rejection.data.error.message;
+              $injector.get('$state').go('error404');
             } else {
               Lazy(rejection.data.error.null).each(function(error) {
                 if(error.message)
@@ -65,11 +85,12 @@
         };
       });
 
-      // Set options third-party lib
+    })
+
+    .config(function(toastr) {
       toastr.options.timeOut = 3000;
       toastr.options.positionClass = 'toast-top-right';
       toastr.options.preventDuplicates = false;
       toastr.options.closeButton = true;
-
     });
 })();

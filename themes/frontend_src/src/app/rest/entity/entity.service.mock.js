@@ -36,5 +36,13 @@
         return $http.get('/app/rest/entity/fixture/userSaved.json', $httpParamSerializer(data));
       };
 
+      this.getTextPage = function(url) {
+        if(url == '/page1') {
+          return $http.get('app/rest/entity/fixture/page.json');
+        } else {
+          return $http.get('app/rest/entity/fixture/pageNotFound.json');
+        }
+      }
+
     });
 })();

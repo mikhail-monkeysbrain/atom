@@ -12,9 +12,9 @@
         $rootScope.authorized = false;
         if(SessionService.getSessionID() !== undefined) {
           SessionService.setSessionID(undefined);
-          $cookies.remove('token');
-          $cookies.remove('rememberMe');
           AuthService.logout().then(function() {
+            $cookies.remove('token');
+            $cookies.remove('rememberMe');
             RestrictionsService.resetPermissions().then(function() {
               $state.go('app');
             });
