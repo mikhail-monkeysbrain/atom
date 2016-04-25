@@ -22,16 +22,17 @@
       }]);
 
       var lang = $cookies.get('curLocale') || 'en';
-      if(debug === debug) {
+      if(debug) {
         $translateProvider.useUrlLoader('app/rest/localize/fixture/translate_' + lang + '.json');
       } else {
-        $translateProvider.useUrlLoader(baseURL + '/atom/localize/' + lang);
+        $translateProvider.useUrlLoader(baseURL + '/atom/locales/?condtition[locale]=' + lang);
       }
       $translateProvider.preferredLanguage(lang);
     })
 
     .config(function($locationProvider) {
-      $locationProvider.html5Mode(true);
+      //TODO: Comment for development. There are problems with proxy in HTML5mode
+      $locationProvider.html5Mode(location.hostname !== 'localhost');
     })
 
     .config(function($logProvider, $httpProvider, $stateProvider, toastr) {
@@ -63,7 +64,7 @@
           responseError:  function(rejection) {
             if(rejection.status == 500){
               $injector.get('$rootScope').errorMessage = rejection.data.error.message;
-              $injector.get('$state').go('error500');
+              $injector.get('$rootScope').showGlobalPopup = true;
             }
             if(rejection.status == 401) {
               $injector.get('$state').go('logout');
@@ -72,7 +73,7 @@
                 toastr.error(rejection.data.error.message);
             } else if(rejection.status == 404) {
               $injector.get('$rootScope').errorMessage = rejection.data.error.message;
-              $injector.get('$state').go('error404');
+              $injector.get('$rootScope').showGlobalPopup = true;
             } else {
               Lazy(rejection.data.error.null).each(function(error) {
                 if(error.message)

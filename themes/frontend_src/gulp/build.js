@@ -50,7 +50,7 @@ gulp.task('html', ['inject', 'partials'], function() {
   var jsFilter = filter('**/*.js', { restore: true });
   var cssFilter = filter('**/*.css', { restore: true });
 
-  return gulp.src(path.join(conf.paths.tmp, '/serve/*.html'))
+  gulp.src(path.join(conf.paths.tmp, '/serve/*.html'))
     .pipe(inject(partialsInjectFile, partialsInjectOptions))
     .pipe(useref())
     .pipe(jsFilter)
@@ -74,6 +74,19 @@ gulp.task('html', ['inject', 'partials'], function() {
     .pipe(htmlFilter.restore)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
     .pipe(size({ title: path.join(conf.paths.dist, '/'), showFiles: true }));
+
+  gulp.src(path.join(conf.paths.dist, '/themes/frontend/scripts/*.js'))
+    .pipe(copy(conf.paths.dist + '/', { prefix: 4 }));
+  gulp.src(path.join(conf.paths.dist, '/themes/frontend/styles/*.css'))
+    .pipe(copy(conf.paths.dist + '/', { prefix: 4 }))
+});
+
+gulp.task('replace', function() {
+  gulp.src(path.join(conf.paths.dist, '/themes/frontend/scripts/*.js'))
+    .pipe(copy(conf.paths.dist + '/', { prefix: 4 }));
+  gulp.src(path.join(conf.paths.dist, '/themes/frontend/styles/*.css'))
+    .pipe(copy(conf.paths.dist + '/', { prefix: 4 }))
+  //del(conf.paths.dist + '/themes', {force: true});
 });
 
 gulp.task('other', ['clean'], function() {

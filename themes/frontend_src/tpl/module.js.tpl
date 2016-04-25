@@ -17,7 +17,7 @@
           url: '<%= permissions[i].pattern %>'
           , views: {
             'content@': {
-              templateUrl:  'app/modules/<%= name %>/<%= permissions[i].ctrlName %>.html'
+              templateUrl:  'app/modules/<%= name %>/<%= permissions[i].action %>/<%= permissions[i].ctrlName %>.html'
               , controller: '<%= permissions[i].ctrlName %>Ctrl'
             }
           }

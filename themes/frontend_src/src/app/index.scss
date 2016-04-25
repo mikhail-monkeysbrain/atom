@@ -7,6 +7,32 @@
    margin-top: 75px;
 }
 
+.chosen-container {
+   width: 100%;
+}
+
+.btn-icon {
+   display: inline-block;
+   text-align: center;
+   border-radius: 4px;
+   height: 20px;
+   line-height: 20px;
+   width: 20px;
+}
+
+.btn-edit {
+   background-color: #018faf;
+   border-color: #018faf;
+   color: #fff;
+   margin-right: 3px;
+}
+
+.btn-remove {
+   background-color: #d73532;
+   border-color: #d73532;
+   color: #fff;
+}
+
 /* Do not remove this comments bellow. It's the markers used by gulp-inject to inject
    all your sass files automatically */
 // injector

@@ -2,6 +2,9 @@
   "name": "Atom Front Platform",
   "version": "0.0.1",
   "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "4.17.37",
+    "angular-sanitize": "1.5.5",
+    "angular-chosen-localytics": "1.4.0",
     "angular": "1.5.3",
     "angular-ui-router": "0.2.18",
     "angular-bootstrap": "1.3.2",
@@ -11,12 +14,24 @@
     "angular-cookies": "1.5.5",
     "toastr": "2.1.2",
     "lazy.js": "0.4.2",
-    "angular-localize": "^2.4.0",
-    "angular-sanitize": "^1.5.5",
-    "angular-translate": "~2.11.0",
-    "angular-translate-loader-url": "~2.11.0"
+    "angular-translate": "2.11.0",
+    "angular-translate-loader-url": "2.11.0",
+    "font-awesome": "4.5.0"
   },
   "devDependencies": {
     "angular-mocks": "1.4.10"
+  },
+  "overrides": {
+    "font-awesome": {
+      "main": [
+        "css/font-awesome.css"
+      ]
+    },
+    "moment": {
+      "main": [
+        "moment.js",
+        "locale/ru.js"
+      ]
+    }
   }
 }

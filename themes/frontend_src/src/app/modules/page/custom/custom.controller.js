@@ -3,12 +3,12 @@
 
   angular
     .module('page')
-    .controller('CustomPageCtrl', function($scope, $state, $location, EntityService, $cookies) {
+    .controller('CustomPageCtrl', function($scope, $state, $location, EntityAPIService, $cookies) {
 
       var url = $location.url();
       var locale = $cookies.get('curLocale') || 'ru';
 
-      EntityService.getTextPage(url).then(function(response) {
+      EntityAPIService.getTextPage(url).then(function(response) {
         if(response.data.total > 0) {
           if(locale === 'en') {
             $scope.pageContent = response.data.data[0].en_content;

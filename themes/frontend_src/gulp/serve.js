@@ -23,7 +23,7 @@ function browserSyncInit(baseDir, browser) {
     routes: routes
   };
 
-  server.middleware = proxyMiddleware(['/user','/atom','/transaction','/page','/service','/partner','/role','/article','/cardtype', '/affiliation', '/industry', '/setting', '/accrual', '/writeoff', '/refund', '/page', '/block', '/filemanager', '/thumbs', '/upload', '/log', '/themes', '/company', '/region','/status', '/contact', '/task', '/properties', '/download', '/join'], {
+  server.middleware = proxyMiddleware(['/user','/atom','/transaction','/page','/service','/partner','/role','/article','/cardtype', '/affiliation', '/industry', '/setting', '/accrual', '/writeoff', '/refund', '/page', '/block', '/filemanager', '/thumbs', '/upload', '/log', '/company', '/region','/status', '/contact', '/task', '/properties', '/download', '/join'], {
     target: 'http://dev.atom.hismith.ru',
     changeOrigin: true
   });
@@ -44,6 +44,6 @@ gulp.task('serve', function() {
   browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
 });
 
-gulp.task('serve:dist', ['build'], function() {
+gulp.task('serve:dist', function() {
   browserSyncInit(conf.paths.dist);
 });

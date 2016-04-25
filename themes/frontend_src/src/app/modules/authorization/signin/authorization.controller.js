@@ -2,10 +2,16 @@
   'use strict';
 
   angular.module('authorization')
-    .controller('AuthorizationCtrl', function($scope, $rootScope, $state, $document, $http, $cookies, AuthService, toastr, SessionService, RestrictionsService, $stateParams, loginPeriod) {
+    .controller('AuthorizationCtrl', function($scope, $rootScope, $state, $document, $http, $cookies, AuthService, toastr, SessionService, RestrictionsService, $stateParams, loginPeriod, baseURL) {
 
       var yearFuther = 1000*60*60*24*365;
       $scope.rememberMe = true;
+
+      //TODO: FOr development
+      $scope.user = {
+        email: 'kamal@hismith.ru',
+        password: 'multipass'
+      }
 
       if($state.is('logout')) {
         $rootScope.hidePanels = true;

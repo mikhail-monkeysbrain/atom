@@ -9,14 +9,26 @@
     'ngCookies',
     'ngSanitize',
     'pascalprecht.translate',
+    'localytics.directives',
 
     'components.session',
     'components.restrictions',
     'components.localize',
+    'components.entity',
+
+    'directives.atomListField',
+    'directives.atomFieldString',
+    'directives.atomFieldPassword',
+    'directives.atomFieldBoolean',
+    'directives.atomFieldEntity',
+    'directives.atomFieldDatetime',
+    'directives.atomGlobalPopup',
 
     'rest.auth',
     'rest.restrictionsAPI',
     'rest.entity',
+
+    'log',
 
     'demo',
     'authorization',
