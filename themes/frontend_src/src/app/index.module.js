@@ -28,7 +28,6 @@
     'rest.restrictionsAPI',
     'rest.entity',
 
-    'log',
 
     'demo',
     'authorization',

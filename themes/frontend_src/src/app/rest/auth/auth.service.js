@@ -12,7 +12,7 @@
       };
 
       this.register = function(request) {
-        return $http.post(baseURL + '/user/auth/register/', $httpParamSerializer(request));
+        return $http.post(baseURL + '/user/create/', $httpParamSerializer(request));
       };
 
 
