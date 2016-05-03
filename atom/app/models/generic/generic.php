@@ -316,8 +316,6 @@
 				'_edited'	=> new \MongoDate()
 			));
 
-			$this->updateSearchContent();
-
 			$status = $this->app['db']
 				->selectCollection($this->getEntityName())
 				->save(@$this->toArray());
@@ -326,6 +324,8 @@
 				throw new \Exception($this->app['db']->lastError()['err'], $this->app['db']->lastError()['code']);
 			}
 			if ($status['n']) {
+				$this->updateSearchContent();
+				$this->updateRelatedSearchContent();
 				return true;
 			}
 			return false;
@@ -339,7 +339,7 @@
 		public function remove(){
 			$files = array();
 			foreach($this->getScheme()->get() as $field => $properties){
-				if (in_array($properties['type'], array('file', 'image')) && $this->get($field)){
+				if (isset($properties['type']) && in_array($properties['type'], array('file', 'image')) && $this->get($field)){
 					if (@$properties['multiple'] === true){
 						foreach($this->get($field) as $file){
 							if (file_exists($this->app['config']->get('paths')->get('root').$file['route'])){
@@ -357,8 +357,6 @@
 				$this->app['fs']->remove($files);
 			}
 			
-			$this->removeSearchContent();
-			
 			$status = $this->app['db']
 				->selectCollection($this->getEntityName())
 				->remove(array(
@@ -369,6 +367,8 @@
 				throw new \Exception($this->app['db']->lastError()['err'], $this->app['db']->lastError()['code']);
 			}
 			if ($status['n']) {
+				$this->removeSearchContent();
+				$this->updateRelatedSearchContent();
 				return true;
 			}
 			return false;
@@ -483,8 +483,7 @@
 				$id = array($id);
 			}
 			return (new $modelName())->load(array(
-				'_id'		=> array('$in' => $id),
-				'enabled'	=> true
+				'_id'		=> array('$in' => $id)
 			));
 		}
 
@@ -521,30 +520,9 @@
 		}
 
 		/**
-		 * Check date actual
-		 *
-		 * @param string $field Field name for check
-		 * @param string $compareDate Date for compare, if null then array('<=' => 'now')
-		 * @return boolean
-		 */
-		public function isActualDate($field, $compareDate = null){
-			$timestamp = (get_class($this->get($field)) == 'MongoDate' ? $this->get($field)->sec : strtotime($this->get($field)));
-			if (is_null($compareDate)){
-				$compareDate = array('<=' => 'now');
-			}
-			foreach($compareDate as $compare => $datetime){
-				$compareTimestamp = strtotime($datetime);
-				if (!eval("return $timestamp $compare $compareTimestamp;")){
-					return false;
-				}
-			}
-			return true;
-		}
-
-		/**
 		 * Update search content
 		 */
-		public function updateSearchContent(){
+		private function updateSearchContent(){
 			if (in_array($this->getEntityName(), array('search', 'log', null))){
 				return false;
 			}
@@ -577,11 +555,17 @@
 							$relatedData = $this->getRelated($field);
 							if ($properties->get('multiple')){
 								foreach($relatedData as $element){
-									$related[] = $element->get('_id');
+									$related[] = array(
+										'entity'	=> new \MongoCode($element->getEntityName()),
+										'id'		=> $element->get('_id')
+									);
 									$search[$field][] = $element->get($properties->get('entity')->get('field'));	
 								}
 							} else {
-								$related[] = $relatedData->getFirst()->get('_id');
+								$related[] = array(
+									'entity'	=> new \MongoCode($relatedData->getFirst()->getEntityName()),
+									'id'		=> $relatedData->getFirst()->get('_id')
+								);
 								$search[$field] = $relatedData->getFirst()->get($properties->get('entity')->get('field'));
 							}
 						break;
@@ -603,9 +587,27 @@
 		}
 
 		/**
+		 * Update related search content
+		 */
+		private function updateRelatedSearchContent(){
+			$items = (new search())->load(array(
+				'ref_related.entity'=> new \MongoCode($this->getEntityName()),
+				'ref_related.id'	=> $this->mongoid()
+			));
+			foreach($items as $item){
+				$modelName = '\app\models\\'.$item->get('ref_entity').'\\'.$item->get('ref_entity');
+				(new $modelName)->loadById($item->get('ref_id'))->updateSearchContent();
+			}
+		}
+
+		/**
 		 * Remove search content
 		 */
-		public function removeSearchContent(){
+		private function removeSearchContent(){
+			if (in_array($this->getEntityName(), array('search', 'log', null))){
+				return false;
+			}
+			
 			return (new search())->loadOne(array('ref_id' => $this->mongoid()))->remove();
 		}
 	}
