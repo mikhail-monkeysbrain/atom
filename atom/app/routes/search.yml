@@ -1,7 +1,7 @@
 search.index:
     pattern: /
     options:
-        _controller: web\search::read
+        _controller: web\search::search
         _title: Разводная страница
         _action: read
     defaults:
@@ -14,7 +14,7 @@ search.index:
 search.pagination:
     pattern: /page/{page}/
     options:
-        _controller: web\search::read
+        _controller: web\search::search
         _title: Постраничный вывод элементов
         _action: read
     defaults:
@@ -23,47 +23,3 @@ search.pagination:
         limit: 10
         skip: 0
     methods: GET
-
-search.create:
-    pattern: /create/
-    options:
-        _controller: web\search::create
-        _title: Создание элемента
-        _action: create
-    methods: POST
-
-search.read:
-    pattern: /{_id}/
-    options:
-        _controller: web\search::read
-        _title: Просмотр элемента
-        _action: read
-    requirements:
-        _id: ([0-9A-Za-z]){24}
-    methods: GET
-
-search.update:
-    pattern: /update/
-    options:
-        _controller: web\search::update
-        _title: Редактирование элемента
-        _action: update
-    methods: POST
-
-search.delete:
-    pattern: /delete/
-    options:
-        _controller: web\search::delete
-        _title: Удаление элемента
-        _action: delete
-    methods: POST
-
-search.export:
-    pattern: /export/
-    options:
-        _controller: web\search::export
-        _title: Экспорт элементов
-        _action: read
-    defaults:
-        sort: {_id: -1}
-    methods: [GET,POST]

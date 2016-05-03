@@ -47,11 +47,9 @@
 		 */
 		public function load($condition = array(), $sort = array(), $limit = 0, $skip = 0){
 			$options = array();
-			if(isset($condition['$search']) && $condition['$search']){
-				$condition = array_merge($condition, array('$text' => array('$search' => (string)$condition['$search'])));
-				unset($condition['$search']);
-				$options = array('_score' => array('$meta' => 'textScore'));
-				$sort = array_merge($options, $sort);
+			if (isset($condition['$options'])){
+				$options = $condition['$options'];
+				unset($condition['$options']);
 			}
 			foreach($condition as $key => $value){
 				if (is_array($value) && key($value) == '$regex'){
