@@ -50,6 +50,7 @@ enabled:
 role:
     title: Роль
     type: entity
+    search: true
     entity:
         model: role
         filter: {enabled: true}
