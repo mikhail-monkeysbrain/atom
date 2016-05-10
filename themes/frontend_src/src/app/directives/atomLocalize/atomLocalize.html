@@ -1,0 +1,11 @@
+<ul class="nav navbar-nav navbar-right localize">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <img ng-src="app/assets/{{lang}}.gif">{{ currentLocale }}<span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a ng-click="changeLocale('en')" href="#"><img src="app/assets/en.gif"> English</a></li>
+            <li><a ng-click="changeLocale('ru')" href="#"><img src="app/assets/ru.gif"> Русский</a></li>
+        </ul>
+    </li>
+</ul>

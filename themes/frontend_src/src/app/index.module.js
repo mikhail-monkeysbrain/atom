@@ -13,7 +13,6 @@
 
     'components.session',
     'components.restrictions',
-    'components.localize',
     'components.entity',
 
     'directives.atomListField',
@@ -23,6 +22,7 @@
     'directives.atomFieldEntity',
     'directives.atomFieldDatetime',
     'directives.atomGlobalPopup',
+    'directives.atomLocalize',
 
     'rest.auth',
     'rest.restrictionsAPI',
