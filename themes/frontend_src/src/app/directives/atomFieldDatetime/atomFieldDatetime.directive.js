@@ -26,8 +26,7 @@
 
           $scope.dt = moment($scope.field.sec * 1000);
 
-
-          $element.datetimepicker({
+          angular.element($element[0].querySelector('input')).datetimepicker({
             locale: 'ru',
             useCurrent: true,
             defaultDate: $scope.dt,

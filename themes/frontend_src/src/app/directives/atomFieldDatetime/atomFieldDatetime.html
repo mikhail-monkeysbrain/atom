@@ -1,13 +1,15 @@
-<input
-  type="text"
-  class="form-control"
-  id="{{fieldName}}"
-  name="{{fieldName}}"
-  >
+<div class="input-group">
+    <input
+      type="text"
+      class="form-control"
+      id="{{fieldName}}"
+      name="{{fieldName}}"
+    >
 
-<span class="input-group-addon" >
-    <i class="fa " ng-class="{
-    'fa-calendar': (scheme.type === 'date' || scheme.type === 'datetime'),
-    'fa-clock-o':  scheme.type === 'time'
-    }" ></i>
-  </span>
+    <span class="input-group-addon" >
+        <i class="fa " ng-class="{
+        'fa-calendar': (scheme.type === 'date' || scheme.type === 'datetime'),
+        'fa-clock-o':  scheme.type === 'time'
+        }" ></i>
+    </span>
+</div>
