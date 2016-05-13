@@ -519,7 +519,7 @@
 		/**
 		 * Update search content
 		 */
-		private function updateSearchContent(){
+		public function updateSearchContent(){
 			if (in_array($this->getEntityName(), array('search', 'log', null))){
 				return false;
 			}
