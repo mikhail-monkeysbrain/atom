@@ -30,21 +30,21 @@
 					return true;
 				}
 			}
-			return (new role())->loadOne(array(
+			return (new role())->loadOne(array(), array(
 				'name'		=> 'guest',
 				'enabled'	=> true
 			))->hasAccess($route);
 		}
 		
 		public function authByToken($token){
-			return (is_null($this->loadOne(array(
+			return (is_null($this->loadOne(array(), array(
 				'token'		=> $token,
 				'enabled'	=> true
 			))->get('_id')) ? false : true);
 		}
 
 		public function authByPass($email, $password){
-			$this->loadOne(array(
+			$this->loadOne(array(), array(
 				'email'		=> $email,
 				'password'	=> $this->hash($password),
 				'enabled'	=> true

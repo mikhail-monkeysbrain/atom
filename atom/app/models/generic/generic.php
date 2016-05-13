@@ -45,10 +45,9 @@
 		 * @param integer $skip Skiping position
 		 * @return iterator
 		 */
-		public function load($condition = array(), $sort = array(), $limit = 0, $skip = 0){
-			$options = array();
+		public function load($fields = array(), $condition = array(), $sort = array(), $limit = 0, $skip = 0){
 			if (isset($condition['$options'])){
-				$options = $condition['$options'];
+				$fields = array_merge($fields, $condition['$options']);
 				unset($condition['$options']);
 			}
 			foreach($condition as $key => $value){
@@ -59,7 +58,7 @@
 			}
 			$dataset = $this->app['db']
 				->selectCollection($this->getEntityName())
-				->find($condition, $options)
+				->find($condition, $fields)
 				->sort($sort)
 				->limit($limit)
 				->skip($skip);
@@ -80,11 +79,11 @@
 		 * @param mixed $value Value
 		 * @return this
 		 */
-		public function loadOne($condition, $value = null){
+		public function loadOne($fields, $condition, $value = null){
 			if (!is_array($condition)){
 				$condition = array($condition => $value);
 			}
-			$data = $this->load($condition, array('_id' => -1), 1, 0);
+			$data = $this->load($fields, $condition, array('_id' => -1), 1, 0);
 			$object = ($data->getFirst() instanceof self ? $data->getFirst() : new static);
 			return $this->set($object->get());
 		}
@@ -96,7 +95,7 @@
 		 * @return this
 		 */
 		public function loadById($id = null){
-			return $this->loadOne('_id', $this->mongoid($id));
+			return $this->loadOne(array(), '_id', $this->mongoid($id));
 		}
 		
 		public function prepareValues(){
@@ -480,7 +479,7 @@
 			} else {
 				$id = array($id);
 			}
-			return (new $modelName())->load(array(
+			return (new $modelName())->load(array(), array(
 				'_id'		=> array('$in' => $id)
 			));
 		}
@@ -507,7 +506,7 @@
 			$values = array_map(function($field){
 				return $this->get($field);
 			}, (array)$fields);
-			$data = (new static)->load(array_combine((array)$fields, $values));
+			$data = (new static)->load(array(), array_combine((array)$fields, $values));
 			if ($data->count()){
 				$diffObject = ($data->getFirst() instanceof self ? $data->getFirst() : new static);
 				if (is_null($diffObject->get('_id')) == false && $this->get('_id') != $diffObject->get('_id')){
@@ -575,7 +574,7 @@
 				return false;
 			}
 			
-			$item = (new search())->loadOne(array('ref_id' => $this->mongoid()));
+			$item = (new search())->loadOne(array(), array('ref_id' => $this->mongoid()));
 			return $item->set(array(
 				'ref_entity'	=> new \MongoCode($this->getEntityName()),
 				'ref_id'		=> $this->mongoid(),
@@ -588,7 +587,7 @@
 		 * Update related search content
 		 */
 		private function updateRelatedSearchContent(){
-			$items = (new search())->load(array(
+			$items = (new search())->load(array(), array(
 				'ref_related.entity'=> new \MongoCode($this->getEntityName()),
 				'ref_related.id'	=> $this->mongoid()
 			));
@@ -606,6 +605,6 @@
 				return false;
 			}
 			
-			return (new search())->loadOne(array('ref_id' => $this->mongoid()))->remove();
+			return (new search())->loadOne(array(), array('ref_id' => $this->mongoid()))->remove();
 		}
 	}
