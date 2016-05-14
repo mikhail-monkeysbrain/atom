@@ -48,7 +48,7 @@
 		 * @return iterator
 		 */
 		public function loadChilds($id = null){
-			return $this->load(array(
+			return $this->load(array(), array(
 				'pid'	=> ($id === 0 ? 0 : $this->mongoid($id))
 			));
 		}
@@ -65,7 +65,7 @@
 				$prev = end($this->crumbs) ? end($this->crumbs) : '/';
 				$crumbs[$key] = $prev.$part.'/';
 			}
-			return $this->load(array(
+			return $this->load(array(), array(
 				'url'	=> array('$in' => $crumbs)
 			));
 		}

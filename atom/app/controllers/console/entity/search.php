@@ -26,7 +26,7 @@
 				$question = new Question('Search for: ');
 				$query = $helper->ask($input, $output, $question);
 			} while(!$query);
-			$search = (new model)->load(array(
+			$search = (new model)->load(array(), array(
 				'$search'	=> $query
 			));
 			foreach($search as $key => $element){

@@ -37,6 +37,23 @@
 				}
 				$this->app['db']->selectCollection('search')->ensureIndex(array('$**' => 'text'), array('default_language' => 'russian'));
 			}
-			$output->writeln('<options=bold>Database indexes just rebuilded!</options=bold>');
+			$output->writeln('<options=bold>Database indexes just setted!</options=bold>');
+			
+			$this->app['db']->selectCollection('search')->remove(array());
+			$output->writeln('<options=bold>Search content just truncated!</options=bold>');
+			
+			$pattern = $this->app['config']->get('paths')->get('atom').'/app/models/*.yml';
+			$entities = (new helper\helper)->glob($pattern);
+			foreach($entities as $scheme){
+				$modelName = '\app\models\\'.pathinfo($scheme, PATHINFO_FILENAME).'\\'.pathinfo($scheme, PATHINFO_FILENAME);
+				$model = new $modelName;
+				$scheme = $model->getScheme();
+				
+				$elements = $model->load(array(), ($model->getScheme()->has('enabled') ? array('enabled' => true) : array()));
+				foreach($elements as $element){
+					$element->updateSearchContent();
+				}
+			}
+			$output->writeln('<options=bold>Search content just updated!</options=bold>');
 		}
 	}

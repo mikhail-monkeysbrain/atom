@@ -75,7 +75,7 @@
 				file_put_contents($files['destination'], $content, FILE_APPEND | LOCK_EX);
 			}
 			
-			$role = (new role())->loadOne('name', 'admin');
+			$role = (new role())->loadOne(array(), 'name', 'admin');
 			$acl = $role->get('acl')->all();
 			$acl[$entity] = array(
 				'create'	=> true,

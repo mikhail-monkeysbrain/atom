@@ -25,11 +25,12 @@
 			if ($request->get('_id')){
 				$request->query->set('condition', array('_id' => static::model()->mongoid($request->get('_id'))));
 			}
+			$fields = static::prepareFields($request->get('fields', array()));
 			$condition = static::prepareCondition($request->get('condition', array()));
 			$sort = static::prepareSort($request->get('sort', array()));
 			$limit = (int)$request->get('limit', 10);
 			$skip = ($request->get('skip') ? (int)$request->get('skip', 0) : (int)$request->get('page', 0) * $limit);
-			$items = static::model()->load($condition, $sort, $limit, $skip);
+			$items = static::model()->load($fields, $condition, $sort, $limit, $skip);
 			return $app['page']->set(array(
 				'total'	=> $items->getTotal(),
 				'data'	=> $items->all()
@@ -40,7 +41,7 @@
 			$success = new helper\iterator();
 			$error = new helper\iterator();
 			if ($request->get('_id')){
-				$item = static::model()->loadById($request->get('_id'))->set($request->request->all());
+				$item = static::model()->loadById(array(), $request->get('_id'))->set($request->request->all());
 				if(count($request->files->all())){
 					$item->setFile($request->files->all());
 				}
@@ -56,7 +57,7 @@
 			$success = new helper\iterator();
 			$error = new helper\iterator();
 			if ($request->get('_id')){
-				$item = static::model()->loadById($request->get('_id'));
+				$item = static::model()->loadById(array(), $request->get('_id'));
 				$result = $item->remove();
 				$app['log']->add(sprintf('Удаление элемента — %s %s (%s://%s/atom/#/%s/edit/%s)', strtolower($item->getEntityTitle()), '«'.$item->get('title', $item->get('uid', (string)$item->get('_id'))).'»', $request->isSecure() ? 'https' : 'http', $request->getHost(), $item->getEntityName(), (string)$item->get('_id')));
 				static::handleActionResult($item, $result, $success, $error);
@@ -95,9 +96,10 @@
 			}
 			$rows->add($row);
 			
+			$fields = static::prepareFields($request->get('fields', array()));
 			$condition = static::prepareCondition($request->get('condition', array()));
 			$sort = static::prepareSort($request->get('sort', array()));
-			$items = $model->load($condition, $sort);
+			$items = $model->load($fields, $condition, $sort);
 			foreach($items as $item){
 				$row = array((string)$item->get('_id'));
 				foreach($scheme->all() as $fieldName => $field){
@@ -201,6 +203,10 @@
 				'Content-Disposition'	=> 'attachment;filename="'.$xls->getProperties()->getTitle().'.xlsx"'
 			));
 			return $app['page'];
+		}
+
+		public static function prepareFields($fields){
+			return (array)$fields;
 		}
 
 		public static function prepareCondition($condition){
