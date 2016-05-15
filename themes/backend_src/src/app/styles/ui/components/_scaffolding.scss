@@ -28,6 +28,15 @@ body {
     color: $reverse;
 }
 
+a {
+    text-decoration: none;
+    &:active,
+    &:focus,
+    &:hover {
+        text-decoration: none;
+    }
+}
+
 span.block {
     display: block;
 }

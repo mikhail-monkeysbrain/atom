@@ -13,7 +13,12 @@
             border-bottom: 0;
             > li {
                 > a {
-                    border-bottom-color: transparent;
+                    border: 1px solid transparent;
+                    &:focus,
+                    &:hover,
+                    &:active {
+                        border: 1px solid transparent;
+                    }
                 }
             }
         }

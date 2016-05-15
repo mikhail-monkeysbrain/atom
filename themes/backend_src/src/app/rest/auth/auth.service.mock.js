@@ -16,5 +16,9 @@
 
         return $http.get('/app/rest/auth/fixture/' + file);
       };
+
+      this.properties = function() {
+        return $http.get('/app/rest/auth/fixture/properties.json');
+      };
     });
 })();

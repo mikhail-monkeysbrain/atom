@@ -1,6 +1,6 @@
 {
   "error": {
     "code": 400,
-    "message": "Неверный логин или пароль"
+    "message": "Wrong login or password"
   }
 }

@@ -11,7 +11,7 @@
           field: '='
         },
         template: function() {
-          return '<span ng-if="!file && !img">{{title}}</span><img ng-if="!file && img" ng-src="{{title}}" ng-click="openLightboxModal($event)"><a ng-if="file && !img" href="{{route}}">{{title}}</a>';
+          return '<span ng-if="!file && !img" style="{white-space: nowrap}">{{title}}</span><img ng-if="!file && img" ng-src="{{title}}" ng-click="openLightboxModal($event)"><a ng-if="file && !img" href="{{route}}">{{title}}</a>';
         },
         controller: function($scope, $filter, EntityService, Lightbox) {
 
@@ -19,12 +19,18 @@
             case 'date':
               $scope.title = $filter('date')($scope.entity.sec * 1000, 'dd.MM.yyyy');
               break;
+            case 'datetime':
+              $scope.title = $filter('date')($scope.entity.sec * 1000, 'dd.MM.yyyy HH:mm');
+              break;
+            case 'time':
+              $scope.title = $filter('date')($scope.entity.sec * 1000, 'HH:mm');
+              break;
             case 'select':
               $scope.title =  $scope.field.values[$scope.entity];
               break;
             case 'entity':
               _.each($scope.$parent.linkedEntities[$scope.entityName], function(linkedItem) {
-                if(linkedItem.$id == $scope.entity.$id) {
+                if(linkedItem && $scope.entity && linkedItem.$id == $scope.entity.$id) {
                   $scope.title = linkedItem.title;
                 }
               });

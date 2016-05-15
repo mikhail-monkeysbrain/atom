@@ -41,19 +41,51 @@
             useCurrent: $scope.useCurrent,
             defaultDate: $scope.dt,
             format: format,
-            extraFormats: [format ]
+            extraFormats: [format ],
+            tooltips: {
+              today: 'Сегодня',
+              clear: 'Очистить',
+              close: 'Закрыть',
+              selectMonth: 'Выбрать месяц',
+              prevMonth: 'Предыдущий месяц',
+              nextMonth: 'Следующий месяц',
+              selectYear: 'Выбрать год',
+              prevYear: 'Предыдущий год',
+              nextYear: 'Следующий год',
+              selectDecade: 'Выбрать декаду',
+              prevDecade: 'Пердыдущая декада',
+              nextDecade: 'Следующая декада',
+              prevCentury: 'Предыдущее столетье',
+              nextCentury: 'Следующее столетье',
+              pickHour: 'Выбрать час',
+              incrementHour: 'Увеличить час',
+              decrementHour: 'Уменьшить час',
+              pickMinute: 'Выбрать минуту',
+              incrementMinute: 'Увеличить минуту',
+              decrementMinute: 'Уменьшить минуту',
+              pickSecond: 'Выбрать секунду',
+              incrementSecond: 'Увеличить секунду',
+              decrementSecond: 'Уменьшить секунду',
+              togglePeriod: 'Переключить период',
+              selectTime: 'Выбрать время'
+            },
           });
-
+          setDate();
 
 
 
           $element.find('input').on('blur', function () {
 
+            setDate();
+          });
+
+          function setDate() {
             var date = moment($element.find('input').val(), format);
 
             $scope.form[$scope.dataName] = (date).toString().replace(/( \((.+)\))/g, '');
             $element.find('input').trigger('input');
-          })
+          }
+
         }
       };
     });

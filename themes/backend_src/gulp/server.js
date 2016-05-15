@@ -35,7 +35,7 @@ function browserSyncInit(baseDir, browser) {
    */
   server.middleware = proxyMiddleware(['/user','/atom','/transaction','/page','/service','/partner','/role','/article','/cardtype', '/affiliation', '/industry', '/setting', '/accrual', '/writeoff', '/refund', '/page', '/block', '/filemanager', '/thumbs', '/upload', '/log', '/themes', '/company', '/region','/status', '/contact', '/task', '/properties', '/download', '/join'], {
   // server.middleware = proxyMiddleware('/users', {target: 'http://jsonplaceholder.typicode.com', proxyHost: 'jsonplaceholder.typicode.com'});
-    target: 'http://bonus.dev.hismith.ru',
+    target: 'http://dev.atom.hismith.ru',
     changeOrigin: true
   });
 

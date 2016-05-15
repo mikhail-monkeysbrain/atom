@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('entityPage')
-    .controller('EntityEditCtrl', function($scope, $state, $stateParams, $uibModal,$window, EntityService, _, uiTinymceConfig, toastr, $cookies) {
+    .controller('EntityEditCtrl', function($scope, $state, $stateParams, $uibModal, $window, $q, EntityService, AuthService, _, uiTinymceConfig, toastr, $cookies) {
       var baseForm = {};
 
       $scope.form = {};
@@ -40,14 +40,19 @@
 
       });
 
-      EntityService.getEntityDescription($stateParams.entity).then(function(response) {
-
+      $q.all([
+        AuthService.properties(),
+        EntityService.getEntityDescription($stateParams.entity)
+      ])
+      .then(function(responses) {
+        var response = responses[1];
+        var properties = responses[0].data.entities[$stateParams.entity];
         $scope.updateEnabled = typeof response.data[$stateParams.entity].routes[$stateParams.entity + '.update'] !== 'undefined';
         $scope.deleteEnabled = typeof response.data[$stateParams.entity].routes[$stateParams.entity + '.delete'] !== 'undefined';
 
         var fields = response.data[$stateParams.entity].scheme;
-        $scope.backend = response.data.backend || {}; //TODO: Temporary fix for tabs
-        $scope.backend.tabs = $scope.backend.tabs || {};
+        $scope.backend = {}; //TODO: Temporary fix for tabs
+        $scope.backend.tabs = properties.tabs || {};
 
         var tabs = {};
 
@@ -161,6 +166,13 @@
                 _.each(item.values, function(value, id) {
                   var newOption = {name: value, id: id};
                   $scope.optionsData[key].options.push(newOption);
+                  if(newOption.id == item.default) {
+                    if (item.multiple) {
+                      $scope.form[key].push(newOption);
+                    } else {
+                      $scope.form[key] = newOption;
+                    }
+                  }
                 });
               }
             } else {
@@ -314,11 +326,11 @@
         if(targetEntity.length !== 0) {
           var url;
           if(multiple === undefined || multiple == false) {
-            url = $state.href('entityEdit', {entity: entityName, id: targetEntity.id});
+            url = $state.href('entityEdit', {entity: $scope.formSchema[entityName].entity.model, id: targetEntity.id});
             $window.open(url);
           } else {
             _.each(targetEntity, function(item) {
-              url = $state.href('entityEdit', {entity: entityName, id: item.id});
+              url = $state.href('entityEdit', {entity: $scope.formSchema[entityName].entity.model, id: item.id});
               $window.open(url);
             });
           }

@@ -23,7 +23,7 @@
                     background-color: darken($sidebar_bg, 5%);
                     color: $brand-primary;
                 }
-                > .fa { color: $brand-primary; }
+                > .fa { color: $brand-primary; }                
             }
 
         }
@@ -53,7 +53,9 @@
             font-size: 13px;
             color: $link_color;
             @include transition(all .2s ease-in-out);
-            &:hover {
+            &:hover,
+            &:focus,
+            &:active {
                 text-decoration: none;
             }
         }
@@ -76,9 +78,6 @@
                     background-color: $link_active_bg;
                     color: $bright;
                 }
-                > a:hover, a:focus, a:active {
-                    text-decoration: none;
-                }
                 > .fa { color: $bright; }
             }
 
@@ -99,13 +98,17 @@
             }
 
             > .icon-has-ul-h { // icon for horizontal nav
-                display: none;
+                display: none; 
             }
 
             > .icon-has-ul { // icon for default vertical nav
                 position: absolute;
                 top: 18px;
                 right: 15px;
+            }
+            // overrides Bootstrap 
+            > a:focus {
+                background-color: darken($sidebar_bg, 5%);
             }
         }
 
@@ -146,7 +149,7 @@
                         border-top: none;
                     }
 
-                    i {
+                    i.fa-angle-right {
                         margin-right: 25px;
                     }
 

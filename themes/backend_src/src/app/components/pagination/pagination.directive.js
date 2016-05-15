@@ -35,12 +35,14 @@
             $scope.pagesCountList = $scope.pagesList();
             //$scope.displayData(0, $scope.perPage);
             $scope.pagesList();
+            $scope.$emit('content.changed');
           });
 
 
 
           $scope.onNumPerPageChange = function() {
             $scope.curPage = 0;
+            $scope.$parent.perPage = $scope.perPage.value;
             $scope.pagesCount = $scope.perPage.value > 0 ? Math.ceil($scope.itemsCount / $scope.perPage.value) : 1;
             $scope.pagesCountList = $scope.pagesList();
             $scope.displayData($scope.curPage, $scope.perPage.value, $scope.curSortField, $scope.curSortOrder, $scope.searchKeywords);
