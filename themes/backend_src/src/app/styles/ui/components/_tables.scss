@@ -1,9 +1,4 @@
 .table-dynamic {
-
-    .table-responsive {
-        border-bottom: 1px solid #ddd;
-        border-top: 1px solid #ddd;
-    }
     // filters
     .table-filters {
         margin: 10px 0;
@@ -22,7 +17,6 @@
         thead th {
             position: relative;
             padding: 0;
-            vertical-align: middle;
             &>.th {
                 position: relative;
                 padding: 8px 20px 8px 8px;
@@ -39,7 +33,7 @@
                 }
                 &.active {
                     color: $skin;
-                }
+                }                
             }
 
             .fa-angle-up,
@@ -55,7 +49,7 @@
                 }
                 &.active {
                     color: $skin;
-                }
+                }                  
             }
 
 
@@ -67,15 +61,11 @@
             .fa-angle-down {
                 top: 18px;
                 right: 5px;
-            }
+            }                       
             .glyphicon-chevron-down {
                 top: 18px;
-                right: 6px;
+                right: 6px;                
             }
-        }
-
-        tbody td {
-            vertical-align: middle;
         }
     }
 
@@ -83,25 +73,21 @@
     .table-footer{
         margin: 10px 0;
         padding: 8px;
+    }
 
-        .row {
-            .page-num-info {
-                line-height: 34px;
-                span {
-                    padding: 6px;
-                }
-            }
-
-            .pagination-container {
-                ul {
-                    margin: 0;
-
-                    li:hover {
-                        cursor: pointer;
-                    }
-                }
-            }
+    .page-num-info {
+        span {
+            padding: 6px;
         }
     }
 
+    .pagination-container {
+        ul {
+            margin: 0;
+
+            li:hover {
+                cursor: pointer;
+            }
+        }
+    }
 }

@@ -23,7 +23,7 @@ html {
     position: static; //
     min-height: 100%; // important!
 
-     .header-container {
+    > .header-container {
         &.header-fixed {
             position: fixed;
             right: 0;
@@ -42,7 +42,7 @@ html {
         .top-header {}
     }
 
-     .main-container {
+    > .main-container {
         position: static;   // important! make sure &:before position based on html
         &:before { // content container background for boxed layout
             content: " ";
@@ -98,8 +98,7 @@ html {
         }
 
         > .content-container {
-            overflow: visible;
-            overflow-y: hidden;
+            overflow: hidden;
             min-height: 100%;
             margin-left: 0;
             // @include transition(none);

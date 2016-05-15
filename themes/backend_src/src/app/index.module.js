@@ -8,6 +8,7 @@
       'ngTouch',
       'ngSanitize',
       'vAccordion',
+      'ng.deviceDetector',
       'ui.router',
       'ui.tinymce',
       'ui.bootstrap',

@@ -12,8 +12,9 @@
           ng-repeat="(pageName, page) in pages"
           ng-if="page.icon"
           ng-class="{'active': $root.activeEntity == page.entityName}">
-            <a ui-sref="entitiesList({'entity': page.entityName})" href="#/pages/signin">
-              <i class="fa {{page.icon}}"></i><span data-i18n="PageNamePlaceHere">{{ page.title }}</span>
+            <a ui-sref="entitiesList({'entity': page.entityName})">
+              <i class="fa {{page.icon}}"></i>
+              <span data-i18n="PageNamePlaceHere">{{ page.title }}</span>
             </a>
         </li>
       </ul>

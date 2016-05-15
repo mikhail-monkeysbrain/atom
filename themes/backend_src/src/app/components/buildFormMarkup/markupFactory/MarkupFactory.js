@@ -1,5 +1,8 @@
 function MarkupFactory(tag) {
     if (tag) {
+        if(tag === 'datetime' || tag === 'time') {
+            tag = 'date';
+        }
         tag = tag.split('-');
         angular.forEach(tag,function(partName,partKey){
             var f = partName.charAt(0).toUpperCase();

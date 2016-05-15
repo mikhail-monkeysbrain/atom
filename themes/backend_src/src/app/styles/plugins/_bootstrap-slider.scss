@@ -5,7 +5,7 @@ $handler_width:                 15px;
 $color_track:                   #eee;
 $color_selection:               $brand-primary;
 
-$slider-line-height-base:              4px;
+$slider-line-height-base:       4px;
 $slider-border-radius-base:     $border-radius-base;
 
 
@@ -81,6 +81,11 @@ $slider-border-radius-base:     $border-radius-base;
     }
     input {
         display: none;
+    }
+    .tooltip {
+        &.top {
+            margin-top: -(3*$handler_width + 2);
+        }
     }
     .tooltip-inner {
         white-space: nowrap;

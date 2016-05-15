@@ -1,3 +1,11 @@
+.header-container > .top-header .menu-button {
+  z-index: 1000;
+}
+
+.nav-container .nav ul li>a i.fa {
+  margin-right: 25px;
+}
+
 .btn-remove {
   background-color: #d73532;
   border-color: #d73532;
@@ -34,6 +42,16 @@
 .action-th, .action-td {
   width: 100px;
   text-align: center;
+}
+
+.checkAll-th {
+  width: 15px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .action-th, .action-td, .checkAll-th {
+   width: auto;
+  }
 }
 
 .table-dynamic .table-bordered thead th.action-th > .th {
@@ -383,5 +401,32 @@ span.input-group-addon {
 }
 
 #content .page {
-  padding-bottom: 70px;
+  padding-bottom: 110px;
+}
+
+.panel-body {
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+  }
+}
+
+
+@media(max-width: $screen-xs-max) {
+  .btn-w-md { min-width: 100px; }
+
+  .edit-buttons button.btn {
+    padding-left: 8px;
+    padding-right: 8px;
+    &.dropdown-toggle {
+      padding: 6px;
+    }
+
+  }
 }

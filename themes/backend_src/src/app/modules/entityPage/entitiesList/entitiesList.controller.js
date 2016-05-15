@@ -2,12 +2,14 @@
   'use strict';
 
   angular.module('entityPage')
-    .controller('EntitiesListCtrl', function($log, $q, $scope, $stateParams, $state, $timeout, EntityService, $uibModal, toastr, _) {
+    .controller('EntitiesListCtrl', function($log, $q, $scope, $stateParams, $state, $timeout, EntityService, $uibModal, toastr, _, SessionService, deviceDetector) {
 
       if($stateParams.entity == 'page'){
         $state.go('pagesList');
         return ;
       }
+
+      var pageState = SessionService.getEntityListState($stateParams.entity) || {};
 
       $scope.$log = $log;
       $scope.list = {};
@@ -24,9 +26,11 @@
       var lock = false;
       var linkedEntitiesList = [];
       var entityAliases = {};
+      var fieldsInTable = [];
       //текущие установленные параметры сортировки
-      $scope.curSortField = '';
-      $scope.curSortOrder = '';
+      $scope.curSortField = pageState.curSortField;
+      $scope.curSortOrder = pageState.curSortOrder;
+      $scope.searchKeywords = pageState.searchKeywords;
       $scope.hasSearchFields = false;
 
 
@@ -38,9 +42,13 @@
 
         selectedEntityList = [];
         $scope.remList = [];
+
+        pageState.curSortField = key;
+        pageState.curSortOrder   = order;
+        SessionService.setEntityListState(pageState, $stateParams.entity);
         //для обновления страницы с сортировкой оставался единственный метод - обновить вьюху, но в таком случае затираются
         //установленные параметры сортировки
-        $scope.displayData(0,$scope.perPage, $scope.curSortField, $scope.curSortOrder);
+        $scope.displayData(0,$scope.perPage, $scope.curSortField, $scope.curSortOrder, $scope.searchKeywords);
       };
 
       EntityService.getEntityDescription($stateParams.entity).then(function(response){
@@ -51,6 +59,9 @@
 
         $scope.list.scheme = response.data[$stateParams.entity].scheme;
         for(var field in $scope.list.scheme) {
+          if($scope.list.scheme[field].sort) {
+            fieldsInTable.push(field);
+          }
           if($scope.list.scheme[field].search){
             $scope.hasSearchFields = true;
           }
@@ -67,13 +78,13 @@
           }
         }
         //и параметры сортировки отправляются дальше к отправке на АПИ
-        $scope.displayData(0,$scope.perPage, $scope.curSortField, $scope.curSortOrder);
+        $scope.displayData(0,$scope.perPage, $scope.curSortField, $scope.curSortOrder, $scope.searchKeywords);
       });
 
       $scope.displayData = function(page, perPage, sortField, sortOrder, searchKeywords) {
         $scope.renderData = null;
         EntityService
-          .getEntityPage($stateParams.entity, page, perPage, sortField, sortOrder, searchKeywords)
+          .getEntityPage($stateParams.entity, page, perPage, sortField, sortOrder, searchKeywords, fieldsInTable)
           .then(function(response) {
             lock = false;
             if(response.status != 204) {
@@ -95,7 +106,7 @@
 
               _.each(_.keys(linkedEntitiesList), function(entityKey) { //collecting promises for $q.all and appropriate keys
                 if(entityKey != 'pid') {
-                  var newQueries = EntityService.getLinkedEntities(entityAliases[entityKey], _.uniq(linkedEntitiesList[entityKey]));
+                  var newQueries = EntityService.getLinkedEntities(entityAliases[entityKey], linkedEntitiesDescription[entityKey].field, _.uniq(linkedEntitiesList[entityKey]));
                   queries = queries.concat(newQueries);
                   for(var i = 0; i < newQueries.length; i++ ) {
                     entityKeys.push(entityKey);
@@ -148,17 +159,23 @@
 
       function resizeTable() {
         $timeout(function() {
-          if(angular.element('#content table').width() > angular.element('#content section.panel').width()) {
+          var resizeRequired = false;
+          if(deviceDetector.browser == "safari") {
+            resizeRequired = angular.element('#content div.panel-body').outerWidth() > angular.element('section.table-flip-scroll').width()
+          } else {
+            resizeRequired = angular.element('#content table').width() > angular.element('section.table-flip-scroll').width()
+          }
+          if(resizeRequired) {
 
-            angular.element('div.table-responsive').css('max-height',
+            angular.element('section.panel div.panel-body').css('max-height',
               angular.element(window).height() -
-              (angular.element('div.top-nav').height()
-              + (angular.element('div.page').innerHeight() - angular.element('div.page').height())
+              (angular.element('#header').height()
+              + (angular.element('div.page').innerHeight() - angular.element('div.page').height() -110)
               + angular.element('div.panel-heading').outerHeight(true)
-              + angular.element('div.table-filters').outerHeight()
+              + angular.element('div.table-filters').outerHeight(true)
               + angular.element('footer.table-footer').outerHeight(true))
               + 'px');
-            angular.element('div.table-responsive').css('overflow-y', 'auto');
+            angular.element('section.panel div.panel-body').css('overflow-y', 'auto');
           }
         }, 500);
       }
@@ -210,7 +227,7 @@
       };
 
       $scope.exportStack = function() {
-        EntityService.exportEntity($stateParams.entity,  selectedEntityList, $scope.curSortField, $scope.curSortOrder)
+        EntityService.exportEntity($stateParams.entity,  selectedEntityList, $scope.curSortField, $scope.curSortOrder, $scope.searchKeywords)
       };
 
       $scope.deleteStack = function (id) {
@@ -253,15 +270,15 @@
 
 
       $scope.search = function() {
-
-        $timeout(function() {
-          if(lock) return ;
-
-          lock = true;
-
+          pageState.searchKeywords = $scope.searchKeywords;
+          SessionService.setEntityListState(pageState, $stateParams.entity);
           $scope.displayData(0,$scope.perPage, $scope.curSortField, $scope.curSortOrder, $scope.searchKeywords);
+      };
 
-        }, 2500);
+      $scope.keyUpHandler = function(event) {
+        if(event.keyCode === 13) {
+          $scope.search();
+        }
       };
 
     });

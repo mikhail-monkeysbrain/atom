@@ -29,9 +29,7 @@
     }
 
     // hide select arrow on IE 10+
-    select::-ms-expand {
-        display: none;
-    }
+    select::-ms-expand { display: none; }
 
     &:after {
         z-index: 0;
@@ -46,5 +44,24 @@
         border-top: 6px solid;
         border-right: 6px solid transparent;
         border-left: 6px solid transparent;
+        pointer-events:none;
     }
+}
+
+// Hide select arrow in Firefox 30+, thanks http://jsbin.com/yaruh
+/* Show only the native arrow */
+@-moz-document url-prefix() { 
+    .ui-select {
+        overflow: hidden;
+    }
+    .ui-select select {
+        width: 120%;
+        width: -moz-calc(100% + 3em);
+        width: calc(100% + em);
+    }
+}
+/* Firefox focus has odd artifacts around the text, this kills that. See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-focusring */
+.ui-select select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
 }

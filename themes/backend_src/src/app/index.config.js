@@ -10,8 +10,27 @@
         $httpProvider.defaults.headers.common.Token = SessionServiceProvider.$get().getSessionID();
       }
 
-      $httpProvider.interceptors.push(function($q, $injector, _) {
+      $httpProvider.interceptors.push(function($q, $injector, _, loginPeriod) {
         return {
+          request: function(config) {
+            var remember = $injector.get('$cookies').get('rememberMe');
+            var token = $injector.get('$cookies').get('token');
+            var homepage = $injector.get('$cookies').get('homepage');
+
+            if(token && remember === '0') {
+              var loginExpirationDate = new Date();
+              loginExpirationDate.setTime( loginExpirationDate.getTime() + loginPeriod );
+              var tokenCookieParams = {
+                expires: loginExpirationDate,
+                path: '/'
+              };
+              $injector.get('$cookies').put('token', token, tokenCookieParams);
+              $injector.get('$cookies').put('rememberMe', token, tokenCookieParams);
+              $injector.get('$cookies').put('homepage', homepage, tokenCookieParams);
+            }
+
+            return config;
+          },
           responseError:  function(rejection) {
             if(rejection.status == 500){
               $injector.get('$rootScope').errorMessage = rejection.data.error.message;
@@ -22,6 +41,12 @@
             } else if(rejection.status == 400) {
               if(rejection.data.error.message)
                 toastr.error(rejection.data.error.message);
+            } else if(rejection.status == 403) {
+              if(rejection.config.url == "/atom/properties/") {
+                if(rejection.data.error.message)
+                  toastr.error(rejection.data.error.message);
+                $injector.get('$state').go('logout');
+              }
             } else {
               _.each(rejection.data.error.null, function(error) {
                 if(error.message)

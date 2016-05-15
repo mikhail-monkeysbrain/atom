@@ -9,10 +9,16 @@
         controller: function($scope, EntityService, _) {
           $scope.optionsData[$scope.key].options = [];
           var options = [];
+          var field = $scope.field.entity.field || 'title';
 
-          EntityService.getEntitiesList($scope.optionsData[$scope.key].entity.model, null, $scope.optionsData[$scope.key].entity.sort).then(function(response) {
+          EntityService.getEntitiesList(
+            $scope.optionsData[$scope.key].entity.model,
+            null,
+            $scope.optionsData[$scope.key].entity.sort,
+            field
+          ).then(function(response) {
+
             $scope.form[$scope.key] = [];
-            var field = $scope.field.entity.field || 'title';
             _.each(response.data.data, function (item) {
               var newOption = {
                 name: item[field],

@@ -9,8 +9,9 @@
         return $http.get(baseURL + '/atom/entities/' + conditions);
       };
 
-      this.getEntitiesList = function(entity, limit, sort) {
+      this.getEntitiesList = function(entity, limit, sort, fields) {
         limit = limit || 0;
+        var fieldsFilter = fields ? '&fields[]=' + fields : '';
         var sortOrder = '';
         if(angular.isObject(sort)) {
           for(var i in sort) {
@@ -19,7 +20,7 @@
 
         }
 
-        return $http.get(baseURL + '/' + entity + "/?condition[enabled][$ne]=null&limit=" + limit + sortOrder);
+        return $http.get(baseURL + '/' + entity + "/?condition[enabled][$ne]=null&limit=" + limit + sortOrder + fieldsFilter);
       };
 
       this.getEntityDescription = function(entity) {
@@ -27,10 +28,15 @@
         //return $http.get(baseURL + '/atom/entities/' + entity + '/');
       };
 
-      this.getEntityPage = function(entity, page, limit, sortField, sortOrder, searchKeywords) {
+      this.getEntityPage = function(entity, page, limit, sortField, sortOrder, searchKeywords, fieldsInTable) {
         var sort = !!(sortField && sortOrder) ? '&sort[' + sortField + ']=' + sortOrder : '';
-        var search = !!searchKeywords ? '&condition[$search]=' + searchKeywords : '';
-        return $http.get(baseURL + '/' + entity + '/page/' + page + '/?condition[enabled][$ne]=null&limit=' + limit + sort + search);
+        var search = !!searchKeywords ? '&condition[$query]=' + searchKeywords + '&condition[ref_entity]=' + entity : '';
+        var fieldsFilter = (fieldsInTable && fieldsInTable.length) ? ('&fields[]=' + fieldsInTable.join('&fields[]=')) : '';
+
+        if(!search)
+          return $http.get(baseURL + '/' + entity + '/page/' + page + '/?condition[enabled][$ne]=null&limit=' + limit + sort + fieldsFilter);
+        else
+          return $http.get(baseURL + '/search/page/' + page + '/?condition[enabled][$ne]=null&limit=' + limit + sort + fieldsFilter + search);
       };
 
       this.getEntity = function(entity, id) {
@@ -56,7 +62,7 @@
         return $http.post(baseURL + '/' + entity + '/delete/', $httpParamSerializer(data));
       };
 
-      this.exportEntity = function(entity, data, sortField, sortOrder) {
+      this.exportEntity = function(entity, data, sortField, sortOrder, searchKeywords) {
         var conditions = [];
         //var condition = 'condition[_id][$in][]=561fe8ae572b94d3358b4567&condition[_id][$in][]=5613e72e572b94274d8b4567&condition[_id][$in][]=5613e6e3572b94114d8b4567';
         if(data.length) {
@@ -70,17 +76,19 @@
         form.html('');
         var limit = angular.element('<input type="hidden" name="limit" value="0">');
         var sort = !!(sortField && sortOrder) ? angular.element('<input type="hidden" name="sort[' + sortField + ']" value="' + sortOrder + '">') : '';
+        var search = !!(searchKeywords) ? angular.element('<input type="hidden" name="condition[$search]" value="' + searchKeywords + '">') : '';
         _.each(conditions, function(cond) {
           form.append(cond);
         });
         form.append(limit);
         form.append(sort);
+        form.append(search);
         form.attr({
           action: '/' + entity + '/export/'
         })[0].submit();
       };
 
-      this.getLinkedEntities = function(entity, data) {
+      this.getLinkedEntities = function(entity, fieldName, data) {
         var condition = [];
         var queries = [];
         if(data.length) {
