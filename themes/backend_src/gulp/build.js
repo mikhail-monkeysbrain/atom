@@ -101,6 +101,19 @@ gulp.task('other', function() {
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
 });
 
+gulp.task('other_dist', function() {
+  var fileFilter = filter(function(file) {
+    return file.stat.isFile();
+  });
+
+  return gulp.src([
+    path.join(conf.paths.src, '/**/*'),
+    path.join('!' + conf.paths.src, '/**/*.{html,css,js,scss,json}')
+  ])
+    .pipe(fileFilter)
+    .pipe(gulp.dest(path.join(conf.paths.dist, '/themes/backend/')));
+});
+
 gulp.task('clean', function() {
   return del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')],{force: true});
 });
@@ -133,11 +146,15 @@ gulp.task('copy_tinymce_dist', function() {
 // Only applies for fonts from bower dependencies
 // Custom fonts are handled by the "other" task
 gulp.task('fonts', function () {
-  var fontsFilter = filter('**/*.{eot,svg,ttf,woff,woff2}', { restore: true });
-  return gulp.src(mainBowerFiles())
-    .pipe(fontsFilter)
+  return gulp.src(mainBowerFiles([['**/*.{eot,svg,ttf,woff,woff2}']]))
     .pipe(flatten())
     .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
 });
 
-gulp.task('build', gulpSequence('clean', 'html', 'other', 'replace', 'copy_filemanager', 'copy_tinymce', 'copy_tinymce_dist', 'copy_filemanager_dist'));
+gulp.task('fonts_dist', function () {
+  return gulp.src(mainBowerFiles([['**/*.{eot,svg,ttf,woff,woff2}']]))
+    .pipe(flatten())
+    .pipe(gulp.dest(path.join(conf.paths.dist, '/themes/backend/fonts/')));
+});
+
+gulp.task('build', gulpSequence('clean', 'html', 'other', 'other_dist', 'replace', 'copy_filemanager', 'copy_tinymce', 'copy_tinymce_dist', 'copy_filemanager_dist', 'fonts', 'fonts_dist'));
