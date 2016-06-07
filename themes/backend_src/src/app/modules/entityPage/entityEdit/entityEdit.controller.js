@@ -326,12 +326,12 @@
         if(targetEntity.length !== 0) {
           var url;
           if(multiple === undefined || multiple == false) {
-            url = $state.href('entityEdit', {entity: $scope.formSchema[entityName].entity.model, id: targetEntity.id});
-            $window.open(url);
+            url = $state.href('entityEdit', {entity: $scope.formSchema[entityName].entity.model, id: targetEntity.id}, {absolute: false});
+            $window.open(location.origin + location.pathname + url);
           } else {
             _.each(targetEntity, function(item) {
-              url = $state.href('entityEdit', {entity: $scope.formSchema[entityName].entity.model, id: item.id});
-              $window.open(url);
+              url = $state.href('entityEdit', {entity: $scope.formSchema[entityName].entity.model, id: item.id}, {absolute: false});
+              $window.open(location.origin + location.pathname + url);
             });
           }
         }

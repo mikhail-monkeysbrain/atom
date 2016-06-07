@@ -6,10 +6,10 @@
     <a ng-show="hovered" ng-if="!item.isRoot" class="pull-right btn-icon btn-icon-min-sm btn-danger" data-nodrag ng-click="removeItem(item, remove)" href="javascript:void(0)">
         <i class="glyphicon glyphicon-trash"></i>
     </a>
-    <a ng-show="hovered" ng-if="!item.isRoot" class="pull-right btn-icon btn-icon-min-sm btn-edit" data-nodrag href="#/page/edit/{{item._id['$id']}}">
+    <a ng-show="hovered" ng-if="!item.isRoot" class="pull-right btn-icon btn-icon-min-sm btn-edit" data-nodrag ui-sref="entityEdit({ entity: 'page', id: item._id.$id })">
         <i class="glyphicon glyphicon-pencil"></i>
     </a>
-    <a ng-show="hovered" class="pull-right btn-icon btn-icon-min-sm btn-success" data-nodrag href="#/page/add/{{item._id['$id']}}">
+    <a ng-show="hovered" class="pull-right btn-icon btn-icon-min-sm btn-success" data-nodrag ui-sref="entityAddPage({ entity: 'page', pid: item._id.$id })">
         <i class="glyphicon glyphicon-plus"></i>
     </a>
 </div>
