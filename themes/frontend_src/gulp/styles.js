@@ -4,7 +4,7 @@ var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
 var gInject = require('gulp-inject');
-var rubySass = require('gulp-ruby-sass');
+var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var filter = require('gulp-filter');
@@ -39,7 +39,7 @@ gulp.task('styles', function () {
   ])
     .pipe(gInject(injectFiles, injectOptions))
     .pipe(wiredep(_.extend({}, conf.wiredep)))
-    .pipe(rubySass(sassOptions)).on('error', conf.errorHandler('RubySass'))
+    .pipe(sass(sassOptions)).on('error', conf.errorHandler('sass'))
     .pipe(cssFilter)
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(autoprefixer()).on('error', conf.errorHandler('Autoprefixer'))

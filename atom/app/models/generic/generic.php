@@ -279,7 +279,7 @@
 							}
 						}
 					} else {
-						if (in_array($properties['type'], array('file', 'image'))){
+						if (isset($properties['type']) && in_array($properties['type'], array('file', 'image'))){
 							if (is_null($this->get($field)) || get_class($this->get($field)) != 'app\models\helper\iterator' || !file_exists($this->app['config']->get('paths')->get('root').$this->get($field)->getFirst()->get('route'))){
 								$value = null;
 							} else {

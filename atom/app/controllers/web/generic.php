@@ -41,7 +41,7 @@
 			$success = new helper\iterator();
 			$error = new helper\iterator();
 			if ($request->get('_id')){
-				$item = static::model()->loadById(array(), $request->get('_id'))->set($request->request->all());
+				$item = static::model()->loadById($request->get('_id'))->set($request->request->all());
 				if(count($request->files->all())){
 					$item->setFile($request->files->all());
 				}
@@ -57,7 +57,7 @@
 			$success = new helper\iterator();
 			$error = new helper\iterator();
 			if ($request->get('_id')){
-				$item = static::model()->loadById(array(), $request->get('_id'));
+				$item = static::model()->loadById($request->get('_id'));
 				$result = $item->remove();
 				$app['log']->add(sprintf('Удаление элемента — %s %s (%s://%s/atom/#/%s/edit/%s)', strtolower($item->getEntityTitle()), '«'.$item->get('title', $item->get('uid', (string)$item->get('_id'))).'»', $request->isSecure() ? 'https' : 'http', $request->getHost(), $item->getEntityName(), (string)$item->get('_id')));
 				static::handleActionResult($item, $result, $success, $error);
