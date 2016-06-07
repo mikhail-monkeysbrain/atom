@@ -31,6 +31,7 @@
       'components.atomPassword',
       'components.atomFile',
       'components.atomDatetimepicker',
+      'components.helper',
       'bootstrapLightbox',
       'authorization',
       'dashboard',

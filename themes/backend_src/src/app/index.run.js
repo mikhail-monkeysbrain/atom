@@ -9,6 +9,11 @@
         $rootScope.activePage = to.name;
         $rootScope.activeEntity = to.name === 'pagesList' ? 'page' : toParams.entity;
 
+        if(from.name === 'logout' && to.name === 'login'
+        || from.name === 'login' && to.name === 'logout') {
+          return ;
+        }
+
         if(from.name == "error500") {
           $rootScope.activePage = to.name;
           $rootScope.activeEntity = toParams.entity;
