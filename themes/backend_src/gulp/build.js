@@ -50,7 +50,7 @@ gulp.task('html', ['inject', 'partials'], function() {//
   };
 
   var htmlFilter = filter('*.html', { restore: true });
-  var jsFilter = filter('**/*.js', { restore: true });
+  var jsFilter = filter(['**/*.js', '!**/tinymce.js'], { restore: true });
   var cssFilter = filter('**/*.css', { restore: true });
 
   return gulp.src(path.join(conf.paths.tmp, '/serve/*.html'))
@@ -67,9 +67,7 @@ gulp.task('html', ['inject', 'partials'], function() {//
     .pipe(cssnano())
     .pipe(rev())
     .pipe(cssFilter.restore)
-    .pipe(revReplace({
-      modifyUnreved: excludeTinyMCE
-    }))
+    .pipe(revReplace())
     .pipe(htmlFilter)
     .pipe(htmlmin({
       removeAttributeQuotes: true,
@@ -82,11 +80,6 @@ gulp.task('html', ['inject', 'partials'], function() {//
 
 });
 
-function excludeTinyMCE(filename) {
-  if (filename.indexOf('tinymce') === -1) {
-    return filename;
-  }
-}
 
 gulp.task('replace', function() {
   gulp.src(path.join(conf.paths.dist, '/themes/backend/scripts/*.js'))
