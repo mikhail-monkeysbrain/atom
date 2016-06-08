@@ -67,7 +67,9 @@ gulp.task('html', ['inject', 'partials'], function() {//
     .pipe(cssnano())
     .pipe(rev())
     .pipe(cssFilter.restore)
-    .pipe(revReplace())
+    .pipe(revReplace({
+      modifyUnreved: excludeTinyMCE
+    }))
     .pipe(htmlFilter)
     .pipe(htmlmin({
       removeAttributeQuotes: true,
@@ -79,6 +81,12 @@ gulp.task('html', ['inject', 'partials'], function() {//
     .pipe(size({ title: path.join(conf.paths.dist, '/'), showFiles: true }));
 
 });
+
+function excludeTinyMCE(filename) {
+  if (filename.indexOf('tinymce') === -1) {
+    return filename;
+  }
+}
 
 gulp.task('replace', function() {
   gulp.src(path.join(conf.paths.dist, '/themes/backend/scripts/*.js'))
