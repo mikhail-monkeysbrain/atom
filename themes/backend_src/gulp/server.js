@@ -33,9 +33,9 @@ function browserSyncInit(baseDir, browser) {
    *
    * For more details and option, https://github.com/chimurai/http-proxy-middleware/blob/v0.0.5/README.md
    */
-  server.middleware = proxyMiddleware(['/user','/atom','/transaction','/page','/service','/partner','/role','/article','/cardtype', '/affiliation', '/industry', '/setting', '/accrual', '/writeoff', '/refund', '/page', '/block', '/filemanager', '/thumbs', '/upload', '/log', '/company', '/region','/status', '/contact', '/task', '/properties', '/download', '/join'], {
+  server.middleware = proxyMiddleware(['/user','/atom','/transaction','/page','/service','/partner','/role','/article','/cardtype', '/affiliation', '/industry', '/setting', '/accrual', '/writeoff', '/refund', '/page', '/block', '/filemanager', '/thumbs', '/upload', '/log', '/company', '/region','/status', '/contact', '/task', '/properties', '/download', '/join', '/staff', '/statisticsbybrand'], {
   // server.middleware = proxyMiddleware('/users', {target: 'http://jsonplaceholder.typicode.com', proxyHost: 'jsonplaceholder.typicode.com'});
-    target: 'http://orelmaslo.dev.hismith.ru',
+    target: 'http://rtaharvest.dev.hismith.ru',
     changeOrigin: true
   });
 

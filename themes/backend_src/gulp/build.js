@@ -21,6 +21,8 @@ var del = require('del');
 var flatten = require('gulp-flatten');
 var mainBowerFiles = require('main-bower-files');
 var gulpSequence = require('gulp-sequence');
+var fs = require('fs');
+var injectString = require('gulp-inject-string');
 
 gulp.task('partials', function() {
   return gulp.src([
@@ -158,4 +160,20 @@ gulp.task('fonts_dist', function () {
     .pipe(gulp.dest(path.join(conf.paths.dist, '/themes/backend/fonts/')));
 });
 
-gulp.task('build', gulpSequence('clean', 'html', 'other', 'other_dist', 'replace', 'copy_filemanager', 'copy_tinymce', 'copy_tinymce_dist', 'copy_filemanager_dist', 'fonts', 'fonts_dist'));
+gulp.task('update_version_in_bower', function() {
+  var json = JSON.parse(fs.readFileSync('./bower.json'));
+  var versions = json.version.split('.');
+  versions[2]++;
+  json.version = versions.join('.');
+  fs.writeFileSync('./bower.json', JSON.stringify(json, null, 2));
+});
+
+gulp.task('update_version_in_app', function() {
+  var json = JSON.parse(fs.readFileSync('./bower.json'));
+
+  return gulp.src(path.join(conf.paths.dist, '/index.html'))
+    .pipe(injectString.replace('<!-- inject:version -->', '<script type="text/javascript">var ATOMBackendUIVersion = "' + json.version + '"</script>'))
+    .pipe(gulp.dest(conf.paths.dist));
+});
+
+gulp.task('build', gulpSequence('clean', 'html', 'other', 'other_dist', 'replace', 'copy_filemanager', 'copy_tinymce', 'copy_tinymce_dist', 'copy_filemanager_dist', 'fonts', 'fonts_dist', 'update_version_in_bower', 'update_version_in_app'));
