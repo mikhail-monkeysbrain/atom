@@ -8,7 +8,7 @@
       var service = this;
 
       service.stripTags = function(str) {
-        return str.replace(/<\/?[^>]+>/gi, '');
+        return str.toString().replace(/<\/?[^>]+>/gi, '');
       };
 
       return service;

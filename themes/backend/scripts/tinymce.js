@@ -9729,7 +9729,7 @@ define("tinymce/AddOnManager", [
 		 */
 		addComponents: function(pluginName, scripts) {
 			var pluginUrl = this.urls[pluginName];
-console.log(pluginUrl);
+
 			each(scripts, function(script) {
 				ScriptLoader.ScriptLoader.add(pluginUrl + "/" + script);
 			});
@@ -24333,7 +24333,7 @@ define("tinymce/util/URI", [
 		} else {
 			baseUrl = loc.protocol + '//' + loc.host + loc.pathname;
 		}
-console.log('getDocumentBaseUrl baseUrl1', baseUrl);
+
 		if (/^[^:]+:\/\/\/?[^\/]+\//.test(baseUrl)) {
 			baseUrl = baseUrl.replace(/[\?#].*$/, '').replace(/[\/\\][^\/]+$/, '');
 
@@ -24341,7 +24341,7 @@ console.log('getDocumentBaseUrl baseUrl1', baseUrl);
 				baseUrl += '/';
 			}
 		}
-console.log('getDocumentBaseUrl baseUrl2', baseUrl);
+
 		return baseUrl;
 	};
 
@@ -35385,7 +35385,7 @@ define("tinymce/SelectionOverrides", [
 		}
 
 		function setRange(range) {
-			//console.log('setRange', range);
+
 			if (range) {
 				editor.selection.setRng(range);
 			}
@@ -38943,10 +38943,10 @@ define("tinymce/EditorManager", [
 					documentBaseURL += '/';
 				}
 			}
-console.log('documentBaseURL setup', documentBaseURL);
+
 			// If tinymce is defined and has a base use that or use the old tinyMCEPreInit
 			preInit = window.tinymce || window.tinyMCEPreInit;
-console.log('preInit', preInit);
+
 			if (preInit) {
 				baseURL = preInit.base || preInit.baseURL;
 				suffix = preInit.suffix;
@@ -38970,7 +38970,7 @@ console.log('preInit', preInit);
 						break;
 					}
 				}
-console.log('document.currentScript', document.currentScript);
+
 				// We didn't find any baseURL by looking at the script elements
 				// Try to use the document.currentScript as a fallback
 				if (!baseURL && document.currentScript) {
@@ -38991,7 +38991,7 @@ console.log('document.currentScript', document.currentScript);
 			 * @type String
 			 */
 			self.baseURL = new URI(documentBaseURL).toAbsolute(baseURL);
-console.log(documentBaseURL, baseURL, self.baseURL);
+
 			/**
 			 * Document base URL where the current document is located.
 			 *

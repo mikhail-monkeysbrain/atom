@@ -48,7 +48,7 @@
               $scope.file = true;
               break;
             default:
-              $scope.title =  HelperService.stripTags($scope.entity);
+              $scope.title = HelperService.stripTags($scope.entity);
           }
 
           $scope.openLightboxModal = function(e) {
