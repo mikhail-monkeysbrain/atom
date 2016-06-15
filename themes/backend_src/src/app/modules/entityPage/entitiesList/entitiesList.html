@@ -1,5 +1,5 @@
 <div class="page" style="position: relative;">
-  <section data-ng-show="renderData" class="panel panel-default table-dynamic">
+  <section ng-show="renderData" class="panel panel-default table-dynamic">
     <div style="position: relative;" class="panel-heading text-right">
       <div id="table-title" style="position: absolute; left: 10px; top: 20px; font-weight: 600;"
            data-ng-bind="tableTitle"></div>
@@ -122,7 +122,7 @@
 
     <atom-pagination></atom-pagination>
   </section>
-  <div data-ng-hide="renderData" class="form-group refresh-position">
+  <div ng-hide="renderData" class="form-group refresh-position">
     <div class="col-md-12 text-center">
       <span style="font-size: 24px" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
     </div>

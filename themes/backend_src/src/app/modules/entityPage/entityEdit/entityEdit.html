@@ -1,9 +1,4 @@
-<div class="page">
-  <div ng-hide="formSchema" class="form-group refresh-position">
-    <div class="col-md-12 text-center">
-      <span style="font-size: 24px" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
-    </div>
-  </div>
+<div class="page" style="position: relative;">
   <section ng-show="formSchema" class="panel panel-default">
     <div class="panel-heading">
       <strong data-ng-show="isNew"><span class="glyphicon glyphicon-th"></span> Создание элемента</strong>
@@ -147,4 +142,9 @@
 
     </div>
   </section>
+  <div ng-hide="formSchema" class="form-group refresh-position">
+    <div class="col-md-12 text-center">
+      <span style="font-size: 24px" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+    </div>
+  </div>
 </div>
