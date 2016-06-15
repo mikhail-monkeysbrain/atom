@@ -1,6 +1,6 @@
 {
   "name": "Atom",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "dependencies": {
     "angular": "1.4.0",
     "angular-animate": "1.4.0",
