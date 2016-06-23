@@ -66,7 +66,14 @@ gulp.task('html', ['inject', 'partials'], function() {//
     //.pipe(sourcemaps.write('maps'))
     .pipe(jsFilter.restore)
     .pipe(cssFilter)
-    .pipe(cssnano())
+    .pipe(cssnano({
+      reduceIdents: {
+        keyframes: false
+      },
+      discardUnused: {
+        keyframes: false
+      }
+    }))
     .pipe(rev())
     .pipe(cssFilter.restore)
     .pipe(revReplace())
