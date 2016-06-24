@@ -1,0 +1,214 @@
+{
+  "statisticsbybrand": {
+    "title": "Статистика по брендам",
+    "routes": {
+      "statisticsbybrand.index": {
+        "pattern": "\/",
+        "options": {
+          "_controller": "web\\statisticsbybrand::read",
+          "_title": "\u0420\u0430\u0437\u0432\u043e\u0434\u043d\u0430\u044f \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430",
+          "_action": "read"
+        },
+        "defaults": {
+          "condition": {
+            "enabled": true
+          },
+          "sort": {
+            "_id": -1
+          },
+          "limit": 10,
+          "skip": 0
+        },
+        "methods": "GET"
+      },
+      "statisticsbybrand.pagination": {
+        "pattern": "\/page\/{page}\/",
+        "options": {
+          "_controller": "web\\statisticsbybrand::read",
+          "_title": "\u041f\u043e\u0441\u0442\u0440\u0430\u043d\u0438\u0447\u043d\u044b\u0439 \u0432\u044b\u0432\u043e\u0434 \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432",
+          "_action": "read"
+        },
+        "defaults": {
+          "condition": {
+            "enabled": true
+          },
+          "sort": {
+            "_id": -1
+          },
+          "limit": 10,
+          "skip": 0
+        },
+        "methods": "GET"
+      },
+      "statisticsbybrand.create": {
+        "pattern": "\/create\/",
+        "options": {
+          "_controller": "web\\statisticsbybrand::create",
+          "_title": "\u0421\u043e\u0437\u0434\u0430\u043d\u0438\u0435 \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u0430",
+          "_action": "create"
+        },
+        "methods": "POST"
+      },
+      "statisticsbybrand.read": {
+        "pattern": "\/{_id}\/",
+        "options": {
+          "_controller": "web\\statisticsbybrand::read",
+          "_title": "\u041f\u0440\u043e\u0441\u043c\u043e\u0442\u0440 \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u0430",
+          "_action": "read"
+        },
+        "requirements": {
+          "_id": "([0-9A-Za-z]){24}"
+        },
+        "methods": "GET"
+      },
+      "statisticsbybrand.update": {
+        "pattern": "\/update\/",
+        "options": {
+          "_controller": "web\\statisticsbybrand::update",
+          "_title": "\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u0430",
+          "_action": "update"
+        },
+        "methods": "POST"
+      },
+      "statisticsbybrand.delete": {
+        "pattern": "\/delete\/",
+        "options": {
+          "_controller": "web\\statisticsbybrand::delete",
+          "_title": "\u0423\u0434\u0430\u043b\u0435\u043d\u0438\u0435 \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u0430",
+          "_action": "delete"
+        },
+        "methods": "POST"
+      },
+      "statisticsbybrand.export": {
+        "pattern": "\/export\/",
+        "options": {
+          "_controller": "web\\statisticsbybrand::export",
+          "_layout": null,
+          "_title": "\u042d\u043a\u0441\u043f\u043e\u0440\u0442 \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432",
+          "_action": "read"
+        },
+        "defaults": {
+          "sort": {
+            "_id": -1
+          }
+        },
+        "methods": [
+          "GET",
+          "POST"
+        ]
+      }
+    },
+    "scheme": {
+      "campaign": {
+        "title": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043a\u0430\u043c\u043f\u0430\u043d\u0438\u0438",
+        "type": "string",
+        "require": true,
+        "sort": true,
+        "search": true,
+        "validation": {
+          "NotBlank": {
+            "message": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043a\u0430\u043c\u043f\u0430\u043d\u0438\u0438 \u043d\u0435 \u043c\u043e\u0436\u0435\u0442 \u0431\u044b\u0442\u044c \u043f\u0443\u0441\u0442\u044b\u043c"
+          }
+        }
+      },
+      "brand": {
+        "title": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0431\u0440\u0435\u043d\u0434\u0430",
+        "type": "string",
+        "require": true,
+        "sort": true,
+        "search": true,
+        "validation": {
+          "NotBlank": {
+            "message": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0431\u0440\u0435\u043d\u0434\u0430 \u043d\u0435 \u043c\u043e\u0436\u0435\u0442 \u0431\u044b\u0442\u044c \u043f\u0443\u0441\u0442\u044b\u043c"
+          }
+        }
+      },
+      "hours_all": {
+        "title": "\u041a\u043e\u043b-\u0432\u043e \u0447\u0430\u0441\u043e\u0432 \u0437\u0430\u0442\u0440\u0430\u0447\u0435\u043d\u043d\u044b\u0435 \u0441\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u043a\u0430\u043c\u0438 \u0437\u0430 \u0432\u0435\u0441\u044c \u043f\u0435\u0440\u0438\u043e\u0434",
+        "type": "numeric",
+        "require": true,
+        "sort": true,
+        "validation": {
+          "NotBlank": {
+            "message": "\u0427\u0430\u0441\u044b \u0434\u043e\u043b\u0436\u043d\u044b \u0431\u044b\u0442\u044c \u0437\u0430\u043f\u043e\u043b\u043d\u0435\u043d\u044b, \u044d\u0442\u043e \u0432\u0430\u043c \u043d\u0435 \u0445\u0430\u0440\u0432\u0435\u0441\u0442!"
+          }
+        }
+      },
+      "hours_week": {
+        "title": "\u041a\u043e\u043b-\u0432\u043e \u0447\u0430\u0441\u043e\u0432 \u0437\u0430\u0442\u0440\u0430\u0447\u0435\u043d\u043d\u044b\u0435 \u0441\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u043a\u0430\u043c\u0438 \u043f\u043e \u043d\u0435\u0434\u0435\u043b\u044f\u043c",
+        "type": "text",
+        "vidible": false,
+        "validation": {
+          "NotBlank": {
+            "message": "\u0427\u0430\u0441\u044b \u0434\u043e\u043b\u0436\u043d\u044b \u0431\u044b\u0442\u044c \u0437\u0430\u043f\u043e\u043b\u043d\u0435\u043d\u044b, \u044d\u0442\u043e \u0432\u0430\u043c \u043d\u0435 \u0445\u0430\u0440\u0432\u0435\u0441\u0442!"
+          }
+        }
+      },
+      "hours_month": {
+        "title": "\u041a\u043e\u043b-\u0432\u043e \u0447\u0430\u0441\u043e\u0432 \u0437\u0430\u0442\u0440\u0430\u0447\u0435\u043d\u043d\u044b\u0435 \u0441\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u043a\u0430\u043c\u0438 \u043f\u043e \u043c\u0435\u0441\u044f\u0446\u0430\u043c",
+        "type": "text",
+        "vidible": false,
+        "validation": {
+          "NotBlank": {
+            "message": "\u0427\u0430\u0441\u044b \u0434\u043e\u043b\u0436\u043d\u044b \u0431\u044b\u0442\u044c \u0437\u0430\u043f\u043e\u043b\u043d\u0435\u043d\u044b, \u044d\u0442\u043e \u0432\u0430\u043c \u043d\u0435 \u0445\u0430\u0440\u0432\u0435\u0441\u0442!"
+          }
+        }
+      },
+      "date": {
+        "title": "\u0414\u0430\u0442\u0430 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0441\u0442\u0430\u0442\u0438\u0441\u0442\u0438\u043a\u0438",
+        "type": "date",
+        "require": true,
+        "sort": true,
+        "validation": {
+          "NotBlank": {
+            "message": "\u0414\u0430\u0442\u0430 \u0434\u043e\u043b\u0436\u0430 \u0431\u044b\u0442\u044c \u0437\u0430\u043f\u043e\u043b\u043d\u0435\u043d\u0430!"
+          }
+        }
+      }
+    },
+    "infographic": {
+      "axes": {
+        "abscissa": {
+          "title": "Время"
+        },
+        "ordinate": {
+          "title": "Часы"
+        }
+      },
+      "controls": {
+        "brand": {
+          "title": "Бренд",
+          "type": "entity",
+          "entity": {
+            "model": "brand",
+            "filter": {
+              "enabled": true
+            },
+            "field": "title"
+          },
+          "multiple": true
+        },
+        "date": {
+          "title": "Дата начала",
+          "type": "date"
+        },
+        "date": {
+          "title": "Дата завершения",
+          "type": "date"
+        },
+        "campaign": {
+          "title": "Кампания",
+          "type": "entity",
+          "entity": {
+            "model": "statisticsbybrand",
+            "filter": {
+              "enabled": true
+            },
+            "field": "title"
+          },
+          "multiple": true
+        }
+      }
+    }
+  }
+}

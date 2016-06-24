@@ -9,11 +9,11 @@
       };
 
       this.getEntitiesList = function(entity) {
-        return $http.get('/app/rest/entity/fixture/usersList.json');
+        return $http.get('/app/rest/entity/fixture/' + entity + 'List.json');
       };
 
       this.getEntityDescription = function(entity) {
-        return $http.get('/app/rest/entity/fixture/usersDescription.json');
+        return $http.get('/app/rest/entity/fixture/statisticsbybrandDescription.json');
       };
 
       this.getEntityPage = function(entity, page, limit) {
