@@ -3,6 +3,9 @@
     <div style="position: relative;" class="panel-heading text-right">
       <div id="table-title" style="position: absolute; left: 10px; top: 20px; font-weight: 600;"
            data-ng-bind="tableTitle"></div>
+      <button tooltip="График статистики" tooltip-placement="top" tooltip-append-to-body="true"  ng-show="graphicsEnabled" class="btn btn-success btn-w-md listControlButtons" type="button" ng-click="goToGraphic()">
+        Статистика
+      </button>
       <button tooltip="Добавить новый элемент" tooltip-placement="top" tooltip-append-to-body="true"  ng-show="createEnabled" class="btn btn-success btn-w-md listControlButtons" type="button" ng-click="new()">
         Добавить
       </button>

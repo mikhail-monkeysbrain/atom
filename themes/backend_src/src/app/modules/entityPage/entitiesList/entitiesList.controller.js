@@ -55,7 +55,8 @@
         $scope.exportEnabled = typeof response.data[$stateParams.entity].routes[$stateParams.entity + '.export'] !== 'undefined';
         $scope.createEnabled = typeof response.data[$stateParams.entity].routes[$stateParams.entity + '.create'] !== 'undefined';
         $scope.deleteEnabled = typeof response.data[$stateParams.entity].routes[$stateParams.entity + '.delete'] !== 'undefined';
-        $scope.editEnabled = typeof response.data[$stateParams.entity].routes[$stateParams.entity + '.update'] !== 'undefined';
+        $scope.editEnabled   = typeof response.data[$stateParams.entity].routes[$stateParams.entity + '.update'] !== 'undefined';
+        $scope.graphicsEnabled = typeof response.data[$stateParams.entity].atomgraphics !== 'undefined';
 
         $scope.list.scheme = response.data[$stateParams.entity].scheme;
         for(var field in $scope.list.scheme) {
@@ -280,6 +281,10 @@
           $scope.search();
         }
       };
+
+      $scope.goToGraphic = function() {
+        $state.go('infographic', {entity: $stateParams.entity});
+      }
 
     });
 })();
