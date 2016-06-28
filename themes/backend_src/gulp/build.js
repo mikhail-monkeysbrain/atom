@@ -67,6 +67,7 @@ gulp.task('html', ['inject', 'partials'], function() {//
     .pipe(jsFilter.restore)
     .pipe(cssFilter)
     .pipe(cssnano({
+      autoprefixer: false,
       reduceIdents: {
         keyframes: false
       },

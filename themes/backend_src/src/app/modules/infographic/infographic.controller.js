@@ -127,7 +127,7 @@
             radius: 5
           }
         },
-        colors: ['#0000FF', '#00FF00'],
+        //colors: ['#0000FF', '#FFFF00'],
         tooltip: true,
         tooltipOpts: {
           defaultTheme: false
