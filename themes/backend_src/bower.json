@@ -27,7 +27,8 @@
     "eonasdan-bootstrap-datetimepicker": "4.17.37",
     "ng-device-detector": "3.0.1",
     "Flot": "flot#~0.8.3",
-    "flot.tooltip": "~0.8.7"
+    "flot.tooltip": "~0.8.7",
+    "flot-axislabels": "https://github.com/markrcote/flot-axislabels.git"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.0"
@@ -46,6 +47,11 @@
       "main": [
         "moment.js",
         "locale/ru.js"
+      ]
+    },
+    "flot-axislabels": {
+      "main": [
+        "jquery.flot.axislabels.js"
       ]
     }
   }
