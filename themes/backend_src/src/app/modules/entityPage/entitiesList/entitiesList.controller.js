@@ -2,7 +2,20 @@
   'use strict';
 
   angular.module('entityPage')
-    .controller('EntitiesListCtrl', function($log, $q, $scope, $stateParams, $state, $timeout, EntityService, $uibModal, toastr, _, SessionService, deviceDetector) {
+    .controller('EntitiesListCtrl', function(
+      $log, 
+      $q, 
+      $scope, 
+      $stateParams, 
+      $state, 
+      $timeout, 
+      EntityService, 
+      $uibModal, 
+      toastr, 
+      _, 
+      SessionService, 
+      deviceDetector
+    ) {
 
       if($stateParams.entity == 'page'){
         $state.go('pagesList');
@@ -283,6 +296,7 @@
       };
 
       $scope.goToGraphic = function() {
+        SessionService.saveSelectedItems(selectedEntityList);
         $state.go('infographic', {entity: $stateParams.entity});
       }
 

@@ -5,29 +5,50 @@
     .module('infographic')
     .controller('InfographicCtrl', function(
       $scope,
+      $timeout,
       $stateParams,
       EntityService,
       HelperService,
+      SessionService,
       InfographicAPIService
     ) {
 
       var entityName = $stateParams.entity;
-      var scheme, abscissaLable, ordinateLabel;
+      var scheme, abscissaLable, ordinateLabel, defaultField;
+      var selectedItems = SessionService.getSelectedItems();
 
       $scope.entity = {};
       $scope.showGraph = false;
       $scope.entityModels = {};
-      $scope.linkedEntities = {
-        brand: {
-          data: {}
-        }
-      };
+      $scope.linkedEntities = {};
 
       EntityService
         .getEntityDescription(entityName)
         .then(function(response){
 
           scheme = response.data[entityName].atomgraphics.controls;
+          _.find(scheme, function(item, key){
+            if(item.default) {
+              defaultField = key;
+              return item;
+            }
+
+          });
+
+          if(selectedItems && defaultField) {
+            SessionService.clearSelectedItems();
+            var campaign = [];
+            $scope.entityModels[defaultField] = [];
+            _.each(selectedItems, function(item) {
+              campaign.push({
+                $id: item
+              });
+              $scope.entityModels[defaultField].push({
+                id: item
+              });
+            });
+            $scope.entity[defaultField] = campaign;
+          }
 
           abscissaLable = response.data[entityName].atomgraphics.axes.abscissa.title;
           ordinateLabel = response.data[entityName].atomgraphics.axes.ordinate.title;
@@ -47,6 +68,12 @@
           $scope.scheme = scheme;
           scheme = null;
 
+
+        })
+        .then(function() {
+          if(selectedItems && defaultField) {
+            $scope.getGiagram();
+          }
         });
 
       $scope.getGiagram = function() {
