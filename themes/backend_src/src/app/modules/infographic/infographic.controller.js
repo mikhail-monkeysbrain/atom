@@ -95,7 +95,7 @@
               break;
             }
             case 'select' : {
-              entityData[fieldName] = $scope.entityModels[fieldName].id;
+              entityData[fieldName] = $scope.entityModels[fieldName] ? $scope.entityModels[fieldName].id : undefined;
               break;
             }
             default : {
