@@ -296,7 +296,9 @@
       };
 
       $scope.goToGraphic = function() {
-        SessionService.saveSelectedItems(selectedEntityList);
+        if(selectedEntityList) {
+          SessionService.saveSelectedItems(selectedEntityList);
+        }
         $state.go('infographic', {entity: $stateParams.entity});
       }
 

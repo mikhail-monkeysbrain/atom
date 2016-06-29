@@ -35,7 +35,7 @@
 
           });
 
-          if(selectedItems && defaultField) {
+          if( hasPridifined() ) {
             SessionService.clearSelectedItems();
             var campaign = [];
             $scope.entityModels[defaultField] = [];
@@ -71,7 +71,7 @@
 
         })
         .then(function() {
-          if(selectedItems && defaultField) {
+          if( hasPridifined() ) {
             $scope.getGiagram();
           }
         });
@@ -83,15 +83,24 @@
         };
 
         Lazy($scope.scheme).each(function(schemeItem, fieldName) {
-          if(schemeItem.type !== 'entity') {
-            entityData[fieldName] = $scope.entity[fieldName]
-          } else {
-            Lazy($scope.entityModels[fieldName]).each(function(item, n) {
-              if(!entityData[fieldName]) {
-                entityData[fieldName] = [];
-              }
-              entityData[fieldName].push(item.id);
-            });
+
+          switch (schemeItem.type) {
+            case 'entity' : {
+              Lazy($scope.entityModels[fieldName]).each(function(item, n) {
+                if(!entityData[fieldName]) {
+                  entityData[fieldName] = [];
+                }
+                entityData[fieldName].push(item.id);
+              });
+              break;
+            }
+            case 'select' : {
+              entityData[fieldName] = $scope.entityModels[fieldName].id;
+              break;
+            }
+            default : {
+              entityData[fieldName] = $scope.entity[fieldName]
+            }
           }
         });
 
@@ -123,6 +132,9 @@
       };
 
 
+      function hasPridifined() {
+        return selectedItems && selectedItems.length && defaultField;
+      }
 
       function initDiagram() {
         var lineChart1 = {};

@@ -15,7 +15,7 @@
         },
         controller: function($scope, $filter, EntityService, Lightbox, HelperService) {
 
-          switch($scope.field.type) {
+          switch($scope.field.type && $scope.entity) {
             case 'date':
               $scope.title = $filter('date')($scope.entity.sec * 1000, 'dd.MM.yyyy');
               break;
@@ -36,7 +36,7 @@
               });
               break;
             case 'boolean':
-              $scope.title =  $scope.entity?'Да':'Нет';
+              $scope.title = $scope.entity?'Да':'Нет';
               break;
             case 'image':
               $scope.title = $scope.entity && typeof $scope.entity[0] !== 'undefined' ? $scope.entity[0].route : '';

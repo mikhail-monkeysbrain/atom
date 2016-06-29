@@ -8,7 +8,7 @@
       var service = this;
 
       service.stripTags = function(str) {
-        return str.toString().replace(/<\/?[^>]+>/gi, '');
+        return str ? str.toString().replace(/<\/?[^>]+>/gi, '') : '';
       };
 
       service.getLinkedEntities = function(scheme) {

@@ -65,6 +65,14 @@
             scheme="item"></div>
           <div
             class="col-sm-10"
+            ng-if="item.type === 'select'"
+            atom-field-select
+            field="entity[itemName]"
+            field-name="itemName"
+            entity-model="entityModels"
+            scheme="item"></div>
+          <div
+            class="col-sm-10"
             ng-if="item.type === 'date' || item.type === 'time' || item.type === 'datetime'"
             atom-field-datetime
             field="entity[itemName]"
