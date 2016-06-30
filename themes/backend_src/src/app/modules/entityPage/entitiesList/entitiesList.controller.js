@@ -91,8 +91,6 @@
             linkedEntitiesDescription[field] = $scope.list.scheme[field].entity || {};
           }
         }
-        //и параметры сортировки отправляются дальше к отправке на АПИ
-        $scope.displayData(0,$scope.perPage, $scope.curSortField, $scope.curSortOrder, $scope.searchKeywords);
       });
 
       $scope.displayData = function(page, perPage, sortField, sortOrder, searchKeywords) {
