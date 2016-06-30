@@ -15,15 +15,15 @@
         },
         controller: function($scope, $filter, EntityService, Lightbox, HelperService) {
 
-          switch($scope.field.type && $scope.entity) {
+          switch($scope.field.type) {
             case 'date':
-              $scope.title = $filter('date')($scope.entity.sec * 1000, 'dd.MM.yyyy');
+              $scope.title = $scope.entity ? $filter('date')($scope.entity.sec * 1000, 'dd.MM.yyyy') : '';
               break;
             case 'datetime':
-              $scope.title = $filter('date')($scope.entity.sec * 1000, 'dd.MM.yyyy HH:mm');
+              $scope.title = $scope.entity ? $filter('date')($scope.entity.sec * 1000, 'dd.MM.yyyy HH:mm') : '';
               break;
             case 'time':
-              $scope.title = $filter('date')($scope.entity.sec * 1000, 'HH:mm');
+              $scope.title = $scope.entity ? $filter('date')($scope.entity.sec * 1000, 'HH:mm') : '';
               break;
             case 'select':
               $scope.title =  $scope.field.values[$scope.entity];
