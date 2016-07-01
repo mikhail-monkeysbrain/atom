@@ -2,7 +2,7 @@ function SlidesMarkup(data) {
     var disabled = ((typeof data.disabled !== "undefined" && data.disabled == true) || data.readonly)?' disabled ':' ';
     return {
         markup : [
-            '<label for="'+data.name+'" class="col-sm-2">'+data.title+' '+(data.require ? '<span class="require">*</span>' : '')+'</label>',
+            '<label for="'+data.name+'" class="col-sm-2">'+data.title+(data.require ? '<span class="require" style="padding-left: 3px;">*</span>' : '')+'</label>',
             '<div class="col-sm-10 slides-item" data-ng-class="{\'pull-right\': $index > 0}" data-ng-repeat="tileSlid in form.'+data.name+'">',
                 '<input ' +disabled+ ' type="file" data-index="{{$index}}" title="Выберите файл"   onchange="angular.element(this).scope().changeFile(this)"  data-file-upload class="btn-primary" data-ng-model="tileSlid.path">',
                 '<img class="image-link" data-ng-if="tileSlid.route" style="width:30px; margin-left: 18px;" data-ng-src="{{tileSlid.route}}"/>',

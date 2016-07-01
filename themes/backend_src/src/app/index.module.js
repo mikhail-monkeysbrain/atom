@@ -16,6 +16,7 @@
       'ngScrollable',
       'underscore',
       'localytics.directives',
+
       'components.session',
       'components.auth',
       'components.siteHeader',
@@ -31,10 +32,18 @@
       'components.atomPassword',
       'components.atomFile',
       'components.atomDatetimepicker',
+      'components.helper',
+
+      'directives.atomFields',
+      'directives.atomDiagram',
+
+      'rest.infographic',
+
       'bootstrapLightbox',
+      'infographic',
       'authorization',
       'dashboard',
       'entityPage',
-      'errorPage'
+      'errorPage',
     ]);
 })();

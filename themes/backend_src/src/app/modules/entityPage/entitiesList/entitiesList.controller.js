@@ -2,7 +2,20 @@
   'use strict';
 
   angular.module('entityPage')
-    .controller('EntitiesListCtrl', function($log, $q, $scope, $stateParams, $state, $timeout, EntityService, $uibModal, toastr, _, SessionService, deviceDetector) {
+    .controller('EntitiesListCtrl', function(
+      $log, 
+      $q, 
+      $scope, 
+      $stateParams, 
+      $state, 
+      $timeout, 
+      EntityService, 
+      $uibModal, 
+      toastr, 
+      _, 
+      SessionService, 
+      deviceDetector
+    ) {
 
       if($stateParams.entity == 'page'){
         $state.go('pagesList');
@@ -55,7 +68,8 @@
         $scope.exportEnabled = typeof response.data[$stateParams.entity].routes[$stateParams.entity + '.export'] !== 'undefined';
         $scope.createEnabled = typeof response.data[$stateParams.entity].routes[$stateParams.entity + '.create'] !== 'undefined';
         $scope.deleteEnabled = typeof response.data[$stateParams.entity].routes[$stateParams.entity + '.delete'] !== 'undefined';
-        $scope.editEnabled = typeof response.data[$stateParams.entity].routes[$stateParams.entity + '.update'] !== 'undefined';
+        $scope.editEnabled   = typeof response.data[$stateParams.entity].routes[$stateParams.entity + '.update'] !== 'undefined';
+        $scope.graphicsEnabled = typeof response.data[$stateParams.entity].atomgraphics !== 'undefined';
 
         $scope.list.scheme = response.data[$stateParams.entity].scheme;
         for(var field in $scope.list.scheme) {
@@ -77,8 +91,6 @@
             linkedEntitiesDescription[field] = $scope.list.scheme[field].entity || {};
           }
         }
-        //и параметры сортировки отправляются дальше к отправке на АПИ
-        $scope.displayData(0,$scope.perPage, $scope.curSortField, $scope.curSortOrder, $scope.searchKeywords);
       });
 
       $scope.displayData = function(page, perPage, sortField, sortOrder, searchKeywords) {
@@ -280,6 +292,13 @@
           $scope.search();
         }
       };
+
+      $scope.goToGraphic = function() {
+        if(selectedEntityList) {
+          SessionService.saveSelectedItems(selectedEntityList);
+        }
+        $state.go('infographic', {entity: $stateParams.entity});
+      }
 
     });
 })();

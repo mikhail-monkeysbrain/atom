@@ -11,3 +11,26 @@ span.arrows-sort {
   right: 0;
   bottom: 35px;
 }
+
+
+.page {
+  .ui-checkbox input[type="checkbox"] + span:before {
+    margin-right: 0;
+  }
+
+  .table-bordered > thead > tr > th,
+  .table-bordered > thead > tr > td {
+    border-bottom-width: 1px;
+  }
+
+  .table-dynamic .table-filters {
+    padding: 8px 14px;
+  }
+
+  .chosen-container .chosen-results li.highlighted {
+    background: #248AAF !important;
+  }
+  .chosen-container-multi .chosen-choices {
+    border: none;
+  }
+}

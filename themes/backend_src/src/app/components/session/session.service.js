@@ -3,6 +3,7 @@
 
   angular.module('components.session')
     .service('SessionService', function SessionService($cookies, Session) {
+      this.selectedItems;
 
       this.getUserID = function() {
         return $cookies.get('userId');
@@ -34,6 +35,18 @@
 
       this.getEntityListState = function(entityName) {
         return $cookies.getObject('entity_' + entityName);
+      };
+
+      this.saveSelectedItems = function(selectedItems) {
+        this.selectedItems = selectedItems;
+      };
+
+      this.getSelectedItems = function() {
+        return this.selectedItems;
+      };
+
+      this.clearSelectedItems = function() {
+        this.selectedItems = null;
       };
 
     });

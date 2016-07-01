@@ -1,8 +1,11 @@
 <div class="page" style="position: relative;">
-  <section data-ng-show="renderData" class="panel panel-default table-dynamic">
+  <section ng-show="renderData" class="panel panel-default table-dynamic">
     <div style="position: relative;" class="panel-heading text-right">
       <div id="table-title" style="position: absolute; left: 10px; top: 20px; font-weight: 600;"
            data-ng-bind="tableTitle"></div>
+      <button tooltip="График статистики" tooltip-placement="top" tooltip-append-to-body="true"  ng-show="graphicsEnabled" class="btn btn-success btn-w-md listControlButtons" type="button" ng-click="goToGraphic()">
+        Статистика
+      </button>
       <button tooltip="Добавить новый элемент" tooltip-placement="top" tooltip-append-to-body="true"  ng-show="createEnabled" class="btn btn-success btn-w-md listControlButtons" type="button" ng-click="new()">
         Добавить
       </button>
@@ -103,7 +106,7 @@
         </label>
       </td>
       <td style="height: 41px;" class="action-td">
-        <a tooltip="Просмотр и редактирование элемента" tooltip-placement="left" tooltip-append-to-body="true"  class="btn-icon btn-icon-min-sm btn-edit" href="#/{{model}}/edit/{{item._id['$id']}}">
+        <a tooltip="Просмотр и редактирование элемента" tooltip-placement="left" tooltip-append-to-body="true"  class="btn-icon btn-icon-min-sm btn-edit" ui-sref="entityEdit({ entity: model, id: item._id.$id })">
           <i ng-if="editEnabled" class="glyphicon glyphicon-pencil"></i>
           <i ng-if="!editEnabled" class="fa fa-th-list"></i>
         </a>
@@ -122,7 +125,7 @@
 
     <atom-pagination></atom-pagination>
   </section>
-  <div data-ng-hide="renderData" class="form-group refresh-position">
+  <div ng-hide="renderData" class="form-group refresh-position">
     <div class="col-md-12 text-center">
       <span style="font-size: 24px" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
     </div>

@@ -1,0 +1,35 @@
+{
+  "total": 2,
+  "data": [
+    {
+      "_id": {
+        "$id": "566902f71b8bb4844f8b4567"
+      },
+      "title": "Brand Name 1"
+    },
+    {
+      "_id": {
+        "$id": "566902f71b8bb4844f8b4569"
+      },
+      "title": "Brand Name 2"
+    },
+    {
+      "_id": {
+        "$id": "566902f71b8bb4844f8b4570"
+      },
+      "title": "Brand Name 3"
+    },
+    {
+      "_id": {
+        "$id": "566902f71b8bb4844f8b4571"
+      },
+      "title": "Brand Name 4"
+    },
+    {
+      "_id": {
+        "$id": "566902f71b8bb4844f8b4572"
+      },
+      "title": "Brand Name 5"
+    }
+  ]
+}

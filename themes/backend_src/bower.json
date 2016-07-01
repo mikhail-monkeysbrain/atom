@@ -1,6 +1,6 @@
 {
   "name": "Atom",
-  "version": "0.0.0",
+  "version": "0.0.26",
   "dependencies": {
     "angular": "1.4.0",
     "angular-animate": "1.4.0",
@@ -25,7 +25,10 @@
     "angular-ui-tree": "2.13.0",
     "ngScrollable": "ng-scrollable#^0.2.3",
     "eonasdan-bootstrap-datetimepicker": "4.17.37",
-    "ng-device-detector": "3.0.1"
+    "ng-device-detector": "3.0.1",
+    "Flot": "flot#~0.8.3",
+    "flot.tooltip": "~0.8.7",
+    "flot-axislabels": "https://github.com/markrcote/flot-axislabels.git"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.0"
@@ -36,13 +39,19 @@
   "overrides": {
     "font-awesome": {
       "main": [
-        "css/font-awesome.css"
+        "css/font-awesome.css",
+        "fonts/*"
       ]
     },
     "moment": {
       "main": [
         "moment.js",
         "locale/ru.js"
+      ]
+    },
+    "flot-axislabels": {
+      "main": [
+        "jquery.flot.axislabels.js"
       ]
     }
   }

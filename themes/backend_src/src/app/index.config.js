@@ -36,8 +36,8 @@
               $injector.get('$rootScope').errorMessage = rejection.data.error.message;
               $injector.get('$state').go('error500');
             }
-            if(rejection.status == 401) {
-              $injector.get('$state').go('logout');
+            if(rejection.status == 401 && rejection.config.url !== "/user/logout/") {
+                $injector.get('$state').go('logout');
             } else if(rejection.status == 400) {
               if(rejection.data.error.message)
                 toastr.error(rejection.data.error.message);

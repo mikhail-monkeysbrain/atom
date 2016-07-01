@@ -33,9 +33,8 @@ function browserSyncInit(baseDir, browser) {
    *
    * For more details and option, https://github.com/chimurai/http-proxy-middleware/blob/v0.0.5/README.md
    */
-  server.middleware = proxyMiddleware(['/user','/atom','/transaction','/page','/service','/partner','/role','/article','/cardtype', '/affiliation', '/industry', '/setting', '/accrual', '/writeoff', '/refund', '/page', '/block', '/filemanager', '/thumbs', '/upload', '/log', '/themes', '/company', '/region','/status', '/contact', '/task', '/properties', '/download', '/join'], {
-  // server.middleware = proxyMiddleware('/users', {target: 'http://jsonplaceholder.typicode.com', proxyHost: 'jsonplaceholder.typicode.com'});
-    target: 'http://dev.atom.hismith.ru',
+  server.middleware = proxyMiddleware(['**', '!/', '!/bower_components/**/*', '!/assets/**/*', '!/app/**/*', '!/themes/**/*'], {
+    target: 'http://rtaharvest.dev.hismith.ru',
     changeOrigin: true
   });
 
@@ -54,7 +53,7 @@ gulp.task('serve', [], function () {
   browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
 });
 
-gulp.task('serve:dist', ['build'], function () {
+gulp.task('serve:dist', function () {
   browserSyncInit(conf.paths.dist);
 });
 

@@ -1,0 +1,106 @@
+<div class="page">
+  <div ng-hide="scheme" class="form-group refresh-position">
+    <div class="col-md-12 text-center">
+      <span style="font-size: 24px" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+    </div>
+  </div>
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <strong><span class="glyphicon glyphicon-th"></span>Формирование отчёта</strong>
+    </div>
+    <div class="panel-body">
+
+      <form class="form-horizontal" autocomplete="off">
+        <input type="text" style="position: absolute;left: -1000px;">
+        <input type="password" style="position: absolute;left: -1000px;">
+
+        <div class="row" ng-if="showGraph">
+          <div class="col-md-12">
+            <div class="panel panel-default">
+
+              <div class="panel-body">
+                <div atom-flot-chart
+                     flot-data="line1.data"
+                     flot-options="line1.options"
+                     style="width: 100%; height: 300px;"
+                  ></div>
+                <div id="legend"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group "  ng-repeat="(itemName, item) in scheme" >
+          <label class="col-sm-2" for="{{ itemName }}">{{ item.title }} <span class="require">*</span></label>
+          <div
+            class="col-sm-10"
+            ng-if="item.type === 'string'"
+            atom-field-string
+            field="entity[itemName]"
+            field-name="itemName"
+            scheme="item"></div>
+          <div
+            class="col-sm-10"
+            ng-if="item.type === 'password'"
+            atom-field-password
+            field="entity[itemName]"
+            field-name="itemName"
+            scheme="item"></div>
+          <div
+            class="col-sm-10"
+            ng-if="item.type === 'boolean'"
+            atom-field-boolean
+            field="entity[itemName]"
+            field-name="itemName"
+            scheme="item"></div>
+          <div
+            class="col-sm-10"
+            ng-if="item.type === 'entity'"
+            atom-field-entity
+            field="entity[itemName]"
+            field-name="itemName"
+            linked-entity="linkedEntities[item.entity.model]"
+            entity-model="entityModels"
+            scheme="item"></div>
+          <div
+            class="col-sm-10"
+            ng-if="item.type === 'select'"
+            atom-field-select
+            field="entity[itemName]"
+            field-name="itemName"
+            entity-model="entityModels"
+            scheme="item"></div>
+          <div
+            class="col-sm-10"
+            ng-if="item.type === 'date' || item.type === 'time' || item.type === 'datetime'"
+            atom-field-datetime
+            field="entity[itemName]"
+            field-name="itemName"
+            scheme="item"></div>
+          <div style="clear: both; margin-bottom: 10px;"></div>
+        </div>
+
+
+
+        <div class="form-group">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-10">
+
+            <div class="pull-right">
+              <div class="btn-group dropup pull-right  margin-right-10"  uib-dropdown>
+                <button type="button" ng-click="goToList()" class="btn btn-warning"> Отменить </button>
+              </div>
+            </div>
+
+            <div class="btn-group dropup pull-right  margin-right-10" uib-dropdown>
+              <button ng-click="getGiagram()" type="button" class="btn btn-primary">Сформировать</button>
+            </div>
+
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </section>
+</div>

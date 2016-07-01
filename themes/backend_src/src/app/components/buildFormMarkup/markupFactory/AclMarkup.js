@@ -1,7 +1,7 @@
 function AclMarkup(data) {
   var disabled = ((typeof data.disabled !== "undefined" && data.disabled == true) || data.readonly)?' disabled ':' ';
   return {
-    markup: '<label for="'+data.name+'" class="col-sm-2">'+data.title+' '+(data.require ? '<span class="require">*</span>' : '')+'</label>'+
+    markup: '<label for="'+data.name+'" class="col-sm-2">'+data.title+(data.require ? '<span class="require" style="padding-left: 3px;">*</span>' : '')+'</label>'+
     '<div class="col-sm-10">'+
     '<div class="table-responsive">'+
   '<table class="table table-striped table-bordered" acl-markup' + disabled+ '>'+
