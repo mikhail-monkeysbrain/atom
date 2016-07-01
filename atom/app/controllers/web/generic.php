@@ -104,13 +104,10 @@
 				$row = array((string)$item->get('_id'));
 				foreach($scheme->all() as $fieldName => $field){
 					$field = (new helper\proto())->set($field);
-					if ($field->get('visible', true) === false){
+					if ($field->get('visible', true) === false || in_array($field->get('type'), array('password', 'acl', null))){
 						continue;
 					}
 					switch($field->get('type')){
-						case 'password':
-							$value = '•••';
-						break;
 						case 'integer':
 						case 'numeric':
 							$value = $item->get($fieldName) * 1;
@@ -120,7 +117,7 @@
 							if (is_null($item->get($fieldName)) || $item->get($fieldName)->sec * 1 === 0){
 								$value = '-';
 							} else {
-								$value = date('Y-m-d H:i:s', $item->get($fieldName)->sec);
+								$value = date('Y-m-d H:i:s (T)', $item->get($fieldName)->sec);
 							}
 						break;
 						case 'boolean':
