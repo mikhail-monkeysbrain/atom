@@ -14,12 +14,18 @@
 		/**
 		 * Response object
 		 */
-		$response = null;
+		$response = null,
+		
+		/**
+		 * SEO object
+		 */
+		$seo = null;
 
 
 
 		public function __construct(){
 			$this->response = new Response();
+			$this->seo = new helper\proto();
 			return parent::__construct();
 		}
 		
@@ -30,6 +36,15 @@
 		 */
 		public function response(){
 			return $this->response;
+		}
+		
+		/**
+		 * Return SEO object
+		 * 
+		 * @return object
+		 */
+		public function seo(){
+			return $this->seo;
 		}
 		
 		/**

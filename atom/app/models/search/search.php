@@ -18,7 +18,13 @@
 				return $this->app->abort(400, 'Query parameter is not setted!');
 			}
 			if(isset($condition['ref_entity'])){
-				$condition['ref_entity'] = new \MongoCode($condition['ref_entity']);
+				if (isset($condition['ref_entity']['$in'])){
+					foreach($condition['ref_entity']['$in'] as $key => $ref_entity){
+						$condition['ref_entity']['$in'][$key] = new \MongoCode($ref_entity);
+					}
+				} else {
+					$condition['ref_entity'] = new \MongoCode($condition['ref_entity']);
+				}
 			}
 			return $this->load($fields, $condition, $sort, $limit, $skip);
 		}

@@ -2,8 +2,8 @@ title:
     title: Название
     type: string
     require: true
-    list:
-      sort: true
+    sort: true
+    search: true
     validation:
         NotBlank:
             message: Название не может быть пустым
@@ -55,6 +55,7 @@ position:
 content:
     title: Контент
     type: html
+    search: true
 enabled:
     title: Доступность
     type: boolean
@@ -66,3 +67,15 @@ enabled:
             message: Не верно указана доступность
         NotNull:
             message: Не указана доступность
+seo_title:
+    title: Title
+    type: string
+    tab: seo
+seo_description:
+    title: Description
+    type: string
+    tab: seo
+seo_image:
+    title: Image (1024x512)
+    type: image
+    tab: seo

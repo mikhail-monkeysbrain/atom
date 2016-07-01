@@ -135,6 +135,8 @@
 						$this->set($field, $value);
 					break;
 					case 'date':
+					case 'time':
+					case 'datetime':
 						if (@get_class($value) != 'MongoDate'){
 							$this->set($field, new \MongoDate(strtotime($value)));
 						}

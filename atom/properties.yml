@@ -4,6 +4,9 @@ entities:
         title: Текстовые страницы
         position: 1
         icon: fa-file-text-o
+        tabs:
+            main: Основное
+            seo: SEO
     block:
         title: Текстовые блоки
         position: 2

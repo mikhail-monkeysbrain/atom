@@ -14,7 +14,6 @@
 		$app['page']->response()->headers->set('Access-Control-Allow-Origin', '*');
 		
 		$route = $app['routes']->get($request->get('_route'));
-		//$app['page']->set('url', $request->getPathInfo());
 
 		$request->attributes->set('_layout', $layout);
 		if (strstr($app['request']->headers->get('accept', 'text/html'), 'text/html') || $app['request']->headers->get('accept') == '*/*'){

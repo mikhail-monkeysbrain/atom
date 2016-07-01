@@ -20,14 +20,26 @@
 			$skip = ($request->get('skip') ? (int)$request->get('skip', 0) : (int)$request->get('page', 0) * $limit);
 			
 			$elements = static::model()->search(array(), $condition, $sort, $limit, $skip);
-			$response = (new helper\iterator())
+			$response = @(new helper\iterator())
 				->setTotal($elements->getTotal())
 				->setRange($limit)
 				->setPart($skip / $limit);
 			foreach($elements as $element){
 				$modelName = '\app\models\\'.$element->get('ref_entity').'\\'.$element->get('ref_entity');
 				$entityElement = (new $modelName)->loadOne($fields, '_id', $element->get('ref_id'));
-				$entityElement->set('_score', $element->get('_score'));
+				$entityElement->set(array(
+					'_score'	=> $element->get('_score'),
+					'_entity'	=> (string)$element->get('ref_entity')
+				));
+				if ($element->get('ref_entity') == 'page'){
+					$entityElement->set('_url', $app['url']->generate('undefined', array(
+						'url'	=> ltrim($entityElement->get('url'), '/')
+					)));
+				} else {
+					$entityElement->set('_url', $app['url']->generate($element->get('ref_entity').'.read', array(
+						'_id'	=> $entityElement->get('_id')
+					)));
+				}
 				if ($element->get('ref_entity') == 'user'){
 					$entityElement->pop('token')->pop('password');
 				}

@@ -71,11 +71,11 @@
 		}
 
 		public function getFirst(){
-			return $this->get(0);
+			return $this->get(0, new proto);
 		}
 
 		public function getLast(){
-			return $this->get($this->getCount() - 1);
+			return $this->get($this->getCount() - 1, new proto);
 		}
 
 		public function count(){

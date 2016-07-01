@@ -31,5 +31,11 @@
 				'user'	=> 'atom@hismith.ru',
 				'pass'	=> ''
 			)
+		),
+		'seo'	=> array(
+			'type'			=> 'website',
+			'title'			=> 'Atom Project',
+			'description'	=> 'Atom platform for everyone!',
+			'image'			=> '/upload/share-default-image.png'
 		)
 );
