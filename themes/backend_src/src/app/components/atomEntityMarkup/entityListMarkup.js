@@ -11,7 +11,7 @@
           field: '='
         },
         template: function() {
-          return '<span ng-if="!file && !img" style="{white-space: nowrap}">{{title}}</span><img ng-if="!file && img" ng-src="{{title}}" ng-click="openLightboxModal($event)"><a ng-if="file && !img" href="{{route}}">{{title}}</a>';
+          return '<span ng-if="!file && !img" style="{white-space: nowrap}">{{::title}}</span><img ng-if="!file && img" ng-src="{{title}}" ng-click="openLightboxModal($event)"><a ng-if="file && !img" href="{{route}}">{{title}}</a>';
         },
         controller: function($scope, $filter, EntityService, Lightbox, HelperService) {
 

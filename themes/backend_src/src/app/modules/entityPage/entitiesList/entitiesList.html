@@ -1,5 +1,5 @@
 <div class="page" style="position: relative;">
-  <section ng-show="renderData" class="panel panel-default table-dynamic">
+  <section ng-show="renderData && last.row && last.col" class="panel panel-default table-dynamic">
     <div style="position: relative;" class="panel-heading text-right">
       <div id="table-title" style="position: absolute; left: 10px; top: 20px; font-weight: 600;"
            data-ng-bind="tableTitle"></div>
@@ -56,7 +56,9 @@
         </label>
         </div>
       </th>
-      <th style="height: 41px;" ng-repeat="(fieldKey, field) in list.scheme" ng-if="field.sort && fieldKey !== 'enabled' ">
+      <th style="height: 41px;"
+          ng-repeat="(fieldKey, field) in fieldsInTable track by $index"
+          ng-if="field.sort && fieldKey !== 'enabled' ">
         <div class="th">
           {{field.title}}
           <span class="arrows-sort">
@@ -87,7 +89,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="item in renderData" >
+    <tr ng-repeat="item in renderData track by $index" ng-init="last.row = $last" >
       <td style="height: 41px;" class="testx" style="width: 15px; padding-left: 10px; padding-right: 0px;">
         <label style="margin-right: 0;" class="ui-checkbox">
           <input class="remBox" type="checkbox" value="{{ item._id.$id }}" ng-click="updateRemItems($event);">
@@ -95,7 +97,16 @@
         </label>
       </td>
 
-      <td class="fieldCell" style="height: 41px;" list-wrapp="{{item[fieldKey]}}" ng-repeat="(fieldKey, field) in list.scheme" ng-if="field.sort && fieldKey !== 'enabled'" entity-list-markup entity="item[fieldKey]" entity-name="fieldKey" field="field" >{{item[fieldKey]}}</td>
+      <td
+        class="fieldCell"
+        style="height: 41px;"
+        list-wrapp="{{item[fieldKey]}}"
+        ng-repeat="(fieldKey, field) in fieldsInTable track by $index"
+        ng-init="last.col = $last"
+        entity-list-markup
+        entity="item[fieldKey]"
+        entity-name="fieldKey"
+        field="field" >{{::item[fieldKey]}}</td>
 
 
       <td style="height: 41px;" class="visible-td" ng-if="list.scheme.enabled">
@@ -105,7 +116,7 @@
           <i class="slim"></i>
         </label>
       </td>
-      <td style="height: 41px;" class="action-td">
+      <td style="height: 41px; min-width: 85px;" class="action-td">
         <a tooltip="Просмотр и редактирование элемента" tooltip-placement="left" tooltip-append-to-body="true"  class="btn-icon btn-icon-min-sm btn-edit" ui-sref="entityEdit({ entity: model, id: item._id.$id })">
           <i ng-if="editEnabled" class="glyphicon glyphicon-pencil"></i>
           <i ng-if="!editEnabled" class="fa fa-th-list"></i>
@@ -125,7 +136,7 @@
 
     <atom-pagination></atom-pagination>
   </section>
-  <div ng-hide="renderData" class="form-group refresh-position">
+  <div ng-hide="renderData && last.row && last.col" class="form-group refresh-position">
     <div class="col-md-12 text-center">
       <span style="font-size: 24px" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
     </div>

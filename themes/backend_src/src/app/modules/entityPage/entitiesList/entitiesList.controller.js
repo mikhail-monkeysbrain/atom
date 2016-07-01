@@ -29,6 +29,7 @@
       $scope.model = $stateParams.entity;
       $scope.remList = [];
       $scope.linkedEntities = {};
+      $scope.fieldsInTable = {};
       var linkedEntitiesDescription = {};
 
       //EntityService.getEntities().then(function(response) {
@@ -75,6 +76,8 @@
         for(var field in $scope.list.scheme) {
           if($scope.list.scheme[field].sort) {
             fieldsInTable.push(field);
+            if(field !== 'enabled')
+              $scope.fieldsInTable[field] = $scope.list.scheme[field];
           }
           if($scope.list.scheme[field].search){
             $scope.hasSearchFields = true;
@@ -149,7 +152,7 @@
                     $scope.linkedEntities[response[1]].push({'$id': responseItem._id.$id, 'title': linkedEntitiesDescription[response[1]] ? responseItem[linkedEntitiesDescription[response[1]].field] : responseItem.title});
                   });
                 });
-
+                $scope.last = {row: false, col: false};
                 $scope.renderData = renderData;
                 $scope.$broadcast('dataCountReady', response.data.total);
               });
