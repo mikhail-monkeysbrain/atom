@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('directives.atomDiagram', [])
+    .module('directives.atomDiagram')
     .directive('atomFlotChart', [
       function() {
         return {
