@@ -6,7 +6,8 @@
         placeholder-text-single="'Выберите один вариант'"
         multiple
         ng-options="b as b.title for b in list track by b.id"
-        ng-model="entityModel[fieldName]">
+        ng-model="entityModel[fieldName]"
+        ng-change="triggerEvent()">
   <option value=""></option>
 </select>
 
@@ -17,6 +18,7 @@
   placeholder-text-multiple="'Выберите один или несколько вариантов'"
   placeholder-text-single="'Выберите один вариант'"
   ng-options="b as b.title for b in list track by b.id"
-  ng-model="entityModel[fieldName]">
+  ng-model="entityModel[fieldName]"
+  ng-change="triggerEvent()">
         <option value=""></option>
 </select>
