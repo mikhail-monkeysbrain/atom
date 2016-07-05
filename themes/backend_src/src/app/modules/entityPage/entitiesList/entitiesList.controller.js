@@ -150,12 +150,10 @@
                 });
                 $scope.last = {row: false, col: false};
                 $scope.renderData = renderData;
-                console.log('LINKED');
                 $scope.$broadcast('dataCountReady', response.data.total);
               });
 
               if(_.keys(linkedEntitiesList).length == 0) {// а если у нас нету связанных сущностей - все равно разрешаем рендер
-                console.log('Not linked');
                 $scope.renderData = renderData;
               }
             } else {
