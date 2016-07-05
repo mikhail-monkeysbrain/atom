@@ -29,8 +29,16 @@
               $scope.title =  $scope.field.values[$scope.entity];
               break;
             case 'entity':
+              var title = [];
               _.each($scope.$parent.linkedEntities[$scope.entityName], function(linkedItem) {
-                if(linkedItem && $scope.entity && linkedItem.$id == $scope.entity.$id) {
+                if(angular.isArray($scope.entity)) {
+                  _.each($scope.entity, function(entityItem) {
+                    if(linkedItem && linkedItem.$id == entityItem.$id) {
+                      title.push(linkedItem.title);
+                    }
+                  });
+                  $scope.title = title.join(', ');
+                } else if(linkedItem && $scope.entity && linkedItem.$id == $scope.entity.$id) {
                   $scope.title = linkedItem.title;
                 }
               });

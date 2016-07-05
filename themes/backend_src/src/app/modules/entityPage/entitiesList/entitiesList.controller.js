@@ -72,28 +72,24 @@
         $scope.editEnabled   = typeof response.data[$stateParams.entity].routes[$stateParams.entity + '.update'] !== 'undefined';
         $scope.graphicsEnabled = typeof response.data[$stateParams.entity].atomgraphics !== 'undefined';
 
-        $scope.list.scheme = response.data[$stateParams.entity].scheme;
-        for(var field in $scope.list.scheme) {
-          if($scope.list.scheme[field].sort) {
+        var scheme = response.data[$stateParams.entity].scheme;
+        for(var field in scheme) {
+          if(scheme[field].sort) {
             fieldsInTable.push(field);
             if(field !== 'enabled')
-              $scope.fieldsInTable[field] = $scope.list.scheme[field];
+              $scope.fieldsInTable[field] = scheme[field];
           }
-          if($scope.list.scheme[field].search){
+          if(scheme[field].search){
             $scope.hasSearchFields = true;
           }
-          if($scope.list.scheme[field].type == "entity" && $scope.list.scheme[field].sort) {
-            //if($scope.list.scheme[field].entity && $scope.list.scheme[field].entity.model) {
-            //  linkedEntitiesList[$scope.list.scheme[field].entity.model] = [];
-            //} else {
-            //  linkedEntitiesList[field] = [];
-            //}
+          if(scheme[field].type == "entity" && scheme[field].sort) {
 
             linkedEntitiesList[field] = [];
-            entityAliases[field] = ($scope.list.scheme[field].entity && $scope.list.scheme[field].entity.model) ? $scope.list.scheme[field].entity.model : field;
-            linkedEntitiesDescription[field] = $scope.list.scheme[field].entity || {};
+            entityAliases[field] = (scheme[field].entity && scheme[field].entity.model) ? scheme[field].entity.model : field;
+            linkedEntitiesDescription[field] = scheme[field].entity || {};
           }
         }
+        $scope.list.scheme = scheme;
       });
 
       $scope.displayData = function(page, perPage, sortField, sortOrder, searchKeywords) {
