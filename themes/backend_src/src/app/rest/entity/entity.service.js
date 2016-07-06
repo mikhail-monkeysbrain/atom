@@ -31,7 +31,7 @@
       this.getEntityPage = function(entity, page, limit, sortField, sortOrder, searchKeywords, fieldsInTable) {
         var sort = !!(sortField && sortOrder) ? '&sort[' + sortField + ']=' + sortOrder : '';
         var search = !!searchKeywords ? '&condition[$query]=' + searchKeywords + '&condition[ref_entity]=' + entity : '';
-        var fieldsFilter = (fieldsInTable && fieldsInTable.length) ? ('&fields[]=' + fieldsInTable.join('&fields[]=')) : '';
+        var fieldsFilter = (fieldsInTable && fieldsInTable.length) ? getFieldsList(fieldsInTable) : '';
 
         if(!search)
           return $http.get(baseURL + '/' + entity + '/page/' + page + '/?condition[enabled][$ne]=null&limit=' + limit + sort + fieldsFilter);
@@ -89,7 +89,7 @@
       };
 
       this.getLinkedEntities = function(entity, fieldName, data) {
-        var condition = [];
+        var condition = getFieldsList(fieldName);
         var queries = [];
         if(data.length) {
           var i, j;
@@ -101,12 +101,26 @@
               condition = condition.join('&');
               queries.push($http.get(baseURL + '/' + entity + '/?' + condition + '&limit=0'));
               j = -1;
-              condition = [];
+              condition = getFieldsList(fieldName);
             }
           }
         }
 
         return queries;
+      };
+
+      function getFieldsList(fieldsNames) {
+        if(angular.isArray(fieldsNames)) {
+          return _.map(fieldsNames, function(fieldName) {
+            return createFieldItem(fieldName);
+          })
+        } else {
+          return [createFieldItem(fieldsNames)];
+        }
+      }
+
+      function createFieldItem(fieldName) {
+        return 'fields[]=' + fieldName;
       }
     });
 

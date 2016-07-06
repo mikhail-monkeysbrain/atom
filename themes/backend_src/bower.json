@@ -2,6 +2,7 @@
   "name": "Atom",
   "version": "0.1.30",
   "dependencies": {
+    "jquery": "2.2.3",
     "angular": "1.4.0",
     "angular-animate": "1.4.0",
     "angular-cookies": "1.4.0",
