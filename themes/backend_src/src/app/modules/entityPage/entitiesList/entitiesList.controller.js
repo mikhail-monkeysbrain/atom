@@ -14,7 +14,8 @@
       toastr, 
       _, 
       SessionService, 
-      deviceDetector
+      deviceDetector,
+      HelperService
     ) {
 
       if($stateParams.entity == 'page'){
@@ -30,17 +31,12 @@
       $scope.remList = [];
       $scope.linkedEntities = {};
       $scope.fieldsInTable = {};
-      var linkedEntitiesDescription = {};
-
-      //EntityService.getEntities().then(function(response) {
-      //  $scope.exportEnabled = typeof response.data[$stateParams.entity].routes[$stateParams.entity + '.export'] !== 'undefined';
-      //});
 
       var selectedEntityList = [];
       var lock = false;
-      var linkedEntitiesList = [];
-      var entityAliases = {};
       var fieldsInTable = [];
+      var gridViewOnly = true;
+      var linkedEntities = {};
       //текущие установленные параметры сортировки
       $scope.curSortField = pageState.curSortField;
       $scope.curSortOrder = pageState.curSortOrder;
@@ -73,24 +69,48 @@
         $scope.graphicsEnabled = typeof response.data[$stateParams.entity].atomgraphics !== 'undefined';
 
         var scheme = response.data[$stateParams.entity].scheme;
-        for(var field in scheme) {
-          if(scheme[field].sort) {
-            fieldsInTable.push(field);
-            if(field !== 'enabled')
-              $scope.fieldsInTable[field] = scheme[field];
-          }
-          if(scheme[field].search){
-            $scope.hasSearchFields = true;
-          }
-          if(scheme[field].type == "entity" && scheme[field].sort) {
 
-            linkedEntitiesList[field] = [];
-            entityAliases[field] = (scheme[field].entity && scheme[field].entity.model) ? scheme[field].entity.model : field;
-            linkedEntitiesDescription[field] = scheme[field].entity || {};
-          }
-        }
-        $scope.list.scheme = scheme;
+
+        HelperService
+          .getLinkedEntities(scheme, gridViewOnly)
+          .then(function(responses) {
+            //TODO: Its a temporary conversion
+            _.each(responses, function(item) {
+              var entityName = findLinkedEntityName(scheme, item.entity);
+              linkedEntities[entityName] = _.map(item.data.data, function(entityItem) {
+                return {
+                  $id: entityItem._id.$id,
+                  title: entityItem[scheme[entityName].entity.field]
+                }
+              });
+            });
+            $scope.linkedEntities = linkedEntities;
+          })
+          .then(function() {
+            for(var field in scheme) {
+              if(scheme[field].sort) {
+                fieldsInTable.push(field);
+                if(field !== 'enabled')
+                  $scope.fieldsInTable[field] = scheme[field];
+              }
+              if(scheme[field].search){
+                $scope.hasSearchFields = true;
+              }
+            }
+            $scope.list.scheme = scheme;
+          });
       });
+
+      function findLinkedEntityName(scheme, fieldName) {
+        var entityName = '';
+        _.find(scheme, function(schemeItem, key) {
+          entityName = key;
+          return schemeItem.type === 'entity' && schemeItem.entity.model === fieldName;
+        });
+
+        return entityName;
+      }
+
 
       $scope.displayData = function(page, perPage, sortField, sortOrder, searchKeywords) {
         $scope.renderData = null;
@@ -105,57 +125,8 @@
                 renderData.push(response.data.data[i]); //здесь данные вносятся не в скоуп для того, чтобы отложить рендер самой вьюхи
               }
 
-              _.each(response.data.data, function(item) { //получаем список связанных сущностей и их $id
-                _.each(_.keys(linkedEntitiesList), function(entityKey) {
-                  if(typeof item[entityKey] !== "undefined") {
-                    linkedEntitiesList[entityKey].push(item[entityKey]);
-                  }
-                });
-              });
-              var queries = [];
-              var entityKeys = [];
-
-              _.each(_.keys(linkedEntitiesList), function(entityKey) { //collecting promises for $q.all and appropriate keys
-                if(entityKey != 'pid') {
-                  var newQueries = EntityService.getLinkedEntities(entityAliases[entityKey], linkedEntitiesDescription[entityKey].field, _.uniq(linkedEntitiesList[entityKey]));
-                  queries = queries.concat(newQueries);
-                  for(var i = 0; i < newQueries.length; i++ ) {
-                    entityKeys.push(entityKey);
-                  }
-                }
-              });
-
-              $q.all(queries).then(function(values) {
-                values = _.zip(values, entityKeys); //joining responses and keys for iterating
-                var reorderValues = [];
-                _.each(values, function(item) {
-                  if(reorderValues[item[1]] && reorderValues[item[1]][0].data.data) {
-                    reorderValues[item[1]][0].data.data = reorderValues[item[1]][0].data.data.concat(item[0].data.data);
-                  } else {
-                    reorderValues[item[1]] = item;
-                  }
-                });
-
-                values = [];
-                for(var item in reorderValues) {
-                  values.push(reorderValues[item]);
-                }
-
-                _.each(values, function(response) { //iterating responses
-                  $scope.linkedEntities[response[1]] = [];
-                  var entityesData = _.compact(response[0].data.data);
-                  _.each(entityesData, function(responseItem) {
-                    $scope.linkedEntities[response[1]].push({'$id': responseItem._id.$id, 'title': linkedEntitiesDescription[response[1]] ? responseItem[linkedEntitiesDescription[response[1]].field] : responseItem.title});
-                  });
-                });
-                $scope.last = {row: false, col: false};
-                $scope.renderData = renderData;
-                $scope.$broadcast('dataCountReady', response.data.total);
-              });
-
-              if(_.keys(linkedEntitiesList).length == 0) {// а если у нас нету связанных сущностей - все равно разрешаем рендер
-                $scope.renderData = renderData;
-              }
+              $scope.$broadcast('dataCountReady', response.data.total);
+              $scope.renderData = renderData;
             } else {
               $scope.renderData = [];
               $scope.$broadcast('dataCountReady', 0);

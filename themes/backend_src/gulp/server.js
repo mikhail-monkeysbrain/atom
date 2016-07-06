@@ -34,7 +34,7 @@ function browserSyncInit(baseDir, browser) {
    * For more details and option, https://github.com/chimurai/http-proxy-middleware/blob/v0.0.5/README.md
    */
   server.middleware = proxyMiddleware(['**', '!/', '!/bower_components/**/*', '!/assets/**/*', '!/app/**/*', '!/themes/**/*'], {
-    target: 'http://elect2016.dev.hismith.ru',
+    target: 'http://bonus.dev.hismith.ru',
     changeOrigin: true
   });
 
