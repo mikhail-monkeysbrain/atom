@@ -31,7 +31,7 @@
       this.getEntityPage = function(entity, page, limit, sortField, sortOrder, searchKeywords, fieldsInTable) {
         var sort = !!(sortField && sortOrder) ? '&sort[' + sortField + ']=' + sortOrder : '';
         var search = !!searchKeywords ? '&condition[$query]=' + searchKeywords + '&condition[ref_entity]=' + entity : '';
-        var fieldsFilter = (fieldsInTable && fieldsInTable.length) ? getFieldsList(fieldsInTable) : '';
+        var fieldsFilter = (fieldsInTable && fieldsInTable.length) ? '&' + getFieldsList(fieldsInTable).join('&') : '';
 
         if(!search)
           return $http.get(baseURL + '/' + entity + '/page/' + page + '/?condition[enabled][$ne]=null&limit=' + limit + sort + fieldsFilter);
