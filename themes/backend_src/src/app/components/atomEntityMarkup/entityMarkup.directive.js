@@ -26,7 +26,13 @@
               };
               options.push(newOption);
               if($scope.optionsData[$scope.key].multiple) {
-                if (_.find($scope.optionsData[$scope.key].sourceValues, function (val) {
+                var optionsDataField = $scope.optionsData[$scope.key];
+
+                if(!angular.isArray(optionsDataField.sourceValues)) {
+                  optionsDataField.sourceValues = [optionsDataField.sourceValues];
+                }
+
+                if (_.find(optionsDataField.sourceValues, function (val) {
                     return val.$id == newOption.id;
                   })) {
                   $scope.form[$scope.key].push(newOption);
