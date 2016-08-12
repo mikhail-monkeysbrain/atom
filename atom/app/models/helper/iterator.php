@@ -5,6 +5,8 @@
 	class iterator implements \Iterator{
 
 		use traits\prototype;
+		
+		private $key = 0;
 
 		private $total = 0;
 
@@ -86,6 +88,11 @@
 			array_push($this->data, $data);
 			return $this;
 		}
+
+		public function pop($key = null){
+			unset($this->data[is_null($key) ? $this->key() : $key]);
+			return $this;
+		}
 		
 		public function merge(iterator $iterator){
 			foreach($iterator as $data){
@@ -103,27 +110,29 @@
 		}
 
 		public function rewind(){
-			reset($this->data);
+			$this->key = 0;
 			return $this;
 		}
 
 		public function current(){
-			return current($this->data);
+			return $this->get($this->key());
 		}
 
 		public function key(){
-			return key($this->data);
+			return $this->key;
 		}
 
 		public function next(){
-			return next($this->data);
+			++$this->key;
+			return $this->get($this->key());
 		}
 
 		public function prev(){
-			return prev($this->data);
+			--$this->key;
+			return $this->get($this->key());
 		}
 
 		public function valid(){
-			return is_null(key($this->data)) == false;
+			return array_key_exists($this->key(), $this->data);
 		}
 	}

@@ -561,11 +561,13 @@
 									$search[$field][] = $element->get($properties->get('entity')->get('field'));	
 								}
 							} else {
-								$related[] = array(
-									'entity'	=> new \MongoCode($relatedData->getFirst()->getEntityName()),
-									'id'		=> $relatedData->getFirst()->get('_id')
-								);
-								$search[$field] = $relatedData->getFirst()->get($properties->get('entity')->get('field'));
+								if(!empty($relatedData->all())) {
+									$related[] = array(
+										'entity' => new \MongoCode($relatedData->getFirst()->getEntityName()),
+										'id' => $relatedData->getFirst()->get('_id')
+									);
+									$search[$field] = $relatedData->getFirst()->get($properties->get('entity')->get('field'));
+								}
 							}
 						break;
 					}
@@ -576,13 +578,14 @@
 				return false;
 			}
 			
-			$item = (new search())->loadOne(array(), array('ref_id' => $this->mongoid()));
-			return $item->set(array(
+			(new search())->loadOne(array(), array('ref_id' => $this->mongoid()))->set(array(
 				'ref_entity'	=> new \MongoCode($this->getEntityName()),
 				'ref_id'		=> $this->mongoid(),
 				'ref_related'	=> $related,
 				'content'		=> $search
 			))->save();
+			
+			return $this;
 		}
 
 		/**

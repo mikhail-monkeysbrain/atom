@@ -100,7 +100,7 @@
 			$condition = static::prepareCondition($request->get('condition', array()));
 			$sort = static::prepareSort($request->get('sort', array()));
 			$items = $model->load($fields, $condition, $sort);
-			foreach($items as $item){
+			foreach($items as $key => $item){
 				$row = array((string)$item->get('_id'));
 				foreach($scheme->all() as $fieldName => $field){
 					$field = (new helper\proto())->set($field);
@@ -168,6 +168,7 @@
 					$row[] = $value;
 				}
 				$rows->add($row);
+				$items->pop($key);
 			}
 			
 			foreach($rows as $rowKey => $row){

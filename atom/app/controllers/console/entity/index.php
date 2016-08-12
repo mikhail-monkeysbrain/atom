@@ -19,7 +19,11 @@
 				->setName("entity:index")
 				->setDescription("Rebuild datebase indexes");
 		}
+
 		protected function execute(InputInterface $input, OutputInterface $output){
+			$this->app['db']->selectCollection('search')->remove(array());
+			$output->writeln('<options=bold>Search content just truncated!</options=bold>');
+			
 			$entitiesSchemes = (new helper\helper)->glob($this->app['config']->get('paths')->get('atom').'/app/models/*.yml');
 			foreach($entitiesSchemes as $scheme){
 				$modelName = '\app\models\\'.pathinfo($scheme, PATHINFO_FILENAME).'\\'.pathinfo($scheme, PATHINFO_FILENAME);
@@ -39,21 +43,27 @@
 			}
 			$output->writeln('<options=bold>Database indexes just setted!</options=bold>');
 			
-			$this->app['db']->selectCollection('search')->remove(array());
-			$output->writeln('<options=bold>Search content just truncated!</options=bold>');
-			
 			$pattern = $this->app['config']->get('paths')->get('atom').'/app/models/*.yml';
 			$entities = (new helper\helper)->glob($pattern);
 			foreach($entities as $scheme){
 				$modelName = '\app\models\\'.pathinfo($scheme, PATHINFO_FILENAME).'\\'.pathinfo($scheme, PATHINFO_FILENAME);
 				$model = new $modelName;
-				$scheme = $model->getScheme();
-				
+				$fields = array();
+				foreach($model->getScheme()->all() as $field => $properties){
+					if (@$properties['search']){
+						$fields[] = $field;
+					}
+				}
+				if (count($fields) == 0){
+					continue;
+				}
 				$elements = $model->load(array(), ($model->getScheme()->has('enabled') ? array('enabled' => true) : array()));
-				foreach($elements as $element){
+				foreach($elements as $key => $element){
 					$element->updateSearchContent();
+					$output->writeln($element->getEntityName().' / '.$element->get('_id'));
+					$elements->pop($key);
 				}
 			}
-			$output->writeln('<options=bold>Search content just updated!</options=bold>');
+			$output->writeln('<options=bold>Search content just fully updated!</options=bold>');
 		}
 	}
