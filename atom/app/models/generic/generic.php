@@ -62,10 +62,10 @@
 				->sort($sort)
 				->limit($limit)
 				->skip($skip);
-			$response = @(new helper\iterator())
+			$response = (new helper\iterator())
 				->setTotal($dataset->count())
 				->setRange($limit)
-				->setPart($skip / $limit);
+				->setPart($limit ? $skip / $limit : null);
 			foreach($dataset->toArray() as $data){
 				$response->add((new static)->set($data));
 			}
@@ -147,7 +147,7 @@
 						}
 					break;
 					case 'entity':
-						if ($properties->get('multiple') === true){
+						if ($properties->get('multiple') === true && is_array($value)){
 							foreach($value as $key => $val){
 								if ((string)$val === (string)$this->mongoid($val)){
 									$value[$key] = $this->mongoid($val);
@@ -323,8 +323,12 @@
 				throw new \Exception($this->app['db']->lastError()['err'], $this->app['db']->lastError()['code']);
 			}
 			if ($status['n']) {
-				$this->updateSearchContent();
-				$this->updateRelatedSearchContent();
+				if ($this->get('enabled', true)){
+					$this->updateSearchContent();
+					$this->updateRelatedSearchContent();
+				} else {
+					$this->removeSearchContent();
+				}
 				return true;
 			}
 			return false;
@@ -367,7 +371,6 @@
 			}
 			if ($status['n']) {
 				$this->removeSearchContent();
-				$this->updateRelatedSearchContent();
 				return true;
 			}
 			return false;
@@ -592,6 +595,10 @@
 		 * Update related search content
 		 */
 		private function updateRelatedSearchContent(){
+			if (in_array($this->getEntityName(), array('search', 'log', null))){
+				return false;
+			}
+			
 			$items = (new search())->load(array(), array(
 				'ref_related.entity'=> new \MongoCode($this->getEntityName()),
 				'ref_related.id'	=> $this->mongoid()
