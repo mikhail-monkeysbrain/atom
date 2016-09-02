@@ -1,5 +1,5 @@
 <div class="page" style="position: relative;">
-  <section ng-show="renderData && last.row && last.col" class="panel panel-default table-dynamic">
+  <section ng-show="isRendered()" class="panel panel-default table-dynamic">
     <div style="position: relative;" class="panel-heading text-right">
       <div id="table-title" style="position: absolute; left: 10px; top: 20px; font-weight: 600;"
            data-ng-bind="tableTitle"></div>
