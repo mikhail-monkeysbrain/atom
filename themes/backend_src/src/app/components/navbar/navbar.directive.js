@@ -11,6 +11,7 @@
         controller: function($scope, $state, $element, AuthService) {
 
           $scope.pages = [];
+          $scope.$state = $state;
 
           $element.find('.infoblockMenu ul').show();
 
@@ -21,6 +22,11 @@
               .sortBy(function(item) {return item.position; })
               .value();
           });
+
+          $scope.openEntity = function (event, params) {
+            event.preventDefault();
+            $state.go('entitiesList', params);
+          };
 
         }
       };
