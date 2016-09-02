@@ -126,7 +126,9 @@
               }
 
               $scope.$broadcast('dataCountReady', response.data.total);
-              $scope.renderData = renderData;
+              $timeout(function () {
+                $scope.renderData = renderData;
+              });
             } else {
               $scope.renderData = [];
               $scope.$broadcast('dataCountReady', 0);
