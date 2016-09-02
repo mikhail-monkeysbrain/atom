@@ -134,9 +134,9 @@
       </section>
     </div>
 
-    <atom-pagination></atom-pagination>
+    <atom-pagination data-ng-show="isRendered()"></atom-pagination>
   </section>
-  <div ng-hide="renderData && last.row && last.col" class="form-group refresh-position">
+  <div data-ng-hide="isRendered()" class="form-group refresh-position">
     <div class="col-md-12 text-center">
       <span style="font-size: 24px" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
     </div>
