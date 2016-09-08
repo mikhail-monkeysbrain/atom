@@ -126,9 +126,12 @@
               }
 
               $scope.$broadcast('dataCountReady', response.data.total);
-              $scope.renderData = renderData;
+              $timeout(function () {
+                $scope.renderData = renderData;
+              });
             } else {
               $scope.renderData = [];
+              $scope.noData = true;
               $scope.$broadcast('dataCountReady', 0);
             }
           });
@@ -268,7 +271,11 @@
           SessionService.saveSelectedItems(selectedEntityList);
         }
         $state.go('infographic', {entity: $stateParams.entity});
-      }
+      };
+
+      $scope.isRendered = function () {
+        return !!angular.element('.fieldCell').first().text() || $scope.noData;
+      };
 
     });
 })();
