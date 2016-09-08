@@ -2,7 +2,7 @@
 
 	namespace app\models\helper;
 
-	class iterator implements \Iterator{
+	class iterator implements \Iterator, \Countable{
 
 		use traits\prototype;
 		

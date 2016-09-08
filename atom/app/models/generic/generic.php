@@ -122,13 +122,13 @@
 					case 'string':
 					case 'text':
 					case 'html':
-						$this->set($field, (is_array($value)) ? $value : (string)$value);
+						$this->set($field, ($properties->get('multiple') ? (array)$value : (string)$value));
 					break;
 					case 'integer':
-						$this->set($field, (int)$value);
+						$this->set($field, ($properties->get('multiple') ? (array)$value : (int)$value));
 					break;
 					case 'numeric':
-						$this->set($field, $value * 1);
+						$this->set($field, ($properties->get('multiple') ? (array)$value : $value * 1));
 					break;
 					case 'boolean':
 						$value = ($value === true || $value === 'true' || (int)$value === 1 ? true : false);
@@ -190,12 +190,12 @@
 				}
 				// TODO: Check entity properties for multiple
 				foreach($value as $file){
-					$filename = uniqid('f-'.$key.'-').'.'.$file->guessExtension();
+					$filename = uniqid('f-'.$key.'-').'.'.$file->getExtension();
 					$fileProperties = array(
-						'title'		=> $file->getClientOriginalName(),
+						'title'		=> $file->getFilename(),
 						'route'		=> $folder.DIRECTORY_SEPARATOR.$filename,
 						'file'		=> $filename,
-						'size'		=> filesize($file->getPathname()),
+						'size'		=> $file->getSize(),
 						'mime'		=> $file->getMimeType()
 					);
 					$file->move($path, $filename);
