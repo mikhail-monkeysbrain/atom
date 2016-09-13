@@ -247,6 +247,19 @@
 
         var fd = new $window.FormData();
 
+        var removeFroalaSpoiler = function () {
+          angular.element('a:contains("Unlicensed Froala Editor")').remove();
+        };
+
+        removeFroalaSpoiler();
+
+        $timeout(removeFroalaSpoiler, 300);
+        $timeout(removeFroalaSpoiler, 500);
+        $timeout(removeFroalaSpoiler, 700);
+        $timeout(removeFroalaSpoiler, 1000);
+        // примерно за 1000 мс уже точно загружается
+        $timeout(removeFroalaSpoiler, 1300); // на всякий случай
+
         _.each($scope.form, function(item, key) {
           if(key != "_id" && (typeof item === "undefined" || item === null ) && $scope.formSchema[key].type !== "acl") return ;
           if (key != "_id" && ($scope.formSchema[key].type == "entity" || $scope.formSchema[key].type == "select")) {
