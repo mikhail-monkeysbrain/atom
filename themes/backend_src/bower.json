@@ -1,6 +1,6 @@
 {
   "name": "Atom",
-  "version": "0.1.43",
+  "version": "0.1.44",
   "dependencies": {
     "jquery": "2.2.3",
     "angular": "1.4.0",
