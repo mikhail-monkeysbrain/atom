@@ -39,4 +39,4 @@
 			'description'	=> 'Atom platform for everyone!',
 			'image'			=> '/upload/share-default-image.png'
 		)
-);
+	);
