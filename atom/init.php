@@ -9,6 +9,7 @@
 	error_reporting($app['debug'] ? E_ALL : 0);
 	ini_set('display_errors', $app['debug'] ? 'on' : 'off');
 	$app['config'] = (new app\models\helper\proto())->set(require_once __DIR__.'/config_'.$app['env'].'.php');
+	mb_internal_encoding($app['config']->get('encoding'));
 
 	use Symfony\Component\Serializer,
 		Symfony\Component\Config\FileLocator,
@@ -51,6 +52,7 @@
 		$translator->addLoader('yaml', new tyfl());
 		try{
 			foreach($app['request']->getLanguages() as $lang){
+				$lang = strtok($lang, '-_');
 				if ($app['fs']->exists(__DIR__.'/app/locales/'.$lang.'.yml') && !isset($locale)){
 					$locale = $lang;
 					$translator->setLocale($locale);

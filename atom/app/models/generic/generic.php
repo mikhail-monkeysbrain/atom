@@ -233,7 +233,13 @@
 						$custom[$assertName] = $assertProperties;
 					}
 				}
-				$fieldAlerts = $this->app['validator']->validateValue(array($field => $value), new Asserts(array($field => $validators)));
+				if ($value instanceof \Traversable){
+					foreach($value as $key => $val){
+						$fieldAlerts = $this->app['validator']->validateValue(array($field.'.'.$key => $val), new Asserts(array($field.'.'.$key => $validators)));
+					}
+				} else {
+					$fieldAlerts = $this->app['validator']->validateValue(array($field => $value), new Asserts(array($field => $validators)));
+				}
 				foreach($fieldAlerts as $alert){
 					$alerts->add(new Alert($alert->getMessage(), null, array(), null, trim($alert->getPropertyPath(), '[]'), $alert->getInvalidValue()));
 				}

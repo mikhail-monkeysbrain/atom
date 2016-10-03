@@ -89,7 +89,7 @@
 			$row = array('_id');
 			foreach($scheme->all() as $fieldName => $field){
 				$field = (new helper\proto())->set($field);
-				if ($field->get('visible', true) === false){
+				if ($field->get('visible', true) === false || in_array($field->get('type'), array('password', 'acl', null))){
 					continue;
 				}
 				$row[] = $field->get('title');
@@ -110,7 +110,11 @@
 					switch($field->get('type')){
 						case 'integer':
 						case 'numeric':
-							$value = $item->get($fieldName) * 1;
+							if ($item->get($fieldName) instanceof \Traversable){
+								$value = implode(', ', $item->get($fieldName)->all());
+							} else {
+								$value = $item->get($fieldName) * 1;
+							}
 						break;
 						case 'date':
 						case 'datetime':
@@ -162,7 +166,11 @@
 							$value = strip_tags($item->get($fieldName));
 						break;
 						default:
-							$value = $item->get($fieldName);
+							if ($item->get($fieldName) instanceof \Traversable){
+								$value = implode(', ', $item->get($fieldName)->all());
+							} else {
+								$value = $item->get($fieldName);
+							}
 						break;
 					}
 					$row[] = $value;
