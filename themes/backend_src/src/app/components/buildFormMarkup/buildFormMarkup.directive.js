@@ -11,7 +11,7 @@
             if(attr.fieldReadonly == "true") {
               data.readonly = true;
             }
-            var factory = MarkupFactory(data.type);
+            var factory = MarkupFactory(/video/i.test(data.name) ? 'video' : data.type);
             if ( (typeof window[factory] == 'function') && (markup = window[factory](data)) ) {
               el.html($compile(markup.markup)($scope));
               markup.callback(el);

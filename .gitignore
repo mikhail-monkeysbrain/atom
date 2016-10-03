@@ -1,7 +1,7 @@
 atom/composer.lock
 atom/composer.phar
 atom/components/
-atom/config_dev.php
+#atom/config_dev.php
 
 themes/backend_src/node_modules/
 themes/backend_src/bower_components/
@@ -27,5 +27,6 @@ upload/*
 .idea
 *.sublime-project
 *.sublime-workspace
+.DSStore
 
 !.gitkeep

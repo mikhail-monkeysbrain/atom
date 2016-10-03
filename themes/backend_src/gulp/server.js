@@ -17,7 +17,12 @@ function browserSyncInit(baseDir, browser) {
   var routes = null;
   if(baseDir === conf.paths.src || (util.isArray(baseDir) && baseDir.indexOf(conf.paths.src) !== -1)) {
     routes = {
-      '/bower_components': 'bower_components'
+      '/bower_components': 'bower_components',
+      '/bower_components/angular-ui-tinymce/src/plugins': 'tinymce-scripts/plugins',
+      '/bower_components/angular-ui-tinymce/src/skins': 'tinymce-scripts/skins',
+      '/bower_components/angular-ui-tinymce/src/themes': 'tinymce-scripts/themes',
+      '/bower_components/angular-ui-tinymce/src/langs': 'tinymce-scripts/langs',
+      '/themes/backend/filemanager': 'filemanager'
     };
   }
 
@@ -34,7 +39,7 @@ function browserSyncInit(baseDir, browser) {
    * For more details and option, https://github.com/chimurai/http-proxy-middleware/blob/v0.0.5/README.md
    */
   server.middleware = proxyMiddleware(['**', '!/', '!/bower_components/**/*', '!/assets/**/*', '!/app/**/*', '!/themes/**/*'], {
-    target: 'http://nbpai.dev.hismith.ru',
+    target: 'http://dev.atom.hismith.ru',
     changeOrigin: true
   });
 

@@ -3,7 +3,7 @@
 return array(
     'mongo' => array(
         'server' => 'mongodb://localhost:27017',
-        'database' => 'atom_pro',
+        'database' => 'atom_dev',
         'options' => array(
             'connect' => true
         )
