@@ -234,9 +234,12 @@
 					}
 				}
 				if ($value instanceof \Traversable){
+					$multiValues = $multiValidators = array();
 					foreach($value as $key => $val){
-						$fieldAlerts = $this->app['validator']->validateValue(array($field.'.'.$key => $val), new Asserts(array($field.'.'.$key => $validators)));
+						$multiValues[$field.'.'.$key] = $val;
+						$multiValidators[$field.'.'.$key] = $validators;
 					}
+					$fieldAlerts = $this->app['validator']->validateValue($multiValues, new Asserts($multiValidators));
 				} else {
 					$fieldAlerts = $this->app['validator']->validateValue(array($field => $value), new Asserts(array($field => $validators)));
 				}
