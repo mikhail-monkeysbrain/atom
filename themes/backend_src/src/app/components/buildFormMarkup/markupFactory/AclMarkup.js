@@ -18,9 +18,9 @@ function AclMarkup(data) {
   '<tr ng-repeat="option in optionsData.'+data.name+'.options">'+
   '<td>{{option.title}}</td>'+
   '<td><label class="switch"><input id="read_{{ option.key }}"  type="checkbox" data-ng-model="option.read" ><i></i></label></td>'+
-  '<td><label class="switch" ng-show="option.key != \'index\' && option.key != \'atom\'"><input id="create_{{ option.key }}"  type="checkbox" data-ng-model="option.create" ><i></i></label></td>'+
-  '<td><label class="switch" ng-show="option.key != \'index\' && option.key != \'atom\'"><input id="update_{{ option.key }}"  type="checkbox" data-ng-model="option.update" ><i></i></label></td>'+
-  '<td><label class="switch" ng-show="option.key != \'index\' && option.key != \'atom\'"><input id="delete_{{ option.key }}"  type="checkbox" data-ng-model="option.delete" ><i></i></label></td>'+
+  '<td><label class="switch" ng-show="option.key != \'index\' && option.key != \'atom\' && option.key != \'log\' && option.key != \'crm\'"><input id="create_{{ option.key }}"  type="checkbox" data-ng-model="option.create" ><i></i></label></td>'+
+  '<td><label class="switch" ng-show="option.key != \'index\' && option.key != \'atom\' && option.key != \'log\' && option.key != \'crm\'"><input id="update_{{ option.key }}"  type="checkbox" data-ng-model="option.update" ><i></i></label></td>'+
+  '<td><label class="switch" ng-show="option.key != \'index\' && option.key != \'atom\' && option.key != \'log\' && option.key != \'crm\'"><input id="delete_{{ option.key }}"  type="checkbox" data-ng-model="option.delete" ><i></i></label></td>'+
   '</tr>'+
   '</tbody>'+
   '</table>'+

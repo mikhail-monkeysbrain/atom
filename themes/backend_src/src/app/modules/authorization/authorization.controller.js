@@ -14,6 +14,9 @@
           SessionService.setSessionID(undefined);
           $cookies.remove('token');
           $cookies.remove('rememberMe');
+		  $cookies.remove('user');
+          $cookies.remove('userId');
+          $cookies.remove('sessionId');
           AuthService.logout();
         }
         $state.go('login');

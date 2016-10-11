@@ -1,0 +1,10 @@
+<div class="form-inline" ng-if="field.type=='integer'">
+  <input id="ef1" class="form-control" type="number" ng-model="model.fieldValue" ng-blur="applyFilter(model.fieldValue, model.secondaryValue)">
+  <input id="ef2" class="form-control" type="number" ng-model="model.secondaryValue" ng-blur="applyFilter(model.fieldValue, model.secondaryValue)">
+  <a ng-click="applyFilter(fieldValue, secondaryValue)" class="btn-icon bg-success btn-info -sm">
+    <i class="fa fa-check"></i>
+  </a>
+  <!--<a ng-click="applyInterval(fieldValue, secondaryValue)" class="btn-icon bg-info btn-icon-sm">-->
+    <!--<i class="fa fa-arrows-h"></i>-->
+  <!--</a>-->
+</div>

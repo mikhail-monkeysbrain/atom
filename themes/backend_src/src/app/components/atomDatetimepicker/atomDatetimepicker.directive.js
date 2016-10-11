@@ -15,6 +15,7 @@
           mode: '@',
           form: '=',
           mModel: '=',
+		  readonly: '=',
           dataName: '@dataName',
           dataType: '@dataType'
         },
@@ -22,19 +23,15 @@
         link: function ($scope, $element, attrs) {
 
           var format = $scope.dataType === 'time' ? 'HH:mm' : ($scope.dataType === 'date' ? 'DD.MM.YYYY' : 'DD.MM.YYYY HH:mm');
-          
 
           $scope.today = function() {
             $scope.dt = new Date();
             return $scope.dt;
           };
 
-
-
           if ($scope.form.hasOwnProperty($scope.dataName) && $scope.form[$scope.dataName]) {
             $scope.dt = moment($scope.form[$scope.dataName].sec * 1000);
           } else { $scope.today(); }
-
 
           $element.datetimepicker({
             locale: $scope.language,

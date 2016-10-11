@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('directives.atomFields')
-    .directive('atomFieldString', function() {
+    .directive('atomFieldHtml', function() {
 
       return {
         restrict:    'A',
@@ -13,7 +13,7 @@
           postButton:'=',
           postButtonAction:'='
         },
-        templateUrl: 'app/directives/atomFields/atomFieldString/atomFieldString.html'
+        templateUrl: 'app/directives/atomFields/atomFieldHtml/atomFieldHtml.html'
       };
     });
 

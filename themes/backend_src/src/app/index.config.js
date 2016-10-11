@@ -1,21 +1,21 @@
 (function () {
-    'use strict';
+  'use strict';
 
-    angular.module('atom')
-        .config(function ($logProvider, $httpProvider, $stateProvider, toastr, SessionServiceProvider) {
-            $httpProvider.defaults.headers.post = {
-                'Accept': 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            };
-            $httpProvider.defaults.headers.get = {'Accept': 'application/json'};
+  angular.module('atom')
+  	.config(function ($logProvider, $httpProvider, $stateProvider, toastr, SessionServiceProvider) {
+      $httpProvider.defaults.headers.post = {
+      	'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      };
+      $httpProvider.defaults.headers.get = {'Accept': 'application/json'};
 
-            if (SessionServiceProvider.$get().getSessionID()) {
-                $httpProvider.defaults.headers.common.Token = SessionServiceProvider.$get().getSessionID();
-            }
+      if (SessionServiceProvider.$get().getSessionID()) {
+      	$httpProvider.defaults.headers.common.Token = SessionServiceProvider.$get().getSessionID();
+      }
 
-            $httpProvider.interceptors.push(function ($q, $injector, _, loginPeriod) {
-                return {
-                    request: function (config) {
+      $httpProvider.interceptors.push(function ($q, $injector, _, loginPeriod) {
+      	return {
+        	request: function (config) {
                         var remember = $injector.get('$cookies').get('rememberMe');
                         var token = $injector.get('$cookies').get('token');
                         var homepage = $injector.get('$cookies').get('homepage');

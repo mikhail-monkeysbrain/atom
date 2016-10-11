@@ -495,3 +495,8 @@ $btn_arrow_width:     8px;
         bottom: 15px;
     }
 }
+
+// fix
+.input-group-btn {
+    vertical-align: top;
+}

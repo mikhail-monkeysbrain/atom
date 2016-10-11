@@ -16,6 +16,16 @@
       <button tooltip="Удалить выбранные элементы" tooltip-placement="top" tooltip-append-to-body="true"  ng-show="deleteEnabled" ng-disabled="isSelectItems();" class="btn btn-danger  btn-w-md listControlButtons" ng-click="deleteStack();"
               type="button">Удалить
       </button>
+	  <button
+              type="button"
+              tooltip="Сбросить фильтры записей"
+              tooltip-placement="top"
+              tooltip-append-to-body="true"
+              ng-if="filtered"
+              ng-click="resetFilter()"
+              class="btn btn-warning pull-right list-control-buttons">
+        Сбросить фильтр
+      </button>
       <form method="post" id="downloadForm"></form>
     </div>
     <div data-ng-show="list.scheme && hasSearchFields" class="table-filters">
@@ -56,22 +66,29 @@
         </label>
         </div>
       </th>
-      <th style="height: 41px;"
+      <th style="height: 41px; min-width: 150px;"
           ng-repeat="(fieldKey, field) in fieldsInTable track by $index"
           ng-if="field.sort && fieldKey !== 'enabled' ">
-        <div class="th">
+        <div class="th" ng-show="!editMode[fieldKey]">
           {{field.title}}
           <span class="arrows-sort">
             <span ng-show="field.sort" class="fa fa-angle-up"
-                ng-click=" order(fieldKey,-1) "
-                ng-class="{active: curSortField == fieldKey && curSortOrder == -1 }"></span>
+                  ng-click=" order(fieldKey,-1) "
+                  ng-class="{active: curSortField == fieldKey && curSortOrder == -1 }"></span>
             <span ng-show="field.sort" class="fa fa-angle-down"
                   ng-click=" order(fieldKey,1) "
                   ng-class="{active: curSortField == fieldKey && curSortOrder == 1 }"></span>
+            <i ng-click="showFilter(fieldKey)" class="fa fa-filter"></i>
+          </span>
+        </div>
+        <div class="th" ng-show="editMode[fieldKey]" ng-if="editMode[fieldKey] || onceSelected[fieldKey]">
+          <crm-entity-filter></crm-entity-filter>
+          <span class="close-filter">
+            <i ng-click="resetFilterByKey(fieldKey)" class="fa fa-times"></i>
           </span>
         </div>
       </th>
-      <th style="height: 41px;" ng-if="list.scheme.enabled">
+      <th style="height: 41px;" ng-if="list.scheme.enabled && list.scheme.enabled.visible">
         <div class="th">Доступность
           <span class="arrows-sort">
             <span class="fa fa-angle-up"
@@ -109,7 +126,7 @@
         field="field" >{{::item[fieldKey]}}</td>
 
 
-      <td style="height: 41px;" class="visible-td" ng-if="list.scheme.enabled">
+      <td style="height: 41px;" class="visible-td" ng-if="list.scheme.enabled && list.scheme.enabled.visible">
         <!--<label class="switch"  data-atom-toggle-visible="" data-model="{{model}}" data-id="{{itemId|ObjectKey:list.data}}" >-->
         <label class="switch" data-atom-toggle-visible="" data-model="{{model}}" data-id="{{itemId}}">
           <input type="checkbox" data-ng-model="item.enabled" ng-change="setEdited(item)">

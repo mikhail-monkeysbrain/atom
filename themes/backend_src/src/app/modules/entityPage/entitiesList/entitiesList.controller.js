@@ -32,6 +32,18 @@
       $scope.linkedEntities = {};
       $scope.fieldsInTable = {};
 
+	  $scope.pageFilter = {};
+      $scope.onceSelected = {};
+      $scope.$on('filter:applied', function(event, filter) {
+        if (filter.value || filter.secondaryValue) {
+          $scope.filtered = true;
+          $scope.pageFilter[filter.fieldName] = filter;
+          filterPage($scope.pageFilter);
+        }
+      });
+
+      $scope.editMode = {};
+
       var selectedEntityList = [];
       var lock = false;
       var fieldsInTable = [];
@@ -112,10 +124,10 @@
       }
 
 
-      $scope.displayData = function(page, perPage, sortField, sortOrder, searchKeywords) {
+      $scope.displayData = function(page, perPage, sortField, sortOrder, searchKeywords, filters) {
         $scope.renderData = null;
         EntityService
-          .getEntityPage($stateParams.entity, page, perPage, sortField, sortOrder, searchKeywords, fieldsInTable)
+          .getEntityPage($stateParams.entity, page, perPage, sortField, sortOrder, searchKeywords, fieldsInTable, filters)
           .then(function(response) {
             lock = false;
             if(response.status != 204) {
@@ -128,6 +140,7 @@
               $scope.$broadcast('dataCountReady', response.data.total);
               $timeout(function () {
                 $scope.renderData = renderData;
+				$scope.noData = false;
               });
             } else {
               $scope.renderData = [];
@@ -160,7 +173,14 @@
               + angular.element('div.table-filters').outerHeight(true)
               + angular.element('footer.table-footer').outerHeight(true))
               + 'px');
-            angular.element('section.panel div.panel-body').css('overflow-y', 'auto');
+            angular.element('section.panel div.panel-body table, section.panel div.panel-body section').css('max-height',
+                angular.element(window).height() -
+                (angular.element('#header').height()
+                + (angular.element('div.page').innerHeight() - angular.element('div.page').height() -110)
+                + angular.element('div.panel-heading').outerHeight(true)
+                + angular.element('div.table-filters').outerHeight(true)
+                + angular.element('footer.table-footer').outerHeight(true))
+                - 20 + 'px');
           }
         }, 500);
       }
@@ -212,7 +232,7 @@
       };
 
       $scope.exportStack = function() {
-        EntityService.exportEntity($stateParams.entity,  selectedEntityList, $scope.curSortField, $scope.curSortOrder, $scope.searchKeywords)
+        EntityService.exportEntity($stateParams.entity,  selectedEntityList, $scope.curSortField, $scope.curSortOrder, $scope.searchKeywords, $scope.pageFilter)
       };
 
       $scope.deleteStack = function (id) {
@@ -277,5 +297,35 @@
         return !!angular.element('.fieldCell').first().text() || $scope.noData;
       };
 
+	  $scope.resetFilterByKey = function(fieldKey) {
+        delete $scope.pageFilter[fieldKey];
+        if (Object.keys($scope.pageFilter).length < 1) {
+          $scope.filtered = false;
+        }
+        $scope.$broadcast('filter:thisReset', fieldKey);
+        $scope.editMode[fieldKey] = false;
+        $scope.displayData(0,$scope.perPage, $scope.curSortField, $scope.curSortOrder, $scope.searchKeywords, {});
+      };
+
+      $scope.resetFilter = function() {
+        $scope.filtered = false;
+        $scope.pageFilter = {};
+        Object.keys($scope.editMode).forEach(function(key) {
+          $scope.editMode[key] = false;
+        });
+        $scope.displayData(0,$scope.perPage, $scope.curSortField, $scope.curSortOrder, $scope.searchKeywords, {});
+        $scope.$broadcast('filter:reset');
+      };
+
+      $scope.showFilter = function (fieldKey) {
+        $scope.editMode[fieldKey] = true;
+        $scope.onceSelected[fieldKey] = true;
+      };
+
+      function filterPage (filters) {
+        pageState.searchKeywords = $scope.searchKeywords;
+        SessionService.setEntityListState(pageState, $stateParams.entity);
+        $scope.displayData(0,$scope.perPage, $scope.curSortField, $scope.curSortOrder, $scope.searchKeywords, filters);
+      }
     });
 })();

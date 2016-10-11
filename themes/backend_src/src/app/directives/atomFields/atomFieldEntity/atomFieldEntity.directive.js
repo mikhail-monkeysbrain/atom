@@ -16,21 +16,31 @@
         templateUrl: 'app/directives/atomFields/atomFieldEntity/atomFieldEntity.html',
         link: function($scope) {
 
-          var sourceData = $scope.linkedEntity.data.data;
+          var sourceData = [];
+
+          try {sourceData = $scope.linkedEntity;} catch (e) {}
 
           $scope.entityModel[$scope.fieldName] = $scope.entityModel[$scope.fieldName] || [];
 
           var titleField = $scope.scheme.entity.field ? $scope.scheme.entity.field : '';
           var list = filterSourceData();
           var fields = $scope.scheme.multiple ? $scope.field : [$scope.field];
+		  if(!angular.isArray(fields)) {
+            fields = [];
+          }
 
-          var model = Lazy(fields).map(function(fieldItem) {
-              return Lazy(list).find(function(entityItem) {
+          var model = fields
+            .filter(function (key) {
+              return !!key || key === 0;
+            })
+            .map(function(fieldItem) {
+              return list.find(function(entityItem) {
                 return entityItem.id === fieldItem.$id;
               })
             })
-            .compact()
-            .toArray();
+            .filter(function (key) {
+              return !!key || key === 0;
+            });
 
           $scope.entityModel[$scope.fieldName] = $scope.scheme.multiple ? model : model[0];
 
@@ -53,6 +63,18 @@
               $scope.list = filterSourceData();
             }
           });
+
+		  $scope.$on('atom:broadcast:setEntityById', function(event, params) {
+            var fieldName = params.fieldName;
+            var id = params.id;
+            if(fieldName !== $scope.fieldName) {
+              return false;
+            }
+            var fields = $scope.list.filter(function(item) {
+              return item.id === id;
+            });
+            $scope.entityModel[fieldName] = $scope.scheme.multiple ? fields : fields[0];
+          });
           
           function filterSourceData() {
 
@@ -69,16 +91,15 @@
 
               var selectedRelatedEntities = [];
 
-              Lazy(related).each(function(relatedField) {
+              related.forEach(function(relatedField) {
                 selectedRelatedEntities = relatedEntities.concat(
-                  Lazy($scope.entityModel[relatedField])
+                  $scope.entityModel[relatedField]
                     .map(function(item) {
                       return {
                         name: relatedField,
                         id: item.id
                       }
-                    })
-                    .toArray());
+                    }));
               });
 
               return selectedRelatedEntities;
@@ -89,9 +110,9 @@
             }
 
             function findEntitiesWithRelation() {
-              return Lazy(sourceData)
+              return sourceData
                 .map(function(item) {
-                  var relatedSource = Lazy(relatedEntities).find(function(relatedItem) {
+                  var relatedSource = relatedEntities.find(function(relatedItem) {
                     return item[relatedItem.name].$id === relatedItem.id;
                   });
                   if(relatedSource) {
@@ -101,19 +122,19 @@
                     }
                   }
                 })
-                .compact()
-                .toArray();
+                .filter(function (key) {
+                  return !!key || key === 0;
+                });
             }
 
             function returnAllEntities() {
-              return Lazy(sourceData)
+              return sourceData
                 .map(function(item) {
                   return {
-                    title: item[titleField],
-                    id: item._id.$id
+                    title: item.title,
+                    id: item.$id
                   }
-                })
-                .toArray();
+                });
             }
           }
           

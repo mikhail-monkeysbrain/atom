@@ -1,23 +1,53 @@
 
-<div class="nav-wrapper">
-  <ul id="nav"
-      class="nav"
-      data-slim-scroll
-      data-collapse-nav
-      data-highlight-active>
-    <li class="infoblockMenu" class="open active">
-      <a href="#/pages"><i class="fa fa-file-text-o"></i><span data-i18n="Pages">Инфоблоки</span></a>
-      <ul>
-        <li
-          ng-repeat="(pageName, page) in pages"
-          ng-if="page.icon"
-          ng-class="{'active': $root.activeEntity == page.entityName}">
-            <a ng-href="/atom/{{$state.href('entitiesList', {'entity': page.entityName})}}" ng-click="openEntity($event, {'entity': page.entityName})">
-              <i class="fa {{page.icon}}"></i>
-              <span data-i18n="PageNamePlaceHere">{{ page.title }}</span>
+<!--<div class="nav-wrapper">-->
+  <!--<ul id="nav"-->
+      <!--class="nav"-->
+      <!--data-slim-scroll-->
+      <!--data-collapse-nav-->
+      <!--data-highlight-active>-->
+    <!--<li class="infoblockMenu" class="open active">-->
+      <!--<a href="#/pages"><i class="fa fa-file-text-o"></i><span data-i18n="Pages">Инфоблоки</span></a>-->
+      <!--<ul>-->
+        <!--<li-->
+          <!--ng-repeat="(pageName, page) in pages"-->
+          <!--ng-if="page.icon"-->
+          <!--ng-class="{'active': $root.activeEntity == page.entityName}">-->
+            <!--<a ui-sref="entitiesList({'entity': page.entityName})">-->
+              <!--<i class="fa {{page.icon}}"></i>-->
+              <!--<span data-i18n="PageNamePlaceHere">{{ page.title }}</span>-->
+            <!--</a>-->
+        <!--</li>-->
+      <!--</ul>-->
+    <!--</li>-->
+  <!--</ul>-->
+<!--</div>-->
+
+
+<div class="nav-wrapper"
+     ng-if="pages">
+    <ul id="nav"
+        class="nav"
+        data-slim-scroll
+        data-collapse-nav
+        data-highlight-active>
+        <li     class="infoblockMenu open"
+                ng-repeat="(pageName, page) in pages"
+                ng-if="page.icon"
+                style="cursor: pointer;">
+            <a>
+                <i class="fa {{page.icon}}"></i>
+                <span data-i18n="PageNamePlaceHere">{{ page.title }}</span>
             </a>
+            <ul class="submenu">
+                <li ng-repeat="entity in page.entities"
+                    id="{{entity.entityName}}"
+                    ng-class="{'active': $root.activeEntity == entity.entityName}">
+                    <a ui-sref="entitiesList({'entity': entity.entityName})">
+                        <i class="fa {{entity.icon}}"></i>
+                        <span data-i18n="PageNamePlaceHere">{{ entity.title }}</span>
+                    </a>
+                </li>
+            </ul>
         </li>
-      </ul>
-    </li>
-  </ul>
+    </ul>
 </div>
