@@ -7,6 +7,7 @@
                                 data-ng-options="num.title for num in numPerPageOpt track by num.value"
                                 data-ng-change="onNumPerPageChange()">
                         </select>
+                        <span>{{getCounter()}} из {{$parent.entityTotal}}</span>
                     </span>
         </div>
         <div class="col-md-6 text-right pagination-container scrollme" id="pagination" ng-scrollable="scrollConfig">

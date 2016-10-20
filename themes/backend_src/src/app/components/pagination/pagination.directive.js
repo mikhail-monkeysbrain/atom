@@ -38,7 +38,11 @@
             $scope.$emit('content.changed');
           });
 
-
+          $scope.getCounter = function () {
+            return $scope.perPage.value < $scope.$parent.entityTotal ?
+                ($scope.perPage.value ?
+                    $scope.perPage.value : $scope.$parent.entityTotal) : $scope.$parent.entityTotal;
+          };
 
           $scope.onNumPerPageChange = function() {
             $scope.curPage = 0;

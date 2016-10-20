@@ -137,12 +137,14 @@
                 renderData.push(response.data.data[i]); //здесь данные вносятся не в скоуп для того, чтобы отложить рендер самой вьюхи
               }
 
+              $scope.entityTotal = response.data.total;
               $scope.$broadcast('dataCountReady', response.data.total);
               $timeout(function () {
                 $scope.renderData = renderData;
 				$scope.noData = false;
               });
             } else {
+              $scope.entityTotal = 0;
               $scope.renderData = [];
               $scope.noData = true;
               $scope.$broadcast('dataCountReady', 0);
