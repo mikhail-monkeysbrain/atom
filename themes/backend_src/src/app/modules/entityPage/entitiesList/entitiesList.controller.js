@@ -191,15 +191,27 @@
         $state.go('entityAdd', {entity: $scope.model});
       };
 
-      $scope.setEdited = function(entity) {
-        EntityService.saveEntity($stateParams.entity, {
-          _id: entity._id.$id,
-          enabled: entity.enabled
-        }).then(function(response){
-          if(response.data.success){
-            toastr.success('Запись сохранена');
-          }
-        });
+      $scope.setEdited = function(entity, field) {
+        if (field) {
+          var editedObj = {
+            _id: entity._id.$id
+          };
+          editedObj[field] = entity[field];
+          EntityService.saveEntity($stateParams.entity, editedObj).then(function(response){
+            if(response.data.success){
+              toastr.success('Запись сохранена');
+            }
+          });
+        } else {
+          EntityService.saveEntity($stateParams.entity, {
+            _id: entity._id.$id,
+            enabled: entity.enabled
+          }).then(function(response){
+            if(response.data.success){
+              toastr.success('Запись сохранена');
+            }
+          });
+        }
       };
 
       $scope.selectAllItems = function($event) {

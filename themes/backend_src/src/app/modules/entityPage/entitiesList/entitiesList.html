@@ -115,18 +115,27 @@
       </td>
 
       <td
-        class="fieldCell"
-        style="height: 41px;"
-        list-wrapp="{{item[fieldKey]}}"
-        ng-repeat="(fieldKey, field) in fieldsInTable track by $index"
-        ng-init="last.col = $last"
-        entity-list-markup
-        entity="item[fieldKey]"
-        entity-name="fieldKey"
-        field="field" >{{::item[fieldKey]}}</td>
+              class="fieldCell"
+              style="height: 41px;"
+              list-wrapp="{{item[fieldKey]}}"
+              ng-repeat-start="(fieldKey, field) in fieldsInTable track by $index"
+              ng-if="list.scheme[fieldKey].type !== 'boolean'"
+              entity-list-markup
+              is-last="topLast && $first"
+              entity="item[fieldKey]"
+              entity-name="fieldKey"
+              field="field" >{{::item[fieldKey]}}</td>
 
 
-      <td style="height: 41px;" class="visible-td" ng-if="list.scheme.enabled && list.scheme.enabled.visible">
+      <td style="height: 41px;" class="visible-td" ng-repeat-end ng-if="list.scheme[fieldKey].type == 'boolean'">
+        <!--<label class="switch"  data-atom-toggle-visible="" data-model="{{model}}" data-id="{{itemId|ObjectKey:list.data}}" >-->
+        <label class="switch" data-atom-toggle-visible="" data-model="{{model}}" data-id="{{itemId}}">
+          <input type="checkbox" data-ng-model="item[fieldKey]" ng-change="setEdited(item, fieldKey)">
+          <i class="slim"></i>
+        </label>
+      </td>
+
+      <td style="height: 41px;" class="visible-td" ng-if="list.scheme.enabled">
         <!--<label class="switch"  data-atom-toggle-visible="" data-model="{{model}}" data-id="{{itemId|ObjectKey:list.data}}" >-->
         <label class="switch" data-atom-toggle-visible="" data-model="{{model}}" data-id="{{itemId}}">
           <input type="checkbox" data-ng-model="item.enabled" ng-change="setEdited(item)">
