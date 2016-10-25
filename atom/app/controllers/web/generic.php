@@ -216,18 +216,38 @@
 		}
 
 		public static function prepareCondition($condition){
+			$scheme = static::model()->getScheme();
 			foreach($condition as $key => $value){
 				if (is_array($value)){
-					$value = static::prepareCondition($value);
-				}
-				if ($value === 'true'){
-					$value = true;
-				}
-				if ($value === 'false'){
-					$value = false;
-				}
-				if ($value === (string)static::model()->mongoid($value)){
-					$value = static::model()->mongoid($value);
+					$value = static::prepareCondition($value, $key);
+				} else {
+					if ($value === (string)static::model()->mongoid($value)){
+						$value = static::model()->mongoid($value);
+					}
+					switch($scheme->get(($pKey ? $pKey : $key), new helper\proto)->get('type')){
+						case 'integer':
+						case 'numeric':
+							if (is_numeric($value)){
+								$value = $value * 1;
+							}
+						break;
+
+						case 'boolean':
+							if ($value === 'true'){
+								$value = true;
+							} elseif ($value === 'false'){
+								$value = false;
+							}
+						break;
+
+						case 'date':
+						case 'datetime':
+						case 'time':
+							if (strtotime($value)){
+								$value = new \MongoDate(strtotime($value));
+							}
+						break;
+					}
 				}
 				$condition[$key] = $value;
 			}
