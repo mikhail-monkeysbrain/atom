@@ -215,7 +215,7 @@
 			return (array)$fields;
 		}
 
-		public static function prepareCondition($condition){
+		public static function prepareCondition($condition, $pKey = null){
 			$scheme = static::model()->getScheme();
 			foreach($condition as $key => $value){
 				if (is_array($value)){
