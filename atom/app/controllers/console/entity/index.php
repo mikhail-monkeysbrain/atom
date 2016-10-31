@@ -36,7 +36,7 @@
 				$search = array();
 				foreach($scheme->get() as $fieldName => $fieldProperties){
 					if (isset($fieldProperties['index']) && ($fieldProperties['index'] == 1 || $fieldProperties['index'] == -1)){
-						$this->app['db']->selectCollection($model->getEntityName())->ensureIndex(array($fieldName => $fieldProperties['index']));
+						$this->app['db']->selectCollection($model->getEntityName())->ensureIndex(array($fieldName => $fieldProperties['index']), array('background' => true));
 					}
 				}
 				$this->app['db']->selectCollection('search')->ensureIndex(array('$**' => 'text'), array('default_language' => 'russian'));
