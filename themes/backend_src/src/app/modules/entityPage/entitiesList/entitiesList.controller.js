@@ -334,6 +334,9 @@
       $scope.showFilter = function (fieldKey) {
         $scope.editMode[fieldKey] = true;
         $scope.onceSelected[fieldKey] = true;
+        $timeout(function () {
+          angular.element('[chosen]').trigger("chosen:updated");
+        }, 100);
       };
 
       function filterPage (filters) {

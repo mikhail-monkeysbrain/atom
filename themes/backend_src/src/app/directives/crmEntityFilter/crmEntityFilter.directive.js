@@ -10,7 +10,8 @@
         //  field: '=',
         //  fieldKey: '='
         // },
-        link: function($scope) {
+        link: function($scope, $elem) {
+          $scope.$elem = $elem;
           $scope.scheme = angular.copy($scope.field);
           if($scope.scheme.type == 'entity' || $scope.scheme.type == 'select') {
             $scope.scheme.multiple = true;
@@ -115,6 +116,7 @@
 
           $scope.$on('filter:thisReset', function (e, name) {
             if (name === $scope.fieldKey) {
+              $scope.$elem.find('[chosen]').val('выберите один или несколько вариантов').trigger("chosen:updated");
               $scope.model.fieldValue = undefined;
               $scope.model.secondaryValue = undefined;
             }
