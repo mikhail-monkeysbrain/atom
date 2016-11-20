@@ -50,12 +50,6 @@
 				$fields = array_merge($fields, $condition['$options']);
 				unset($condition['$options']);
 			}
-			foreach($condition as $key => $value){
-				if (is_array($value) && key($value) == '$regex'){
-					$regex = new \MongoRegex('/'.$value['$regex'].'/i');
-					$condition[$key] = $regex;
-				}
-			}
 			$dataset = $this->app['db']
 				->selectCollection($this->getEntityName())
 				->find($condition, $fields)
@@ -233,7 +227,7 @@
 						$custom[$assertName] = $assertProperties;
 					}
 				}
-				if ($value instanceof \Traversable){
+				if ($value instanceof \Traversable || $value instanceof helper\proto){
 					$multiValues = $multiValidators = array();
 					foreach($value as $key => $val){
 						$multiValues[$field.'.'.$key] = $val;

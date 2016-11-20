@@ -166,7 +166,7 @@
 							$value = strip_tags($item->get($fieldName));
 						break;
 						default:
-							if ($item->get($fieldName) instanceof \Traversable){
+							if ($item->get($fieldName) instanceof \Traversable || $item->get($fieldName) instanceof helper\proto){
 								$value = implode(', ', $item->get($fieldName)->all());
 							} else {
 								$value = $item->get($fieldName);
@@ -219,7 +219,11 @@
 			$scheme = static::model()->getScheme();
 			foreach($condition as $key => $value){
 				if (is_array($value)){
-					$value = static::prepareCondition($value, $key);
+					if (isset($value['$regex'])){
+						$value = new \MongoRegex('/'.$value['$regex'].'/i');
+					} else {
+						$value = static::prepareCondition($value, $key);
+					}
 				} else {
 					if ($value === (string)static::model()->mongoid($value)){
 						$value = static::model()->mongoid($value);
