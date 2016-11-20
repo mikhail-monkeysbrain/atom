@@ -12,6 +12,15 @@
           field:     '='
         },
         templateUrl: 'app/directives/atomFields/atomFieldPassword/atomFieldPassword.html',
+		link: function($scope) {
+          $scope.atomPassword = {
+            type: "password",
+            generatePassword: function() {
+              $scope.atomPassword.type = 'text';
+              $scope.field = Math.random().toString(36).slice(-8);
+            }
+          };
+        }
       };
     });
 

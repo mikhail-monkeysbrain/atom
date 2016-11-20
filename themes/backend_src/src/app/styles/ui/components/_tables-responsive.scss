@@ -32,3 +32,15 @@
         td:last-child { border-bottom: 1px solid #babcbf; }
     }
 }
+
+@media only screen and (min-width: 1201px) {
+    .table-flip-scroll {
+        //min-height: 350px;
+        overflow-x: auto;
+        display: block;
+    }
+}
+
+.panel-body {
+    overflow-y: hidden;
+}

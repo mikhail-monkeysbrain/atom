@@ -71,6 +71,7 @@
                     var response = responses[1];
                     var properties = responses[0].data.entities[$stateParams.entity];
                     $scope.updateEnabled = typeof response.data[$stateParams.entity].routes[$stateParams.entity + '.update'] !== 'undefined';
+                    $scope.createEnabled = typeof response.data[$stateParams.entity].routes[$stateParams.entity + '.create'] !== 'undefined';
                     $scope.deleteEnabled = typeof response.data[$stateParams.entity].routes[$stateParams.entity + '.delete'] !== 'undefined';
 
                     var fields = response.data[$stateParams.entity].scheme;
@@ -126,6 +127,25 @@
                         EntityService.getEntity($stateParams.entity, $stateParams.id).then(function (response) {
                             $scope.form = {};
                             $scope.optionsData = {};
+
+                            try {
+                                Object.keys(fields).forEach(function (e) {
+                                    if (fields[e].type =='string' && fields[e].multiple && response.data.data[0][e] && response.data.data[0][e].indexOf(',') !== -1 && angular.isString(response.data.data[0][e])) {
+                                        response.data.data[0][e] = response.data.data[0][e].split(',');
+                                        if (!response.data.data[0][e].length) {
+                                            response.data.data[0][e].push('');
+                                        }
+                                    } else if (fields[e].type =='string' && fields[e].multiple && response.data.data[0][e] && angular.isString(response.data.data[0][e])) {
+                                        response.data.data[0][e] = [response.data.data[0][e]];
+                                    } else if (fields[e].type =='string' && fields[e].multiple && !response.data.data[0][e]) {
+                                        response.data.data[0][e] = [''];
+                                    }
+                                });
+                            } catch (e) {
+                                // пустая информация
+                                throw e;
+                            }
+
                             _.each(fields, function (item, key) {
                                 if (item.type == 'select' || item.type == 'entity' || item.type == 'acl') {
                                     $scope.optionsData[key] = item;
@@ -192,6 +212,12 @@
                                     $scope.form[key] = item.default;
                                 } else {
                                     $scope.form[key] = false;
+                                }
+                            } else if (item.type === 'string' && item.multiple) {
+                                if (typeof item.default !== "undefined") {
+                                    $scope.form[key] = item.default;
+                                } else {
+                                    $scope.form[key] = [''];
                                 }
                             } else if (item.type === 'entity' || item.type === 'select' || item.type == 'acl') {
                                 $scope.optionsData[key] = item;
@@ -263,9 +289,17 @@
 
                 var fd = new $window.FormData();
 
-                _.each($scope.form, function (item, key) {
-                    if (key != "_id" && (typeof item === "undefined" || item === null ) && $scope.formSchema[key].type !== "acl") return;
-                    if (key != "_id" && ($scope.formSchema[key].type == "entity" || $scope.formSchema[key].type == "select")) {
+                Object.keys($scope.form).forEach(function (key) {
+                    var item = $scope.form[key];
+                    if (key != "_id" && (typeof item === "undefined" || item === null )
+                        && $scope.formSchema[key].type !== "acl") {
+                        return;
+                    }
+
+                    if (key != "_id" &&
+                        ($scope.formSchema[key].type == "entity"
+                        || $scope.formSchema[key].type == "select")
+                    ) {
                         if ($scope.formSchema[key].multiple) {
                             _.each(item, function (val, n) {
                                 request[key + '[' + n + ']'] = val.id;
@@ -279,7 +313,8 @@
                         }
 
 
-                    } else if (key != "_id" && $scope.formSchema[key].type == "acl") {
+                    }
+                    else if (key != "_id" && $scope.formSchema[key].type == "acl") {
                         _.each($scope.formSchema[key].options, function (opt, optKey) {
                             //TODO: NEED REFACTORING
                             request[key + '[' + opt.key + '][read]'] = opt.read || false;
@@ -297,11 +332,24 @@
                         item = $scope.form[key].urlPrefix + $scope.form[key].displayUrl + '/';
                         request[key] = item;
                         fd.append(key, item);
+                    } else if (key != "_id" && $scope.formSchema[key].type == "string") {
+                        if ($scope.formSchema[key].multiple) {
+                            _.each(item, function (val, n) {
+                                request[key + '[' + n + ']'] = val;
+                                fd.append(key + '[' + n + ']', val);
+                            });
+                        } else {
+                            if (item) {
+                                request[key] = item;
+                                fd.append(key, item);
+                            }
+                        }
                     } else {
                         request[key] = item;
                         fd.append(key, item);
                     }
                 });
+
                 EntityService.saveEntity($stateParams.entity, hasFileField ? fd : request, $scope.isNew, hasFileField).then(function (response) {
                     if (response.data.success) {
                         toastr.success('Запись успешно сохранена');
@@ -318,6 +366,35 @@
                         });
                     });
                 });
+            };
+
+            $scope.moveMultipleStringElement = function (name, oldIndex, newIndex) {
+                if (newIndex >= $scope.form[name].length) {
+                    var k = newIndex - $scope.form[name].length;
+                    while ((k--) + 1) {
+                        $scope.form[name].push(undefined);
+                    }
+                }
+                $scope.form[name].splice(newIndex, 0, $scope.form[name].splice(oldIndex, 1)[0]);
+                angular.element('input[id="form.'+name+'['+newIndex+']"]')[0].focus();
+            };
+
+            $scope.pushMultipleStringElement = function (name, indexAfter) {
+                // enter
+            };
+
+            $scope.insertMultipleStringElement = function (name, indexAfter) {
+                $scope.form[name].splice(indexAfter + 1, 0, '');
+                $timeout(function () {
+                    angular.element('input[id="form.'+name+'['+(indexAfter + 1)+']"]')[0].focus();
+                }, 50);
+            };
+
+            $scope.removeMultipleStringElement = function (name, index) {
+                $scope.form[name].splice(index, 1);
+                if (!$scope.form[name].length) {
+                    $scope.form[name].push('');
+                }
             };
 
             $scope.remove = function () {

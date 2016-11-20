@@ -1,0 +1,11 @@
+<div class="form-inline" ng-if="field.type=='boolean'">
+  <div atom-field-boolean
+      field="model.fieldValue"
+      field-name="fieldKey"
+      scheme="field"
+      style="display: inline-block">
+  </div>
+  <a ng-click="applyFilter()" class="btn-icon bg-info btn-icon-sm">
+    <i class="fa fa-check"></i>
+  </a>
+</div>

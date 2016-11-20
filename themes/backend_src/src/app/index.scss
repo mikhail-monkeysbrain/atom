@@ -6,3 +6,11 @@
 
 @import "modules/entityPage/entityPage";
 @import "modules/authorization/authorisation";
+
+ul.nav {
+  li.open {
+    ul {
+      display: block;
+    }
+  }
+}

@@ -8,25 +8,28 @@
         restrict:       'EA',
         scope:       true,
         templateUrl: 'app/components/navbar/navbar.html',
-        controller: function($scope, $state, $element, AuthService) {
+        controller: function($scope, $state, $element, $timeout, AuthService) {
 
           $scope.pages = [];
-          $scope.$state = $state;
 
           $element.find('.infoblockMenu ul').show();
 
           AuthService.properties().then(function(response) {
-            var pages = _.clone(response.data.entities);
+            var entities = _.clone(response.data.entities);
+            var pages = _.clone(response.data.menu);
+            $timeout(function () {
             $scope.pages = _.chain(pages)
-              .each(function(item, entityName) {item.entityName = entityName})
-              .sortBy(function(item) {return item.position; })
+              .each(function(item, entityName) {
+                item.title = entityName;
+                item.entities = {};
+                item.links.forEach(function (link, key) {
+                  item.entities[link] = entities[link];
+                  item.entities[link].entityName = link;
+                });
+              })
               .value();
+            });
           });
-
-          $scope.openEntity = function (event, params) {
-            event.preventDefault();
-            $state.go('entitiesList', params);
-          };
 
         }
       };

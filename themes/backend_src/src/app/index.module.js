@@ -37,6 +37,7 @@
 
             'directives.atomFields',
             'directives.atomDiagram',
+			'directives.crmEntityFilter',
 
             'rest.infographic',
 

@@ -22,27 +22,50 @@
             return $scope.dt;
           };
 
+		  var time = $scope.field && $scope.field != undefined ? $scope.field.sec : 0;
+		  if(time) {
 
-          var time = $scope.field ? $scope.field.sec : 0;
-          if(time) {
             $scope.dt = moment(time * 1000);
+			$scope.field = $scope.dt.locale('en').format('ddd MMM DD YYYY HH:mm:ss');
           }
 
-          angular.element($element[0].querySelector('input')).datetimepicker({
+          angular.element($element[0].querySelector('.input-group')).datetimepicker({
             locale: 'ru',
             useCurrent: true,
             defaultDate: $scope.dt,
             format: format,
+			keepOpen: false,
             extraFormats: [format ]
           });
 
           $element.find('input').on('blur', function () {
+            if ($element.find('input').val()) {
+              var date = moment($element.find('input').val(), 'DD.MM.YYYY HH:mm');
+              $scope.$apply(function () {
+                $scope.field = date.locale('en').format('DD.MM.YYYY HH:mm');
+                setTimeout(function () {
+                  $scope.$emit('atom:changeField', {fieldName: $scope.fieldName});
+                }, 100);
+              });
+              $element.find('input').trigger('input');
+            }
+          });
 
-            var date = moment($element.find('input').val(), format);
+          $scope.$watch('field', function (newVal, oldVal) {
+            if (newVal) {
+              var date = moment(newVal, 'DD.MM.YYYY HH:mm');
+              angular.element($element[0].querySelector('.input-group')).data("DateTimePicker").date(date);
+            }
+          });
 
-            $scope.field = date.locale('en').format('ddd MMM DD YYYY HH:mm:ss');//Tue Dec 22 2015 00:00:00 GMT+0300//(date).toString().replace(/( \((.+)\))/g, '');
-            $element.find('input').trigger('input');
-          })
+          $scope.$watch('_field', function (newVal) {
+            if (newVal) {
+              var date = moment($element.find('input').val(), format);
+              if (date !== $scope.field && !$scope.field) {
+                $element.find('input').val('')
+              }
+            }
+          });
 
         }
       };
