@@ -35,7 +35,10 @@
 	  $scope.pageFilter = {};
       $scope.onceSelected = {};
       $scope.$on('filter:applied', function(event, filter) {
-        if (filter.value || filter.secondaryValue) {
+        if (filter.value || filter.secondaryValue || filter.value === 0 || filter.secondaryValue === 0 || filter.value === false) {
+          $scope.searchKeywords = '';
+          pageState.searchKeywords = $scope.searchKeywords;
+          SessionService.setEntityListState(pageState, $stateParams.entity);
           $scope.filtered = true;
           $scope.pageFilter[filter.fieldName] = filter;
           filterPage($scope.pageFilter);
@@ -291,6 +294,12 @@
       $scope.search = function() {
           pageState.searchKeywords = $scope.searchKeywords;
           SessionService.setEntityListState(pageState, $stateParams.entity);
+          $scope.filtered = false;
+          $scope.pageFilter = {};
+          Object.keys($scope.editMode).forEach(function(key) {
+            $scope.editMode[key] = false;
+          });
+          $scope.$broadcast('filter:reset');
           $scope.displayData(0,$scope.perPage, $scope.curSortField, $scope.curSortOrder, $scope.searchKeywords);
       };
 
