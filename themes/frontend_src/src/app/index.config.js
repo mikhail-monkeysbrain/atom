@@ -61,7 +61,28 @@
 
             return config;
           },
+          response: function (response) {
+
+            // НЕ ТРОГАТЬ!!! Распознает необработанные по каким-либо причинам BE ошибки
+            if (((angular.isObject(response.data) && (response.data.data &&
+                ((!response.data.data.length || !Object.keys(response.data.data).length) && response.status != 204))) &&
+                !response.data.success) || (angular.isString(response.data) &&
+                (response.data.indexOf('</') == -1 || response.data.indexOf('Parse error') != -1 || response.data.indexOf('Fatal error') != -1))
+                && response.status !== 204 && response.data != '') {
+              $injector.get('$rootScope').errorMessage = 'Произошла ошибка. Пожалуйста, повторите операцию позже.';
+              $injector.get('$rootScope').showGlobalPopup = true;
+            }
+
+            return response;
+          },
           responseError:  function(rejection) {
+
+            // НЕ ТРОГАТЬ!!! Распознает неотформатированные верным образом ошибки
+            if (!rejection.data.error && !rejection.data.success) {
+              $injector.get('$rootScope').errorMessage = 'Произошла ошибка. Пожалуйста, повторите операцию позже.';
+              $injector.get('$rootScope').showGlobalPopup = true;
+            }
+
             if(rejection.status == 500){
               $injector.get('$rootScope').errorMessage = rejection.data.error.message;
               $injector.get('$rootScope').showGlobalPopup = true;
