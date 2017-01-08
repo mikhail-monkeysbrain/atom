@@ -5,7 +5,7 @@
         .controller('EntityEditCtrl', function ($scope, $state, $stateParams,
                                                 $uibModal, $window, $q, $timeout,
                                                 EntityService, AuthService, _,
-                                                // uiTinymceConfig,
+                                                uiTinymceConfig,
                                                 toastr, $cookies) {
             var baseForm = {};
 
@@ -21,28 +21,28 @@
             });
 
 
-            // uiTinymceConfig = _.extend(uiTinymceConfig,{
-            //   height: 300,
-            //   menubar : false,
-            //   language: 'ru',
-            //   plugins: [
-            //     "code,table advlist autolink link image lists charmap print preview hr anchor pagebreak ",
-            //     "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
-            //     " contextmenu directionality emoticons paste textcolor "
-            //     + "responsivefilemanager"
-            //   ],
-            //   convert_urls: false,
-            //   relative_urls: true,
-            //
-            //   //toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect| filemanager | image media | table link",
-            //   toolbar1: "formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | outdent indent | bullist numlist | table | styleselect| link unlink filemanager | image media | code ",
-            //   valid_elements: "*[*]",
-            //   image_advtab: true ,
-            //   external_filemanager_path: '/atom/filemanager/',
-            //   external_plugins: { "filemanager" : "/themes/backend/filemanager/plugin.min.js"},
-            //   filemanager_title:"Файловый менеджер"
-            //
-            // });
+            uiTinymceConfig = _.extend(uiTinymceConfig,{
+              height: 300,
+              menubar : false,
+              language: 'ru',
+              plugins: [
+                "code,table advlist autolink link image lists charmap print preview hr anchor pagebreak ",
+                "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
+                " contextmenu directionality emoticons paste textcolor "
+                + "responsivefilemanager"
+              ],
+              convert_urls: false,
+              relative_urls: true,
+
+              //toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect| filemanager | image media | table link",
+              toolbar1: "formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | outdent indent | bullist numlist | table | styleselect| link unlink filemanager | image media | code ",
+              valid_elements: "*[*]",
+              image_advtab: true ,
+              external_filemanager_path: '/atom/filemanager/',
+              external_plugins: { "filemanager" : "/themes/backend/filemanager/plugin.min.js"},
+              filemanager_title:"Файловый менеджер"
+
+            });
 
             angular.element(window).resize(resizeFileManager);
 
