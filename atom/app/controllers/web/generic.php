@@ -72,7 +72,7 @@
 			$date = date('d.m.Y');
 			$rows = new helper\iterator();
 			$alphabet = array();
-			foreach (range('A', 'Z') as $char){
+			for ($char = 'A'; $char !== 'AZZ'; $char++) {
 				$alphabet[] = $char;
 			}
 			$xls = new \PHPExcel();
