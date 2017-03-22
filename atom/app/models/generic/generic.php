@@ -348,8 +348,8 @@
 				if (isset($properties['type']) && in_array($properties['type'], array('file', 'image')) && $this->get($field)){
 					if (@$properties['multiple'] === true){
 						foreach($this->get($field) as $file){
-							if (file_exists($this->app['config']->get('paths')->get('root').$file['route'])){
-								$files[] = $this->app['config']->get('paths')->get('root').$file['route'];
+							if (file_exists($this->app['config']->get('paths')->get('root').$file->get('route'))){
+								$files[] = $this->app['config']->get('paths')->get('root').$file->get('route');
 							}
 						}
 					} else {
