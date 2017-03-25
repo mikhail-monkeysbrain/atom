@@ -184,7 +184,7 @@
 				}
 				// TODO: Check entity properties for multiple
 				foreach($value as $file){
-					$filename = uniqid('f-'.$key.'-').'.'.$file->getExtension();
+					$extension = (@$file->getClientOriginalExtension() ? '.'.$file->getClientOriginalExtension() : (@$file->getExtension() ? '.'.$file->getExtension() : ($file->guessExtension() ? '.'.$file->guessExtension() : '')));
 					$fileProperties = array(
 						'title'		=> $file->getFilename(),
 						'route'		=> $folder.DIRECTORY_SEPARATOR.$filename,
