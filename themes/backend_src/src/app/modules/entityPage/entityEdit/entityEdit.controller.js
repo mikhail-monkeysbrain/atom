@@ -167,6 +167,8 @@
                                     } else {
                                         $scope.optionsData[key].sourceValues = response.data.data[0][key];
                                     }
+                                } else if (item.type == 'boolean') {
+                                    $scope.form[key] = response.data.data[0][key] || false;
                                 } else {
                                     $scope.form[key] = response.data.data[0][key];
                                 }

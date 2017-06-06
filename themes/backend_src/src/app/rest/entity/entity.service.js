@@ -67,7 +67,7 @@
       this.exportEntity = function(entity, data, sortField, sortOrder, searchKeywords, filters) {
         var conditions = [];
 
-        var filterArray = prepareExportFilters(filter);
+        var filterArray = prepareExportFilters(filters);
 
           //var condition = 'condition[_id][$in][]=561fe8ae572b94d3358b4567&condition[_id][$in][]=5613e72e572b94274d8b4567&condition[_id][$in][]=5613e6e3572b94114d8b4567';
         if(data.length) {
@@ -92,7 +92,7 @@
         form.append(sort);
         form.append(search);
         form.attr({
-          action: '/' + entity + '/export/' + filterString
+          action: '/' + entity + '/export/'
         })[0].submit();
       };
 
@@ -134,7 +134,6 @@
 		function prepareFilters(filter) {
             var filterString = "";
             angular.forEach(filter, function(item, key) {
-                console.log(item);
                 switch(item.type) {
                     case 'string':
                     case 'text':
@@ -186,7 +185,6 @@
         function prepareExportFilters(filter) {
             var filters = [];
             angular.forEach(filter, function(item, key) {
-                console.log(item.type);
                 switch(item.type) {
                     case 'string':
                     case 'text':
