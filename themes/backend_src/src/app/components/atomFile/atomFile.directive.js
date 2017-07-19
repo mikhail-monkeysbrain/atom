@@ -6,8 +6,11 @@
 
       return {
         restrict:    'A',
+        scope: {
+          field: '=',
+          index: '@'
+        },
         controller: function($scope, $element, Lightbox) {
-
           $element.find('a').click(function(e) {
             $element.find('input').trigger('click');
           });
@@ -15,8 +18,8 @@
           $element.find('input').change(function() {
 
             var files = $element.find('input')[0].files;
-            $scope.form[$element.find('input').attr('name')] = files[0];
-            $scope.form[$element.find('input').attr('name')].updateFile = true;
+              $scope.field[$scope.index] = files[0];
+              $scope.field[$scope.index].updateFile = true;
           });
 
           $scope.openLightboxModal = function(e) {

@@ -22,7 +22,8 @@ function browserSyncInit(baseDir, browser) {
       '/bower_components/angular-ui-tinymce/src/skins': 'tinymce-scripts/skins',
       '/bower_components/angular-ui-tinymce/src/themes': 'tinymce-scripts/themes',
       '/bower_components/angular-ui-tinymce/src/langs': 'tinymce-scripts/langs',
-      '/themes/backend/filemanager': 'filemanager'
+      '/themes/backend/filemanager': 'filemanager',
+      '/themes/backend/scripts':     'tinymce-scripts'
     };
   }
 
