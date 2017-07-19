@@ -15,7 +15,7 @@ function AclMarkup(data) {
   '</tr>'+
   '</thead>'+
   '<tbody>'+
-  '<tr ng-repeat="option in optionsData.'+data.name+'.options">'+
+  '<tr ng-repeat="option in optionsData.'+data.name+'.options" ng-if="option.key !== \'interfaces\'">'+
   '<td>{{option.title}}</td>'+
   '<td><label class="switch"><input id="read_{{ option.key }}"  type="checkbox" data-ng-model="option.read" ><i></i></label></td>'+
   '<td><label class="switch" ng-show="option.key != \'index\' && option.key != \'atom\' && option.key != \'log\' && option.key != \'crm\'"><input id="create_{{ option.key }}"  type="checkbox" data-ng-model="option.create" ><i></i></label></td>'+
