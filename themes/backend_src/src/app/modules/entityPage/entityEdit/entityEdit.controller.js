@@ -325,8 +325,29 @@
                             request[key + '[' + opt.key + '][delete]'] = opt.delete || false;
                         });
                     } else if (key != "_id" && $scope.formSchema[key].type == "image") {
-                        if (item && item.updateFile)
-                            fd.append(key, item);
+                        if ($scope.formSchema[key].multiple) {
+
+                            if (item) {
+                                _.each(item, function (imageItem, n) {
+                                    if (imageItem.updateFile)
+                                    {
+                                        if(!imageItem.name)
+                                            imageItem.name = imageItem.name ? imageItem.name : imageItem.file;
+                                        fd.append(key + '[' + n + ']', imageItem);
+                                    } else {
+                                        var blob = getDataUri('img_preview_' + n);
+                                        fd.append(key + '[' + n + ']', blob)
+                                    }
+                                });
+
+                            }
+                        } else {
+                            if (item && item.updateFile) {
+                                fd.append(key, item);
+                            }
+                        }
+
+
                     } else if (key != "_id" && $scope.formSchema[key].type == "file") {
                         if (item && item.updateFile)
                             fd.append(key, item);
@@ -463,6 +484,44 @@
             $scope.selectedEntity = function (entityName) {
                 return $scope.form[entityName] !== null && $scope.form[entityName].length != 0;
             };
+
+
+            function getDataUri(id) {
+                var canvas = document.createElement('canvas');
+                var img = document.getElementById(id);
+
+                if(!img) {
+                    return '';
+                }
+
+                canvas.width = img.naturalWidth; // or 'width' if you want a special/scaled size
+                canvas.height = img.naturalHeight; // or 'height' if you want a special/scaled size
+
+                canvas.getContext('2d').drawImage(img, 0, 0);
+
+                return dataURItoBlob(canvas.toDataURL('image/png'));
+            }
+
+            function dataURItoBlob(dataURI) {
+                // convert base64/URLEncoded data component to raw binary data held in a string
+                var byteString;
+                if (dataURI.split(',')[0].indexOf('base64') >= 0)
+                    byteString = atob(dataURI.split(',')[1]);
+                else
+                    byteString = unescape(dataURI.split(',')[1]);
+
+                // separate out the mime component
+                var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+                // write the bytes of the string to a typed array
+                var ia = new Uint8Array(byteString.length);
+                for (var i = 0; i < byteString.length; i++) {
+                    ia[i] = byteString.charCodeAt(i);
+                }
+
+                return new Blob([ia], {type:mimeString});
+            }
+
 
         });
 })();
