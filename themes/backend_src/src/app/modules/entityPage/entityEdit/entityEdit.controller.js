@@ -147,12 +147,12 @@
                             }
 
                             _.each(fields, function (item, key) {
-                                if (item.type == 'select' || item.type == 'entity' || item.type == 'acl') {
+                                if (item.type === 'select' || item.type === 'entity' || item.type === 'acl') {
                                     $scope.optionsData[key] = item;
                                     $scope.optionsData[key].options = [];
                                     $scope.form[key] = item.multiple ? [] : null;
 
-                                    if (item.type == 'select') {
+                                    if (item.type === 'select') {
                                         _.each(item.values, function (value, id) {
                                             var newOption = {name: value, id: id};
                                             $scope.optionsData[key].options.push(newOption);
@@ -167,8 +167,20 @@
                                     } else {
                                         $scope.optionsData[key].sourceValues = response.data.data[0][key];
                                     }
-                                } else if (item.type == 'boolean') {
+                                } else if (item.type === 'boolean') {
                                     $scope.form[key] = response.data.data[0][key] || false;
+                                }
+                                else if (item.type === 'image') {
+                                    if (item.multiple) {
+                                        if(response.data.data[0][key] && response.data.data[0][key].length > 0) {
+                                            $scope.form[key] = response.data.data[0][key]
+                                        } else {
+                                            $scope.form[key] = [{}];
+                                        }
+                                    } else {
+                                        $scope.form[key] = response.data.data[0][key] ? response.data.data[0][key] : [{}];
+                                    }
+
                                 } else {
                                     $scope.form[key] = response.data.data[0][key];
                                 }
