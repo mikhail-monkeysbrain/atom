@@ -40,7 +40,7 @@ function browserSyncInit(baseDir, browser) {
    * For more details and option, https://github.com/chimurai/http-proxy-middleware/blob/v0.0.5/README.md
    */
   server.middleware = proxyMiddleware(['**', '!/', '!/bower_components/**/*', '!/assets/**/*', '!/app/**/*', '!/themes/**/*'], {
-    target: 'http://dev.atom.hismith.ru',
+    target: 'http://mzr.editor.hismith.ru',
     changeOrigin: true
   });
 
