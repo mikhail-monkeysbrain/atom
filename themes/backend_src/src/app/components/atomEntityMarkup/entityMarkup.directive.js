@@ -28,7 +28,7 @@
               if($scope.optionsData[$scope.key].multiple) {
                 var optionsDataField = $scope.optionsData[$scope.key];
 
-                if(!angular.isArray(optionsDataField.sourceValues)) {
+                if(optionsDataField.sourceValues && !angular.isArray(optionsDataField.sourceValues)) {
                   optionsDataField.sourceValues = [optionsDataField.sourceValues];
                 }
 
