@@ -10,6 +10,12 @@
 		 * @var Data params
 		 */
 		$data = array();
+		
+		public
+		/**
+		 * @var Entity Fields for translate
+		 */
+		$langFields = array();
 
 
 
@@ -72,6 +78,13 @@
 			}
 			return $this->data;
 		}
+		
+		public function getTrans($option = null, $default = null){
+			if (in_array($option, $this->langFields)) {
+				$option = $option.ucfirst($this->app['session']->get('lang'));
+			}
+			return $this->get($option, $default);
+		}
 
 		/**
 		 * Get all data
@@ -93,12 +106,8 @@
 				if (is_object($value)){
 					switch(get_class($value)){
 						case 'app\models\helper\proto':
-							$array[$key] = $value->all();
-						break;
 						case 'app\models\helper\iterator':
-							foreach($value as $iKey => $iValue){
-								$array[$key][$iKey] = $iValue;
-							}
+							$array[$key] = $value->toArray();
 						break;
 						default:
 							$array[$key] = $value;

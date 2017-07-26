@@ -47,29 +47,41 @@
 
 		public function getNextPart($from = null){
 			$from = (is_null($from) ? $this->getPart() : $from);
-			return ($from == $this->getPartTotal() ? null : $from + 1);
+			return ($from >= $this->getTotalParts() ? null : $from + 1);
 		}
 
 		public function getPrevPart($from = null){
 			$from = (is_null($from) ? $this->getPart() : $from);
-			return ($from ? $from - 1 : null);
+			return ($from - 1 >= 0 && $from <= $this->getPart() ? $from - 1 : null);
 		}
 
 		public function getNearParts($range = 2, $from = null){
 			$from = (is_null($from) ? $this->getPart() : $from);
 			$parts = array();
-			for($i = $range; $i; --$i){
-				if ($this->getPartPrev($from - $i)){
-					$parts[] = $this->getPartPrev($from - $i);
+			for($i = $from - $range + 1; $i <= $from; ++$i){
+				if (!is_null($this->getPrevPart($i)) && $this->getPrevPart($i) >= 0){
+					$parts[] = $this->getPrevPart($i);
 				}
 			}
-			$parts[] = $from;
-			for($i = 1; $i <= $range; ++$i){
-				if ($this->getPartNext($from + $i)){
-					$parts[] = $this->getPartNext($from + $i);
+			if ($from <= $this->getPart()) {
+				$parts[] = $from;
+			}
+			for($i = $from; $i < $range + $from; ++$i){
+				if ($this->getNextPart($i)){
+					$parts[] = $this->getNextPart($i);
 				}
 			}
 			return $parts;
+		}
+
+		public function getFirstPart($from = null){
+			$from = (is_null($from) ? $this->getPart() : $from);
+			return ($from >= 1 ? 0 : null);
+		}
+
+		public function getLastPart($from = null){
+			$from = (is_null($from) ? $this->getPart() : $from);
+			return ($from < $this->getTotalParts() ? $this->getTotalParts() : null);
 		}
 
 		public function getFirst(){

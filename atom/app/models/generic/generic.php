@@ -184,12 +184,12 @@
 				}
 				// TODO: Check entity properties for multiple
 				foreach($value as $file){
-					$extension = (method_exists($file, 'getClientOriginalExtension') ? '.'.$file->getClientOriginalExtension() : (method_exists($file, 'getExtension') ? '.'.$file->getExtension() : (method_exists($file, 'guessExtension') ? '.'.$file->guessExtension() : '')));
+					$filename = uniqid('f-'.$key.'-').'.'.$file->guessExtension();
 					$fileProperties = array(
-						'title'		=> $file->getFilename(),
+						'title'		=> method_exists($file, 'getClientOriginalName') ? $file->getClientOriginalName() : $file->getBasename(),
 						'route'		=> $folder.DIRECTORY_SEPARATOR.$filename,
 						'file'		=> $filename,
-						'size'		=> $file->getSize(),
+						'size'		=> filesize($file->getPathname()),
 						'mime'		=> $file->getMimeType()
 					);
 					$file->move($path, $filename);

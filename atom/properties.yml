@@ -1,4 +1,11 @@
-homepage: user
+homepage: page
+menu:
+    Контент:
+        icon: fa-list-alt
+        links: [page, block]
+    Настройки:
+        icon: fa-cogs
+        links: [user, role, setting, log]
 entities:
     page:
         title: Текстовые страницы

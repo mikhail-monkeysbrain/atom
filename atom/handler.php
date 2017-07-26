@@ -76,6 +76,9 @@
 	});
 
 	$app->after(function(Request $request, Response $response) use($app){
+		if ($response instanceof \Symfony\Component\HttpFoundation\RedirectResponse) {
+			return $response;
+		}
 		$response = $app['page']->response();
 		switch($app['request']->headers->get('accept')){
 			case 'application/xml':
