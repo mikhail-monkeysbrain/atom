@@ -13,7 +13,13 @@
         link: function($scope, $elem) {
           $scope.$elem = $elem;
           $scope.scheme = angular.copy($scope.field);
-          if($scope.scheme.type == 'entity' || $scope.scheme.type == 'select') {
+
+          // TODO: This approach need a test
+          $scope.scheme.disabled = false;
+          $scope.field.disabled = false;
+
+
+          if($scope.scheme.type === 'entity' || $scope.scheme.type === 'select') {
             $scope.scheme.multiple = true;
           }
 
