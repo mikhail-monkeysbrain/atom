@@ -188,7 +188,7 @@
                 switch(item.type) {
                     case 'string':
                     case 'text':
-                        filters.push(angular.element('<input type="hidden" name=" condition[' + key + '][$regex]" value="' + encodeURIComponent(item.value) + '" />'));
+                        filters.push(angular.element('<input type="hidden" name="condition[' + key + '][$regex]" value="' + (item.value) + '" />'));
                         break;
                     case 'datetime':
                     case 'time':
