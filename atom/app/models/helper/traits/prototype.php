@@ -28,7 +28,7 @@
 		 */
 		public function set($data, $value = null){
 			if (is_array($data)){
-				$this->data = array_merge($this->data, $data);
+				$this->data = array_replace($this->data, $data);
 			} else if ($data) {
 				$this->data[$data] = $value;
 			}
