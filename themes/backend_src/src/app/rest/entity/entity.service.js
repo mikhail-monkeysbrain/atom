@@ -202,16 +202,20 @@
                                 item.secondaryValue = null;
                             }
                             if (item.value) {
-                                filters.push(angular.element('<input type="hidden" name="condition[' + key + '][$gte]" value="' + encodeURIComponent(item.value) + '" />'));
+                                //filters.push(angular.element('<input type="hidden" name="condition[' + key + '][$gte]" value="' + encodeURIComponent(item.value) + '" />'));
+                                filters.push(angular.element('<input type="hidden" name="condition[' + key + '][$gte]" value="' + item.value + '" />'));
                             }
                             if (item.secondaryValue) {
-                                filters.push(angular.element('<input type="hidden" name="condition[' + key + '][$lte]" value="' + encodeURIComponent(item.secondaryValue) + '" />'));
+                                //filters.push(angular.element('<input type="hidden" name="condition[' + key + '][$lte]" value="' + encodeURIComponent(item.secondaryValue) + '" />'));
+                                filters.push(angular.element('<input type="hidden" name="condition[' + key + '][$lte]" value="' + item.secondaryValue + '" />'));
                             }
                         } else {
                             if (item.type == 'integer') {
-                                filters.push(angular.element('<input type="hidden" name="condition[' + key + '][$gte]" value="' + encodeURIComponent(item.value ) + '" />'));
+                                //filters.push(angular.element('<input type="hidden" name="condition[' + key + '][$gte]" value="' + encodeURIComponent(item.value ) + '" />'));
+                                filters.push(angular.element('<input type="hidden" name="condition[' + key + '][$gte]" value="' + item.value  + '" />'));
                             } else {
-                                filters.push(angular.element('<input type="hidden" name="condition[' + key + '][$gte]" value="' + encodeURIComponent(item.value ) + '" />'));
+                                //filters.push(angular.element('<input type="hidden" name="condition[' + key + '][$gte]" value="' + encodeURIComponent(item.value ) + '" />'));
+                                filters.push(angular.element('<input type="hidden" name="condition[' + key + '][$gte]" value="' + item.value  + '" />'));
                             }
                         }
                         break;
