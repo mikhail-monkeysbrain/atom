@@ -224,9 +224,7 @@
                         break;
                     case 'entity':
                     case 'select':
-                        angular.forEach(item.value, function(valueItem) {
-                            filters.push(angular.element('<input type="hidden" name="condition[' + key + '][$in][]" value="' + encodeURIComponent(valueItem.id) + '" />'));
-                        });
+                        filters.push(angular.element('<input type="hidden" name="condition[' + key + '][$in][]" value="' + item.value.id + '" />'));
                         break;
                 }
             });
