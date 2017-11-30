@@ -36,8 +36,6 @@
       $scope.onceSelected = {};
       $scope.$on('filter:applied', function(event, filter) {
         if (filter.value || filter.secondaryValue || filter.value === 0 || filter.secondaryValue === 0 || filter.value === false) {
-          $scope.searchKeywords = '';
-          pageState.searchKeywords = $scope.searchKeywords;
           SessionService.setEntityListState(pageState, $stateParams.entity);
           $scope.filtered = true;
           $scope.pageFilter[filter.fieldName] = filter;
@@ -142,9 +140,13 @@
 
               $scope.entityTotal = response.data.total;
               $scope.$broadcast('dataCountReady', response.data.total);
+							$scope.renderData = renderData;
+							$scope.noData = false;
               $timeout(function () {
-                $scope.renderData = renderData;
-				$scope.noData = false;
+								$scope.$applyAsync(function() {
+									$scope.renderData = renderData;
+									$scope.noData = false;
+								});
               });
             } else {
               $scope.entityTotal = 0;
@@ -317,7 +319,7 @@
       };
 
       $scope.isRendered = function () {
-        return !!angular.element('.fieldCell').first().text() || $scope.noData;
+        return !!angular.element('.fieldCell').first().text() || !!$scope.renderData || $scope.noData;
       };
 
 	  $scope.resetFilterByKey = function(fieldKey) {
