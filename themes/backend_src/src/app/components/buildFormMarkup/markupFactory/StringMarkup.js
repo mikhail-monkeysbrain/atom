@@ -22,11 +22,11 @@ function StringMarkup(data) {
         'ng-keypress="($event.which === 13)?pushMultipleStringElement(\'' + data.name + '\', $index):0">' +
         '</div>' +
         '<div class="col-sm-3"><div class="btn-group" role="group">' +
-        '<button tooltip-append-to-body="true" uib-tooltip="îïóñòèòü âíèç" class="btn btn-default" ng-disabled="$index == form.' + data.name + '.length - 1" ng-click="moveMultipleStringElement(\'' + data.name + '\', $index, $index + 1)"><i class="fa fa-chevron-down"></i></button>' +
-        '<button tooltip-append-to-body="true" uib-tooltip="ïîäíÿòü âûøå" class="btn btn-default" ng-disabled="!$index" ng-click="moveMultipleStringElement(\'' + data.name + '\', $index, $index - 1)"><i class="fa fa-chevron-up"></i></button>' +
+        '<button tooltip-append-to-body="true" uib-tooltip="Ð¾Ð¿ÑƒÑÑ‚Ð¸Ñ‚ÑŒ Ð²Ð½Ð¸Ð·" class="btn btn-default" ng-disabled="$index == form.' + data.name + '.length - 1" ng-click="moveMultipleStringElement(\'' + data.name + '\', $index, $index + 1)"><i class="fa fa-chevron-down"></i></button>' +
+        '<button tooltip-append-to-body="true" uib-tooltip="Ð¿Ð¾Ð´Ð½ÑÑ‚ÑŒ Ð²Ñ‹ÑˆÐµ" class="btn btn-default" ng-disabled="!$index" ng-click="moveMultipleStringElement(\'' + data.name + '\', $index, $index - 1)"><i class="fa fa-chevron-up"></i></button>' +
         '</div> <div class="btn-group" role="group">' +
-        '<button tooltip-append-to-body="true" uib-tooltip="óäàëèòü ýëåìåíò" class="btn btn-default" ng-click="removeMultipleStringElement(\'' + data.name + '\', $index)"><i class="fa fa-minus"></i></button>' +
-        '<button tooltip-append-to-body="true" uib-tooltip="äîáàâèòü ïîñëå" class="btn btn-default" ng-click="insertMultipleStringElement(\'' + data.name + '\', $index)"><i class="fa fa-plus"></i></button></div>' +
+        '<button tooltip-append-to-body="true" uib-tooltip="ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚" class="btn btn-default" ng-click="removeMultipleStringElement(\'' + data.name + '\', $index)"><i class="fa fa-minus"></i></button>' +
+        '<button tooltip-append-to-body="true" uib-tooltip="Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾ÑÐ»Ðµ" class="btn btn-default" ng-click="insertMultipleStringElement(\'' + data.name + '\', $index)"><i class="fa fa-plus"></i></button></div>' +
         '</div></div>' +
         '</div>',
 
