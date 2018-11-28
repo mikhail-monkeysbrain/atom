@@ -1,7 +1,0 @@
-
-
-# {{Entity}}
-{{entity}}:
-    prefix: /{{entity}}
-    resource: {{entity}}.yml
-###

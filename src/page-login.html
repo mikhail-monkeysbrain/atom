@@ -1,0 +1,38 @@
+<html lang="ru">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" id="vp" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>login page</title>
+    <link href="css/main.css" rel="stylesheet">
+  </head>
+  <body class = "page-login">
+    <section>
+      <div class="login-body no-hover-effect">
+        <div class="login-body-logo"><img src="img/logo-login-page.png" alt="logo"/></div>
+        <div class="login-body-form">
+          <form action="">
+            <div class="form-group login-input">
+              <label for="email" class="label">E-mail</label>
+              <input id="email" name="email" type="email" class="form-control incorrect"/><span class="form-text error-message"></span>
+            </div>
+            <div class="form-group password-input">
+              <label for="password" class="label">Пароль</label>
+              <input id="password" name="password" type="password" class="form-control"/><span class="form-text error-message"></span>
+            </div>
+            <div class="form-group remember-me">
+              <input id="remember-me" type="checkbox" class="form-check-input"/>
+              <label for="remember-me" class="form-check-label"></label>
+              <label class="form-check-text">Запомнить меня</label>
+            </div>
+            <div class="custom-button custom-button_bg-blue custom-button_width-page-login ml-auto">
+              <button type="submit" class="btn btn-custom">Войти</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<% 
+  var data = {
+    title: "Atom",
+    author: "Hismith",
+    currentPage: "table"
+  };
+%>
+<%= _.template(require('./../includes/header-table.html'))(data) %>
+<%= _.template(require('./../includes/menu.html'))(data) %>
+
+<main class="main">
+  <div class="container-fluid">
+      <%= _.template(require('./../includes/table.html'))(data) %>
+  </div>
+</main>
+<div class="modal fade deleteEl" id="deleteEl" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="deleteElLabel">Вы действительно хотите удалить данный пункт?</h2>
+      </div>
+      <div class="modal-footer __h-between">
+        <button class="btn btn__white" data-dismiss="modal">Отменить</button>
+        <button type="button" class="btn btn__red js-trigger" data-dismiss="modal" data-trigger="js-deleteItem">Удалить</button>
+      </div>
+    </div>
+  </div>
+</div>
+<%= _.template(require('./../includes/footer.html')) (data)%>

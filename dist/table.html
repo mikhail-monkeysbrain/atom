@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="./favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="./favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="./favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="./favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+  <link rel="manifest" href="./favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
+  <link rel="stylesheet" href="./fonts/font-awesome/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="css/style.bundle.css">
+
+  <title>Atom</title>
+</head>
+
+<body class="no-overflow">
+  <style type="text/css">
+    #hellopreloader>p {
+      display: none;
+    }
+
+    #hellopreloader_preload {
+      display: block;
+      position: fixed;
+      z-index: 99999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      min-width: 1000px;
+      background: #C5EFF7 url(http: //hello-site.ru//main/images/preloads/tail-spin.svg) center center no-repeat;background-size:41px;}
+  </style>
+  <div id="hellopreloader">
+    <div id="hellopreloader_preload"></div>
+  </div>
+  <script type="text/javascript">
+    var hellopreloader = document.getElementById("hellopreloader_preload");
+
+    function fadeOutnojquery(el) {
+      el.style.opacity = 1;
+      var interhellopreloader = setInterval(function() {
+        el.style.opacity = el.style.opacity - 0.05;
+        if (el.style.opacity <= 0.05) {
+          clearInterval(interhellopreloader);
+          hellopreloader.style.display = "none";
+        }
+      }, 16);
+    }
+    window.onload = function() {
+      setTimeout(function() {
+        fadeOutnojquery(hellopreloader);
+      }, 1000);
+    };
+  </script>
+  <header class="header">
+    <div class="container-fluid">
+      <nav class="row __h-between __v-center">
+        <div class="header--burger">
+          <div class="burger">
+            <span class="bar bar__top"></span>
+            <span class="bar bar__mid"></span>
+            <span class="bar bar__bot"></span>
+          </div>
+        </div>
+        <a class="header--logo" href="./">
+          <img src="./img/logo.svg" alt="logo" class="header--logo--img">
+        </a>
+        <a class="header--btn js-add" href="javascript:void(0)"><i class="fa fa-plus" aria-hidden="true"></i></a>
+        <a class="header--btn js-question" href="javascript:void(0)"><i class="fa fa-question" aria-hidden="true"></i></a>
+
+        <div class="input-group input-group__select __total-number __nav-drop">
+          <i class="fa fa-user" aria-hidden="true"></i>
+          <div class="dropdown header--profile">
+            <select class="select__single__no-search" name="total-number">
+              <option value="admin"><i class="fa fa-user" aria-hidden="true"></i> Администратор</option>
+              <option value="exit">Выход</option>
+            </select>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <ul class="menu" data-current="table">
+    <div class="d-sticky">
+      <li class="menu--item">
+        <div class="menu--item--heading">
+          <i class="menu--heading--icon fa fa-window-maximize" aria-hidden="true"></i>
+          Сайт
+          <i class="fa fa-chevron-right menu--arrow"></i>
+        </div>
+        <div class="menu--collapse">
+          <a class="menu--collapse--item" href="edit-page.html" data-page="page-edit">
+            <i class="menu--heading--icon fa fa-car" aria-hidden="true"></i>
+            Редактирование
+          </a>
+          <a class="menu--collapse--item" href="guide.html" data-page="guide">
+            <i class="menu--heading--icon fa fa-building" aria-hidden="true"></i>
+            Гайд
+          </a>
+          <a class="menu--collapse--item" href="corp.html" data-page="corpus">
+            <i class="menu--heading--icon fa fa-sliders" aria-hidden="true"></i>
+            Корпуса
+          </a>
+          <a class="menu--collapse--item" href="table.html" data-page="table">
+            <i class="menu--heading--icon fa fa-table" aria-hidden="true"></i>
+            Таблица
+          </a>
+          <a class="menu--collapse--item" href="question.html" data-page="question" target="_blank">
+            <i class="menu--heading--icon fa fa-question" aria-hidden="true"></i>
+            Комментарии
+          </a>
+        </div>
+      </li>
+      <li class="menu--item">
+        <div class="menu--item--heading">
+          <i class="menu--heading--icon fa fa-user" aria-hidden="true"></i>
+          Контакты
+          <i class="fa fa-chevron-right menu--arrow"></i>
+        </div>
+        <div class="menu--collapse">
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+        </div>
+      </li>
+      <li class="menu--item">
+        <div class="menu--item--heading">
+          <i class="menu--heading--icon fa fa-window-restore" aria-hidden="true"></i>
+          Страницы сайта
+          <i class="fa fa-chevron-right menu--arrow"></i>
+        </div>
+        <div class="menu--collapse">
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+        </div>
+      </li>
+      <li class="menu--item">
+        <div class="menu--item--heading">
+          <i class="menu--heading--icon fa fa-sliders" aria-hidden="true"></i>
+          Настройки сайта
+          <i class="fa fa-chevron-right menu--arrow"></i>
+        </div>
+        <div class="menu--collapse">
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+        </div>
+      </li>
+      <li class="menu--item">
+        <div class="menu--item--heading">
+          <i class="menu--heading--icon fa fa-cog" aria-hidden="true"></i>
+          Настройки
+          <i class="fa fa-chevron-right menu--arrow"></i>
+        </div>
+        <div class="menu--collapse">
+          <a class="menu--collapse--item" href="/fileman.html" data-page="file-edit">
+            Файловый менеджер
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+          <a class="menu--collapse--item" href="javascript:void(0)">
+            ссылка
+          </a>
+        </div>
+      </li>
+    </div>
+  </ul>
+
+
+  <main class="main">
+    <div class="container-fluid">
+      <div class="col-12">
+        <form method="post" action="" class="section table-form">
+          <div class="section--heading__tab section--heading__table col-12">
+            <div class="row __v-center">
+              <div class="col-12 col-lg-8">
+                <div class="input-group input-group__search">
+                  <input type="text" class="form-control" placeholder="Поиск">
+                  <button class="btn btn__form btn__form__search" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </div>
+              </div>
+              <div class="col-12 col-lg-4">
+                <div class="section--heading__table__buttons">
+                  <a href="./edit-page.html" class="btn btn__green __mh-5">Добавить</a>
+                  <input type="submit" class="btn btn__blue __mh-5" data-action="action-2" value="Выгрузить" />
+                  <a class="btn btn__red __mh-5" data-toggle="modal" data-target="#deleteEl">Удалить</a>
+                  <input class="js-deleteItem d-none" type="submit" data-action="action-1" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive overflow__custom">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col" class="table__check">
+                    <input id="c1" type="checkbox" name="checkbox" value="c1">
+                    <label for="c1"></label>
+                  </th>
+                  <th scope="col">
+                    ID
+                    <div class="table--open-filter">
+                      <i class="fa fa-filter"></i>
+                      <section class="edit--dialog">
+                        <input type="text">
+                        <a class="btn btn__icon btn__submit js-closeDialog"><i class="fa fa-check" aria-hidden="true"></i></a>
+                        <a class="btn btn__icon js-closeDialog"><i class="fa fa-times" aria-hidden="true"></i></a>
+                      </section>
+                    </div>
+                    <article class="table--sort">
+                      <!--Что сюда навешивать?-->
+                      <a class="table--sort__up" href="javascript:void(0)"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
+                      <a class="table--sort__down" href="javascript:void(0)"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    </article>
+                  </th>
+                  <th scope="col" class="width__date">
+                    Дата
+                    <div class="table--open-filter">
+                      <i class="fa fa-filter"></i>
+                      <section class="edit--dialog edit--dialog__date">
+                        <div class="input-group input-group__date">
+                          <input type="text" class="form-control date__multi" name="date" placeholder="Дата">
+                          <button class="btn btn__form btn__form__date" type="button"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                        </div>
+                        <a class="btn btn__icon btn__submit js-closeDialog"><i class="fa fa-check" aria-hidden="true"></i></a>
+                        <a class="btn btn__icon js-closeDialog"><i class="fa fa-times" aria-hidden="true"></i></a>
+                      </section>
+                    </div>
+                    <article class="table--sort">
+                      <!--Что сюда навешивать?-->
+                      <a class="table--sort__up" href="javascript:void(0)"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
+                      <a class="table--sort__down" href="javascript:void(0)"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    </article>
+                  </th>
+                  <th scope="col">
+                    VIN
+                    <div class="table--open-filter">
+                      <i class="fa fa-filter"></i>
+                      <section class="edit--dialog">
+                        <input type="text">
+                        <a class="btn btn__icon btn__submit js-closeDialog"><i class="fa fa-check" aria-hidden="true"></i></a>
+                        <a class="btn btn__icon js-closeDialog"><i class="fa fa-times" aria-hidden="true"></i></a>
+                      </section>
+                    </div>
+                    <article class="table--sort">
+                      <!--Что сюда навешивать?-->
+                      <a class="table--sort__up" href="javascript:void(0)"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
+                      <a class="table--sort__down" href="javascript:void(0)"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    </article>
+                  </th>
+                  <th scope="col" class="width__fix">
+                    Фамилия
+                    <div class="table--open-filter">
+                      <i class="fa fa-filter"></i>
+                      <section class="edit--dialog">
+                        <input type="text">
+                        <a class="btn btn__icon btn__submit js-closeDialog"><i class="fa fa-check" aria-hidden="true"></i></a>
+                        <a class="btn btn__icon js-closeDialog"><i class="fa fa-times" aria-hidden="true"></i></a>
+                      </section>
+                    </div>
+                    <article class="table--sort">
+                      <!--Что сюда навешивать?-->
+                      <a class="table--sort__up" href="javascript:void(0)"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
+                      <a class="table--sort__down" href="javascript:void(0)"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    </article>
+                  </th>
+                  <th scope="col">
+                    Имя
+                    <div class="table--open-filter">
+                      <i class="fa fa-filter"></i>
+                      <section class="edit--dialog">
+                        <input type="text">
+                        <a class="btn btn__icon btn__submit js-closeDialog"><i class="fa fa-check" aria-hidden="true"></i></a>
+                        <a class="btn btn__icon js-closeDialog"><i class="fa fa-times" aria-hidden="true"></i></a>
+                      </section>
+                    </div>
+                    <article class="table--sort">
+                      <!--Что сюда навешивать?-->
+                      <a class="table--sort__up" href="javascript:void(0)"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
+                      <a class="table--sort__down" href="javascript:void(0)"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    </article>
+                  </th>
+                  <th scope="col">
+                    Компания
+                    <div class="table--open-filter">
+                      <i class="fa fa-filter"></i>
+                      <section class="edit--dialog">
+                        <input type="text">
+                        <a class="btn btn__icon btn__submit js-closeDialog"><i class="fa fa-check" aria-hidden="true"></i></a>
+                        <a class="btn btn__icon js-closeDialog"><i class="fa fa-times" aria-hidden="true"></i></a>
+                      </section>
+                    </div>
+                    <article class="table--sort">
+                      <!--Что сюда навешивать?-->
+                      <a class="table--sort__up" href="javascript:void(0)"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
+                      <a class="table--sort__down" href="javascript:void(0)"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    </article>
+                  </th>
+                  <th scope="col">
+                    Контакт
+                    <div class="table--open-filter">
+                      <i class="fa fa-filter"></i>
+                      <section class="edit--dialog edit--dialog__contact-type">
+                        <div class="input-group input-group__select">
+                          <select class="select__single__no-search" name="type">
+                            <option value="phone">Телефон</option>
+                            <option value="mail">E-mail</option>
+                          </select>
+                        </div>
+                        <a class="btn btn__icon btn__submit js-closeDialog"><i class="fa fa-check" aria-hidden="true"></i></a>
+                        <a class="btn btn__icon js-closeDialog"><i class="fa fa-times" aria-hidden="true"></i></a>
+                      </section>
+                    </div>
+                    <article class="table--sort">
+                      <!--Что сюда навешивать?-->
+                      <a class="table--sort__up" href="javascript:void(0)"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
+                      <a class="table--sort__down" href="javascript:void(0)"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    </article>
+                  </th>
+                  <th scope="col">
+                    Доступность элемента
+                    <div class="table--open-filter">
+                      <i class="fa fa-filter"></i>
+                      <section class="edit--dialog edit--dialog__toggler">
+                        <div class="input-group">
+                          <input id="toggler-heading" type="checkbox" class="toggler" data-checkbox="toggler" name="togglerN">
+                          <label for="toggler-heading"></label>
+                        </div>
+                        <a class="btn btn__icon btn__submit js-closeDialog"><i class="fa fa-check" aria-hidden="true"></i></a>
+                        <a class="btn btn__icon js-closeDialog"><i class="fa fa-times" aria-hidden="true"></i></a>
+                      </section>
+                    </div>
+                    <article class="table--sort">
+                      <!--Что сюда навешивать?-->
+                      <a class="table--sort__up" href="javascript:void(0)"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
+                      <a class="table--sort__down" href="javascript:void(0)"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    </article>
+                  </th>
+                  <th scope="col" class="table--img">
+                    Изображения
+                    <div class="table--open-filter">
+                      <i class="fa fa-filter"></i>
+                      <section class="edit--dialog edit--dialog__toggler">
+                        <div class="input-group">
+                          <input id="toggler-heading2" type="checkbox" class="toggler" data-checkbox="toggler" name="toggler2">
+                          <label for="toggler-heading2"></label>
+                        </div>
+                        <a class="btn btn__icon btn__submit js-closeDialog"><i class="fa fa-check" aria-hidden="true"></i></a>
+                        <a class="btn btn__icon js-closeDialog"><i class="fa fa-times" aria-hidden="true"></i></a>
+                      </section>
+                    </div>
+                    <article class="table--sort">
+                      <!--Что сюда навешивать?-->
+                      <a class="table--sort__up" href="javascript:void(0)"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
+                      <a class="table--sort__down" href="javascript:void(0)"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    </article>
+                  </th>
+                  <th scope="col">
+                    Файлы
+                    <div class="table--open-filter">
+                      <i class="fa fa-filter"></i>
+                      <section class="edit--dialog edit--dialog__toggler">
+                        <div class="input-group">
+                          <input id="toggler-heading3" type="checkbox" class="toggler" data-checkbox="toggler" name="toggler3">
+                          <label for="toggler-heading3"></label>
+                        </div>
+                        <a class="btn btn__icon btn__submit js-closeDialog"><i class="fa fa-check" aria-hidden="true"></i></a>
+                        <a class="btn btn__icon js-closeDialog"><i class="fa fa-times" aria-hidden="true"></i></a>
+                      </section>
+                    </div>
+                    <article class="table--sort">
+                      <!--Что сюда навешивать?-->
+                      <a class="table--sort__up" href="javascript:void(0)"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
+                      <a class="table--sort__down" href="javascript:void(0)"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    </article>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-href="./edit-page.html">
+                  <th scope="row">
+                    <input id="c2" type="checkbox" name="checkbox" value="c2">
+                    <label for="c2"></label>
+                  </th>
+                  <td><a href="">000000</a></td>
+                  <td><a href="">29.08.2017 14:14</a></td>
+                  <td><a href="">TMAJU81EDEJ599495</a></td>
+                  <td><a href="">Столповских Столповских Столповских Столповских Столповских Столповских</a></td>
+                  <td><a href="">Михаил</a></td>
+                  <td><a href="">Компания 1</a></td>
+                  <td><a href="">Телефон</a></td>
+                  <td>
+                    <a href="">
+                      <input id="toggler1" class="toggler" type="checkbox" name="toggler" checked>
+                      <label for="toggler1"></label>
+                    </a>
+                  </td>
+                  <td>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                  </td>
+                  <td>
+                    <a href=""></a>
+                    <a href="https://vk.com" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>Файл.pdf</a>
+                  </td>
+                </tr>
+                <tr data-href="./edit-page.html">
+                  <th scope="row">
+                    <input id="c2" type="checkbox" name="checkbox" value="c2">
+                    <label for="c2"></label>
+                  </th>
+                  <td><a href="">000000</a></td>
+                  <td><a href="">29.08.2017 14:14</a></td>
+                  <td><a href="">TMAJU81EDEJ599495</a></td>
+                  <td><a href="">Столповских Столповских Столповских Столповских Столповских Столповских</a></td>
+                  <td><a href="">Михаил</a></td>
+                  <td><a href="">Компания 1</a></td>
+                  <td><a href="">Телефон</a></td>
+                  <td>
+                    <a href="">
+                      <input id="toggler1" class="toggler" type="checkbox" name="toggler" checked>
+                      <label for="toggler1"></label>
+                    </a>
+                  </td>
+                  <td>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                  </td>
+                  <td>
+                    <a href=""></a>
+                    <a href="https://vk.com" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>Файл.pdf</a>
+                  </td>
+                </tr>
+                <tr data-href="./edit-page.html">
+                  <th scope="row">
+                    <input id="c2" type="checkbox" name="checkbox" value="c2">
+                    <label for="c2"></label>
+                  </th>
+                  <td><a href="">000000</a></td>
+                  <td><a href="">29.08.2017 14:14</a></td>
+                  <td><a href="">TMAJU81EDEJ599495</a></td>
+                  <td><a href="">Столповских Столповских Столповских Столповских Столповских Столповских</a></td>
+                  <td><a href="">Михаил</a></td>
+                  <td><a href="">Компания 1</a></td>
+                  <td><a href="">Телефон</a></td>
+                  <td>
+                    <a href="">
+                      <input id="toggler1" class="toggler" type="checkbox" name="toggler" checked>
+                      <label for="toggler1"></label>
+                    </a>
+                  </td>
+                  <td>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                  </td>
+                  <td>
+                    <a href=""></a>
+                    <a href="https://vk.com" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>Файл.pdf</a>
+                  </td>
+                </tr>
+                <tr data-href="./edit-page.html">
+                  <th scope="row">
+                    <input id="c2" type="checkbox" name="checkbox" value="c2">
+                    <label for="c2"></label>
+                  </th>
+                  <td><a href="">000000</a></td>
+                  <td><a href="">29.08.2017 14:14</a></td>
+                  <td><a href="">TMAJU81EDEJ599495</a></td>
+                  <td><a href="">Столповских Столповских Столповских Столповских Столповских Столповских</a></td>
+                  <td><a href="">Михаил</a></td>
+                  <td><a href="">Компания 1</a></td>
+                  <td><a href="">Телефон</a></td>
+                  <td>
+                    <a href="">
+                      <input id="toggler1" class="toggler" type="checkbox" name="toggler" checked>
+                      <label for="toggler1"></label>
+                    </a>
+                  </td>
+                  <td>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                  </td>
+                  <td>
+                    <a href=""></a>
+                    <a href="https://vk.com" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>Файл.pdf</a>
+                  </td>
+                </tr>
+                <tr data-href="./edit-page.html">
+                  <th scope="row">
+                    <input id="c2" type="checkbox" name="checkbox" value="c2">
+                    <label for="c2"></label>
+                  </th>
+                  <td><a href="">000000</a></td>
+                  <td><a href="">29.08.2017 14:14</a></td>
+                  <td><a href="">TMAJU81EDEJ599495</a></td>
+                  <td><a href="">Столповских Столповских Столповских Столповских Столповских Столповских</a></td>
+                  <td><a href="">Михаил</a></td>
+                  <td><a href="">Компания 1</a></td>
+                  <td><a href="">Телефон</a></td>
+                  <td>
+                    <a href="">
+                      <input id="toggler1" class="toggler" type="checkbox" name="toggler" checked>
+                      <label for="toggler1"></label>
+                    </a>
+                  </td>
+                  <td>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                  </td>
+                  <td>
+                    <a href=""></a>
+                    <a href="https://vk.com" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>Файл.pdf</a>
+                  </td>
+                </tr>
+                <tr data-href="./edit-page.html">
+                  <th scope="row">
+                    <input id="c2" type="checkbox" name="checkbox" value="c2">
+                    <label for="c2"></label>
+                  </th>
+                  <td><a href="">000000</a></td>
+                  <td><a href="">29.08.2017 14:14</a></td>
+                  <td><a href="">TMAJU81EDEJ599495</a></td>
+                  <td><a href="">Столповских Столповских Столповских Столповских Столповских Столповских</a></td>
+                  <td><a href="">Михаил</a></td>
+                  <td><a href="">Компания 1</a></td>
+                  <td><a href="">Телефон</a></td>
+                  <td>
+                    <a href="">
+                      <input id="toggler1" class="toggler" type="checkbox" name="toggler" checked>
+                      <label for="toggler1"></label>
+                    </a>
+                  </td>
+                  <td>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                  </td>
+                  <td>
+                    <a href=""></a>
+                    <a href="https://vk.com" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>Файл.pdf</a>
+                  </td>
+                </tr>
+                <tr data-href="./edit-page.html">
+                  <th scope="row">
+                    <input id="c2" type="checkbox" name="checkbox" value="c2">
+                    <label for="c2"></label>
+                  </th>
+                  <td><a href="">000000</a></td>
+                  <td><a href="">29.08.2017 14:14</a></td>
+                  <td><a href="">TMAJU81EDEJ599495</a></td>
+                  <td><a href="">Столповских Столповских Столповских Столповских Столповских Столповских</a></td>
+                  <td><a href="">Михаил</a></td>
+                  <td><a href="">Компания 1</a></td>
+                  <td><a href="">Телефон</a></td>
+                  <td>
+                    <a href="">
+                      <input id="toggler1" class="toggler" type="checkbox" name="toggler" checked>
+                      <label for="toggler1"></label>
+                    </a>
+                  </td>
+                  <td>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                  </td>
+                  <td>
+                    <a href=""></a>
+                    <a href="https://vk.com" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>Файл.pdf</a>
+                  </td>
+                </tr>
+                <tr data-href="./edit-page.html">
+                  <th scope="row">
+                    <input id="c2" type="checkbox" name="checkbox" value="c2">
+                    <label for="c2"></label>
+                  </th>
+                  <td><a href="">000000</a></td>
+                  <td><a href="">29.08.2017 14:14</a></td>
+                  <td><a href="">TMAJU81EDEJ599495</a></td>
+                  <td><a href="">Столповских Столповских Столповских Столповских Столповских Столповских</a></td>
+                  <td><a href="">Михаил</a></td>
+                  <td><a href="">Компания 1</a></td>
+                  <td><a href="">Телефон</a></td>
+                  <td>
+                    <a href="">
+                      <input id="toggler1" class="toggler" type="checkbox" name="toggler" checked>
+                      <label for="toggler1"></label>
+                    </a>
+                  </td>
+                  <td>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                  </td>
+                  <td>
+                    <a href=""></a>
+                    <a href="https://vk.com" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>Файл.pdf</a>
+                  </td>
+                </tr>
+                <tr data-href="./edit-page.html">
+                  <th scope="row">
+                    <input id="c2" type="checkbox" name="checkbox" value="c2">
+                    <label for="c2"></label>
+                  </th>
+                  <td><a href="">000000</a></td>
+                  <td><a href="">29.08.2017 14:14</a></td>
+                  <td><a href="">TMAJU81EDEJ599495</a></td>
+                  <td><a href="">Столповских Столповских Столповских Столповских Столповских Столповских</a></td>
+                  <td><a href="">Михаил</a></td>
+                  <td><a href="">Компания 1</a></td>
+                  <td><a href="">Телефон</a></td>
+                  <td>
+                    <a href="">
+                      <input id="toggler1" class="toggler" type="checkbox" name="toggler" checked>
+                      <label for="toggler1"></label>
+                    </a>
+                  </td>
+                  <td>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                  </td>
+                  <td>
+                    <a href=""></a>
+                    <a href="https://vk.com" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>Файл.pdf</a>
+                  </td>
+                </tr>
+                <tr data-href="./edit-page.html">
+                  <th scope="row">
+                    <input id="c2" type="checkbox" name="checkbox" value="c2">
+                    <label for="c2"></label>
+                  </th>
+                  <td><a href="">000000</a></td>
+                  <td><a href="">29.08.2017 14:14</a></td>
+                  <td><a href="">TMAJU81EDEJ599495</a></td>
+                  <td><a href="">Столповских Столповских Столповских Столповских Столповских Столповских</a></td>
+                  <td><a href="">Михаил</a></td>
+                  <td><a href="">Компания 1</a></td>
+                  <td><a href="">Телефон</a></td>
+                  <td>
+                    <a href="">
+                      <input id="toggler1" class="toggler" type="checkbox" name="toggler" checked>
+                      <label for="toggler1"></label>
+                    </a>
+                  </td>
+                  <td>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                    <a class="fancy-gallery" href="./img/addphoto.jpg"><img src="./img/addphoto.jpg"></a>
+                  </td>
+                  <td>
+                    <a href=""></a>
+                    <a href="https://vk.com" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>Файл.pdf</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-12">
+            <div class="row __h-between __v-center">
+              <div class="col-12 col-lg-8">
+                <div class="__v-center">
+                  <p>Элементов на странице:</p>
+                  <div class="input-group input-group__select __total-number">
+                    <select class="select__single__no-search select__single__elPerPage total__el" name="total-number">
+                      <option value="action-10">10</option>
+                      <option value="action-50">50</option>
+                      <option value="action-100">100</option>
+                      <option value="action-500">500</option>
+                    </select>
+                  </div>
+                  <p><span class="total-number-current">10</span> из 24111</p>
+                </div>
+              </div>
+              <div class="col-12 col-lg-4">
+                <div class="overflow__custom">
+                  <div class="paggination">
+                    <a href="javascript:void(0)" class="paggination--item"><i class="fa fa-angle-double-left"></i></a>
+                    <a href="javascript:void(0)" class="paggination--item">1</a>
+                    <a href="javascript:void(0)" class="paggination--item">2</a>
+                    <a href="javascript:void(0)" class="paggination--item">3</a>
+                    <a href="javascript:void(0)" class="paggination--item">4</a>
+                    <a href="javascript:void(0)" class="paggination--item">5</a>
+                    <a href="javascript:void(0)" class="paggination--item">6</a>
+                    <a href="javascript:void(0)" class="paggination--item">7</a>
+                    <a href="javascript:void(0)" class="paggination--item">8</a>
+                    <a href="javascript:void(0)" class="paggination--item">9</a>
+                    <a href="javascript:void(0)" class="paggination--item paggination--item__current">10</a>
+                    <a href="javascript:void(0)" class="paggination--item">11</a>
+                    <a href="javascript:void(0)" class="paggination--item">12</a>
+                    <a href="javascript:void(0)" class="paggination--item">13</a>
+                    <a href="javascript:void(0)" class="paggination--item">14</a>
+                    <a href="javascript:void(0)" class="paggination--item">15</a>
+                    <a href="javascript:void(0)" class="paggination--item">16</a>
+                    <a href="javascript:void(0)" class="paggination--item">17</a>
+                    <a href="javascript:void(0)" class="paggination--item">18</a>
+                    <a href="javascript:void(0)" class="paggination--item">19</a>
+                    <a href="javascript:void(0)" class="paggination--item">20</a>
+                    <a href="javascript:void(0)" class="paggination--item">21</a>
+                    <a href="javascript:void(0)" class="paggination--item">22</a>
+                    <a href="javascript:void(0)" class="paggination--item">23</a>
+                    <a href="javascript:void(0)" class="paggination--item">24</a>
+                    <a href="javascript:void(0)" class="paggination--item">25</a>
+                    <a href="javascript:void(0)" class="paggination--item">26</a>
+                    <a href="javascript:void(0)" class="paggination--item">27</a>
+                    <a href="javascript:void(0)" class="paggination--item">28</a>
+                    <a href="javascript:void(0)" class="paggination--item">29</a>
+                    <a href="javascript:void(0)" class="paggination--item">30</a>
+                    <a href="javascript:void(0)" class="paggination--item"><i class="fa fa-angle-double-right"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </main>
+  <div class="modal fade deleteEl" id="deleteEl" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="deleteElLabel">Вы действительно хотите удалить данный пункт?</h2>
+        </div>
+        <div class="modal-footer __h-between">
+          <button class="btn btn__white" data-dismiss="modal">Отменить</button>
+          <button type="button" class="btn btn__red js-trigger" data-dismiss="modal" data-trigger="js-deleteItem">Удалить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./vendors/jquery-3.3.1.min.js"></script>
+  <script src="./vendors/popper.min.js"></script>
+  <script src="./vendors/bootstrap.min.js"></script>
+  <script src="./vendors/moment.min.js"></script>
+  <script src="./vendors/daterangepicker.min.js"></script>
+  <script src="./vendors/select2.min.js"></script>
+  <script src="./vendors/jquery.fancybox.min.js"></script>
+  <script src="./vendors/3cbc8be12a.js"></script>
+  <script src="./vendors/jquery.mask.min.js"></script>
+  <script src="./vendors/jquery.mousewheel.js"></script>
+  <script src="./vendors/jquery.jscrollpane.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+
+  <script src="js/bundle.js"></script>
+</body>
+
+</html>

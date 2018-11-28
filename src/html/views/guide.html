@@ -1,0 +1,22 @@
+<% 
+  var data = {
+    title: "Atom",
+    author: "Hismith",
+    currentPage: "guide"
+  };
+%>
+<%= _.template(require('./../includes/header.html'))(data) %>
+<%= _.template(require('./../includes/menu.html'))(data) %>
+
+<main class="main">
+  <div class="container">
+      <%= _.template(require('./../includes/buttons.html'))(data) %>
+      <%= _.template(require('./../includes/buttons-icons.html'))(data) %>
+      <%= _.template(require('./../includes/buttons-tables.html'))(data) %>
+      <%= _.template(require('./../includes/radio-checks.html'))(data) %>
+      <%= _.template(require('./../includes/inputs.html'))(data) %>
+      <%= _.template(require('./../includes/text-editor.html'))(data) %>
+      <%= _.template(require('./../includes/tags.html'))(data) %>
+  </div>
+</main>
+<%= _.template(require('./../includes/footer.html')) (data)%>

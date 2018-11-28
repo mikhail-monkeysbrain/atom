@@ -1,0 +1,290 @@
+input[type=radio],
+input[type=checkbox]
+  display: none
+  
+  & +label
+    display: inline-block
+    cursor: pointer
+    position: relative
+    padding: 0 30px
+    font-size: 13px
+    height: 28px
+    line-height: 28px
+    transition: $fast
+    color: $text
+    &:hover
+      &::before
+        background: rgba(40, 165, 40, 0.1)
+    &::before
+      content: ""
+      font-family: 'FontAwesome'
+      display: inline-block
+      width: 16px
+      height: 16px
+      margin-right: 16px
+      position: absolute
+      left: 0
+      top: 6px
+      background: $white
+      color: green
+      font-size: 2px
+      border: 1px solid $green
+      box-shadow: $shadowLight
+      transition: $fast
+    &:before
+      border-radius: 50%
+
+  &:disabled
+    & +label
+      &:hover
+        &::before
+          background: $white
+      &::before
+        border: 1px solid #cccccc
+        color: #cccccc
+        opacity: 0.6
+        box-shadow: $shadowLight
+    
+  /*Из-за кривого рендеринга дробных долей пикселя немного увеличил размер*/
+  &:checked 
+    &:disabled
+      & +label
+        &:hover
+          &::before
+            background: $white
+        &::before
+          border: 1px solid #cccccc
+          color: #cccccc
+          opacity: 0.6
+          box-shadow: $shadowLight
+    & +label
+      color: $black
+      &:before
+        content: "\f111"
+        color: $green
+        font-size: 9px
+        text-align: center
+        line-height: 13px
+
+input[type=checkbox]
+  & +label
+    &:hover
+      &::before
+        background: rgba(43, 77, 137, 0.1)
+    &::before
+      border-radius: 0
+      border: 1px solid $blue
+      color: $blue
+  &:checked
+    & +label
+      &::before
+        content: '\f00c' 
+        border: 1px solid $blue
+        color: $blue
+
+input[name=radio-hover],
+input[name=checkbox-hover]
+  & +label
+    &::before
+      background: rgba(40, 165, 40, 0.1)
+
+input[name=toggler],
+input[data-checkbox=toggler],
+.toggler
+  & +label
+    width: 50px
+    height: 28px
+    border-radius: 24px
+    background: #dddddd
+    position: relative
+    transition: $fast
+    margin: 5px 0
+    padding: 0
+    &:hover
+      &::before
+        background: $white
+    &::before
+      position: absolute
+      content: ""
+      color: $white
+      left: 2px
+      top: 2px
+      border-radius: 50%
+      border: 0
+      width: 23px
+      height: 23px
+      transition: $fast
+  &:checked
+    & +label
+      background: $green
+      &::before
+        transform: translateX(25px)
+        content: ""
+        border: 0
+
+input,
+textarea,
+.form-control
+
+  &::-webkit-input-placeholder
+    transition: $fast
+    color $black
+  &::-moz-placeholder
+    transition: $fast
+    color $black
+  &:-moz-placeholder
+    transition: $fast
+    color $black
+  &:-ms-input-placeholder
+    transition: $fast
+    color $black
+
+  &:focus,
+  &.form-control__focus
+    border: 1px solid $blue
+    &::-webkit-input-placeholder
+      color: transparent
+    &::-moz-placeholder
+      color: transparent
+    &:-moz-placeholder
+      color: transparent
+    &:-ms-input-placeholder
+      color: transparent
+
+  &:disabled,
+  &:read-only
+    border: $borderDisabled
+    background: $btnActive
+    &::-webkit-input-placeholder
+      color: $disabled
+    &::-moz-placeholder
+      color: $disabled
+    &:-moz-placeholder
+      color: $disabled
+    &:-ms-input-placeholder
+      color: $disabled
+
+  &.is-invalid
+    color: $red
+    &::-webkit-input-placeholder
+      color: $red
+    &::-moz-placeholder
+      color: $red
+    &:-moz-placeholder
+      color: $red
+    &:-ms-input-placeholder
+      color: $red
+
+    &:focus
+      color: $black
+      border: 1px solid
+      box-shadow: none
+      border-color: $blue
+      &::-webkit-input-placeholder
+        color: transparent
+      &::-moz-placeholder
+        color: transparent
+      &:-moz-placeholder
+        color: transparent
+      &:-ms-input-placeholder
+        color: transparent
+
+textarea
+  width: 100%
+  transition: $fast
+  border: 1px solid #ced4da
+  padding: 16px
+  transition: .25s ease-in-out border
+
+.tag--link
+  font-size: 12px
+  margin: 0 5px
+  &:hover
+    i
+      color: $black
+  i
+    color: $text
+    transition: $fast
+    &:hover
+      color: $black
+
+.input--row
+  color: $text
+  height: 40px
+  display: table-cell
+  vertical-align: middle
+  span
+    color: $red
+    margin-left: 3px
+
+.input-group
+  &--change-phone
+    position: relative
+
+.change-phone
+  position: absolute
+  left: 16px
+  top: 10px
+  span
+    position: relative
+    cursor: pointer
+    &::after
+      content: '\f0d7 '
+      position: absolute
+      display: block
+      font-family: 'FontAwesome'
+      right: -13px
+      top: -4px
+      color: $text
+      font-size: 16px
+  img
+    width: 24px
+  &--changer
+    display: none
+    cursor: pointer
+
+.phone
+  padding-left: 60px
+
+input[type=number]
+  -moz-appearance: textfield
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button
+    -webkit-appearance: none
+    -moz-appearance: none
+    appearance: none
+    margin: 0
+
+.js-plus
+  position: absolute
+  right: 15px
+  top: 7px
+  cursor: pointer
+  color: $text
+.js-minus
+  position: absolute
+  right: 15px
+  top: 17px
+  cursor: pointer
+  color: $text
+
+.error
+  text-align: left
+  &--text
+    font-size: 9px
+    color: $red
+    display: block
+    margin-top: 6px
+  input
+    color: $red
+    border: 1px solid $red
+    &:focus
+      color: $text
+      & +span
+        display: none
+
+.section
+  &--content
+    .js-minus, 
+    .js-plus
+      right: 25px

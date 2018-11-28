@@ -1,0 +1,30 @@
+<% 
+  var data = {
+    title: "Atom | Login",
+    author: "Hismith",
+    currentPage: "login"
+  };
+%>
+<%= _.template(require('./../includes/header-login.html'))(data) %>
+
+<div class="login">
+  <form class="login--form col-3" action="./guide.html">
+    <img src="./img/logo-login.svg" alt="logo">
+    <div class="form-group col-12 error">
+      <label for="exampleInputEmail1">E-mail</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      <span class="error--text">Такого e-mail не существует</span>
+    </div>
+    <div class="form-group col-12">
+      <label for="exampleInputPassword1">Пароль</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <div class="form-group col-12">
+        <input id="c1" type="checkbox" name="checkbox" value="c1">
+        <label for="c1">Запомнить меня</label>
+    </div>
+    <button type="submit" class="btn btn__blue">Войти</button>
+  </form>
+</div>
+
+<%= _.template(require('./../includes/footer.html')) (data)%>

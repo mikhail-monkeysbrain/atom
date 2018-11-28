@@ -1,0 +1,25 @@
+@import "../../node_modules/font-awesome/css/font-awesome.min.css";
+@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+
+@import "plugins/datepicker-custom.css";
+
+
+@import '../../node_modules/select2/dist/css/select2.css';
+@import "../../node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css";
+
+@import "../../node_modules/codemirror/lib/codemirror.css";
+
+@import "../../node_modules/summernote/dist/summernote-bs4.css";
+
+@import "../../node_modules/fixed-header-table/css/defaultTheme.css";
+
+@import "config/_fonts.scss";
+@import "elements/nav.scss";
+
+@import "elements/bootstrap4-custom-switch.scss";
+
+@import "section/page-table.scss";
+@import "section/page-edit.scss";
+@import "section/page-configurator-corpus.scss";
+@import "section/page-login.scss";

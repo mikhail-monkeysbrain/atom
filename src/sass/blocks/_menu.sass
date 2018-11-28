@@ -1,0 +1,90 @@
+.menu
+  width: 230px
+  height: 100%
+  background: $gray
+  position: fixed
+  left: -230px
+  top: 50px
+  z-index: 501
+  // transition: .5s ease-in-out transform
+  .open-menu &
+    transform: translateX(230px)
+
+  &--item
+    width: 100%
+    background: #4a4a4a
+
+    &--heading
+      height: 50px
+      display: flex
+      align-items: center
+      color: $white
+      cursor: pointer
+      transition: $fast
+      padding: 16px
+      &:hover
+        background: #000000
+        &:hover
+          background: $black
+
+      @media screen and (max-width: 992px)
+        padding: 0 46px
+
+      .menu--arrow
+        transition: $fast
+        margin-left: auto
+    &__expand
+      background: $black
+      .menu--collapse--item
+        background: $dark
+        transition: $fast
+        &:hover
+          background: $black
+      .menu--arrow
+        transform: rotate(90deg) translateY(2px)
+    
+  &--heading
+    &--icon
+      &.fa
+        font-size: 18px
+        margin-right: 16px
+  
+  &--collapse
+    display: none
+    &--item
+      height: 50px
+      line-height: 50px
+      color: $white
+      display: block
+      padding: 0 16px
+      &:hover
+        text-decoration: none
+        color: $white
+      &__current
+        background: $blue !important
+
+      @media screen and (max-width: 992px)
+        padding: 0 46px
+  
+  @media screen and (max-width: 992px)
+    width: 100%
+    left: initial
+    top: -100%
+    height: calc(100% - 50px)
+    overflow-y: auto
+    transition: .5s ease-in-out top
+
+.open-menu
+  @media screen and (max-width: 992px)
+
+    main
+      width: 100%
+      padding: 0
+
+    .menu
+      top: 50px
+      transform: translateX(0)
+
+.menu--item__expand
+  .menu--collapse
+    display: block

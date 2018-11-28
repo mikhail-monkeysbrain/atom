@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="./favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="./fonts/font-awesome/css/font-awesome.min.css">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.bundle.css">
+
+    <title><%=title%></title>
+  </head>
+  <body>
+    
+    <header class="header">
+      <div class="container-fluid">
+        <nav class="row __h-between __v-center">
+          <div class="header--burger">
+              <div class="burger">
+                <span class="bar bar__top"></span>
+                <span class="bar bar__mid"></span>
+                <span class="bar bar__bot"></span>
+              </div>
+          </div>
+          <a class="header--logo" href="./">
+            <img src="./img/logo.svg" alt="logo" class="header--logo--img">
+          </a>
+          <a class="header--btn js-add" href="javascript:void(0)"><i class="fa fa-plus" aria-hidden="true"></i></a>
+          <a class="header--btn js-question" href="javascript:void(0)"><i class="fa fa-question" aria-hidden="true"></i></a>
+
+          <div class="input-group input-group__select __total-number __nav-drop">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <div class="dropdown header--profile">
+              <select class="select__single__no-search" name="total-number">
+                  <option value="admin"><i class="fa fa-user" aria-hidden="true"></i> Администратор</option>
+                  <option value="exit">Выход</option>
+                </select>
+            </div>
+          </div>
+          </nav>
+      </div>
+    </header>

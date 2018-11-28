@@ -1,0 +1,368 @@
+<div class="col-12">
+
+    <form enctype='multipart/form-data' method="POST" class="section">
+        <div class="section--heading__tab">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="content-tab" data-toggle="tab" href="#content" role="tab" aria-controls="home" aria-selected="true">Контент</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="SEO-tab" data-toggle="tab" href="#SEO" role="tab" aria-controls="profile" aria-selected="false">Настройка страницы</a>
+                </li>
+              </ul>
+        </div>
+        <div class="section--content">
+          <div class="tab-content" id="myTabContent">
+            <div class="col-12 tab-pane fade show active" id="content" role="tabpanel" aria-labelledby="content-tab">
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="id">ID<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="form-group">
+                            <input type="text" id="id" name="id" class="form-control" readonly>
+                            <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="id">Дата<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="input-group input-group__date"> 
+                                <input type="text" class="form-control date" value="22.10.2015" name="date" placeholder="Дата" readonly>
+                                <button class="btn btn__form btn__form__date" type="button"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="id">VIN<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="form-group">
+                            <input type="text" id="id" name="id" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="id">Контакт<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="input-group input-group__select">
+                            <select class="select__single" name="name">
+                                <option value="">Выбрать</option>
+                                <option value="ED">Edna Anderson</option>
+                                <option value="CA">Carlos Roberson</option>
+                                <option value="TR">Travis Erickson</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="id">Страховка<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="form-group">
+                            <input id="toggler" type="checkbox" name="toggler">
+                            <label for="toggler"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="id">Статус провкрки пользователя<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="input-group input-group__select">
+                            <select class="select__single" name="names[]" multiple="multiple">
+                                <option value="AM" title="https://www.google.ru/" selected>В работе</option>
+                                <option value="LG" title="https://www.google.ru/">В работе</option>
+                                <option value="CE" title="https://www.google.ru/" selected>Ожидает ответа пользователя</option>
+                                <option value="CO" title="https://www.google.ru/">В работе</option>
+                                <option value="MT" title="https://www.google.ru/">Ожидает ответа</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="phone">Телефон<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="input-group input-group--change-phone">
+                            <div class="change-phone">
+                                <span class="change-phone--toggler">
+                                    <img src="./img/rus.jpg" alt="rus">
+                                </span>
+                                <ul class="change-phone--changer">
+                                    <li class="change-phone--item" data-location="rus">
+                                        <img src="./img/rus.jpg" alt="rus">
+                                    </li>
+                                    <li class="change-phone--item" data-location="france">
+                                        <img src="./img/france.jpg" alt="france">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <input type="text" id="phone" name="phone" placeholder="+7 (000) 000 00-00" class="form-control phone" data-code="rus">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="number">№ Проекта<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="form-group">
+                          <input class="form-control" type="number" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="number">Добавить файл <br> (не более 10 файлов за 1 загрузку)<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="form-group">
+                            <div class="js-file-upload">
+                              <div class="add-file--img--edit">
+                                  <div class="add-file--img--edit__name">
+                                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                  </div>
+                                  <div class="add-file--img--edit__del">
+                                      <i class="fa fa-times" aria-hidden="true"></i>
+                                  </div>
+                                  <section class="edit--dialog">
+                                      <input type="text">
+                                      <a class="btn btn__icon btn__submit js-img-name"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                      <a class="btn btn__icon js-closeDialog"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                  </section>
+                              </div>
+                              <fieldset class="img-upload">
+                                  <a class="file-triggered" href="javascript:void(0)">Добавить файлы</a>
+                                  <input type="file" name="files[]" class="add-file--input" />
+                              </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="number">Добавить изображение <br> (не более 10 файлов за 1 загрузку)<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="js-img-upload">
+
+                          <div class="add-file--img--edit">
+                              <div class="add-file--img--edit__name">
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </div>
+                              <div class="add-file--img--edit__del">
+                                  <i class="fa fa-times" aria-hidden="true"></i>
+                              </div>
+                              <section class="edit--dialog">
+                                  <input type="text" class="edit--dialog__name">
+                                  <a class="btn btn__icon btn__submit js-img-name"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                  <a class="btn btn__icon js-closeDialog"><i class="fa fa-times" aria-hidden="true"></i></a>
+                              </section>
+                          </div>
+
+                          <fieldset class="img-upload">
+                            <input type="file" name="images[]" class="photo add-file--input" accept="image" multiple="">
+                            <input type="text" class="base64" name="base64[]">
+                            <div class="add-file--img--block">
+                              <img class="add-file--img" src="./img/addphoto.jpg" alt=""> 
+                              <span class="add-file--img__name">avatar.jpg</span>
+                              <div class="add-file--img--edit">
+                                    <div class="add-file--img--edit__name">
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </div>
+                                      <div class="add-file--img--edit__del">
+                                  <i class="fa fa-times" aria-hidden="true"></i>
+                                </div>
+                                <section class="edit--dialog">
+                                  <input type="text" class="edit--dialog__name">
+                                    <a class="btn btn__icon btn__submit js-img-name"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                    <a class="btn btn__icon js-closeDialog"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                </section>
+                                  </div>
+                              </div>
+                          </fieldset>
+
+                          <fieldset class="img-upload">
+                              <a class="file-triggered" href="javascript:void(0)">Добавить изображения</a>
+                              <input type="file" name="images[]" class="photo add-file--input" accept="image" multiple />
+                              <input type="text" class="base64" name="base64[]">
+                          </fieldset>
+                          
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="number">Пожелания<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="form-group">
+                            <textarea class="summernote" name="editordata"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="number">Связь<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="form-group">
+                            <input id="r1" type="radio" name="radio" value="r1">
+                            <label for="r1">Телефон</label>
+                            <br>
+                            <input id="r2" type="radio" name="radio" value="r2" checked>
+                            <label for="r2">E-mail</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="number">Уведомления<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="form-group">
+                            <input id="c1" type="checkbox" name="checkbox" value="c1">
+                            <label for="c1">E-mail</label>
+                            <input id="c2" type="checkbox" name="checkbox" value="c2" checked>
+                            <label for="c2">SMS</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 tab-pane fade" id="SEO" role="tabpanel" aria-labelledby="SEO-tab">
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="id">ID<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="form-group">
+                            <input type="text" id="id" name="id" class="form-control" disabled>
+                            <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="id">Дата<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="input-group input-group__date">
+                                <input type="text" class="form-control date" name="date" placeholder="Дата">
+                                <button class="btn btn__form btn__form__date" type="button"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="id">VIN<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="form-group">
+                            <input type="text" id="id" name="id" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="id">Контакт<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="input-group input-group__select">
+                            <select class="select__single" name="name">
+                                <option value="">Выбрать</option>
+                                <option value="ED">Edna Anderson</option>
+                                <option value="CA">Carlos Roberson</option>
+                                <option value="TR">Travis Erickson</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="id">Страховка<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="form-group">
+                            <input id="toggler" class="toggler" type="checkbox" name="toggler">
+                            <label for="toggler"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="id">Статус проверки пользователя<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="input-group input-group__select">
+                            <select class="select__single" name="names[]" multiple="multiple">
+                                <option value="AM" title="https://www.google.ru/" selected>В работе</option>
+                                <option value="LG" title="https://www.google.ru/">В работе</option>
+                                <option value="CE" title="https://www.google.ru/" selected>Ожидает ответа пользователя</option>
+                                <option value="CO" title="https://www.google.ru/">В работе</option>
+                                <option value="MT" title="https://www.google.ru/">Ожидает ответа</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-2">
+                        <label class="input--row" for="phone">Телефон<span>*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <div class="input-group input-group--change-phone">
+                            <div class="change-phone">
+                                <span class="change-phone--toggler">
+                                    <img src="./img/rus.jpg" alt="rus">
+                                </span>
+                                <ul class="change-phone--changer">
+                                    <li class="change-phone--item" data-location="rus">
+                                        <img src="./img/rus.jpg" alt="rus">
+                                    </li>
+                                    <li class="change-phone--item" data-location="france">
+                                        <img src="./img/france.jpg" alt="france">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <input type="text" id="phone" name="phone" placeholder="+7 (000) 000 00-00" class="form-control phone" data-code="rus">
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+              <div class="row __h-end">
+                <div class="col-12 col-sm-8 col-md-10">
+                  <div class="__h-end __v-center form-buttons">
+                      <input type="submit" data-action="action-1" class="btn btn__blue" value="Сохранить" />
+                      <a href="javascript:void(0)" data-toggle="modal" data-target="#deleteEl" class="btn btn__red">Удалить</a>
+                      <a href="javascript:void(0)" class="btn btn__white">Отменить</a>
+                  </div>
+                </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="modal fade deleteEl" id="deleteEl" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title" id="deleteElLabel">Вы действительно хотите удалить данный пункт?</h2>
+              </div>
+              <div class="modal-footer __h-between">
+                <button class="btn btn__white" data-dismiss="modal">Отменить</button>
+                <button type="button" class="btn btn__red js-trigger" data-dismiss="modal" data-action="/ads" data-trigger="js-deleteItem">Удалить</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,345 @@
+.__colorLight
+  color: $text
+
+  
+/*horisontal align*/
+.__h
+  &-center
+    justify-content: center
+    display: flex
+  &-around
+    justify-content: space-around
+    display: flex
+  &-between
+    justify-content: space-between
+    display: flex
+  &-start
+    justify-content: flex-start
+    display: flex
+  &-end
+    justify-content: flex-end
+    display: flex
+
+/*vertical align*/
+.__v
+  &-center
+    align-items: center
+    display: flex
+  &-start
+    align-items: flex-start
+    display: flex
+  &-end
+    align-items: flex-end
+    display: flex
+  &-stretch
+    align-items: stretch
+    display: flex
+
+.__hidden
+  visibility: hidden
+
+.btn
+  max-width: 100%
+  cursor: pointer
+  &:hover,
+  &:active
+    color: $white
+  &:disabled
+    cursor: default
+
+  &__white
+    background: $white
+    color: $text
+    border: $border
+    &:hover,
+    &__hover
+      background: $whiteHover
+    &:active,
+    &__active
+      background: $whiteActive
+
+  &__green
+    background: $green
+    /*fucking bootstrap!*/
+    color: #ffffff !important
+    &:hover,
+    &__hover
+      background: $greenHover
+      color: $white
+    &:active,
+    &__active
+      background: $greenActive
+      color: $white
+
+  &__blue
+    background: $blue
+    /*fucking bootstrap!*/
+    color: #ffffff !important
+    &:hover,
+    &__hover
+      background: $blueHover
+      color: $white
+    &:active,
+    &__active
+      background: $blueActive
+      color: $white
+
+  &__red
+    background: $red
+    /*fucking bootstrap!*/
+    color: #ffffff !important
+    &:hover,
+    &__hover
+      background: $redHover
+      color: $white
+    &:active,
+    &__active
+      background: $redActive
+      color: $white
+  
+  &__wide
+    height: 60px
+    line-height: 60px
+
+  &__small
+    height: 32px
+    line-height: 32px
+
+  &__x-small
+    height: 24px
+    line-height: 24px
+
+  &__icon
+    width: 34px
+    height: 34px
+    display: inline-flex
+    justify-content: center
+    align-items: center
+    background: transparent
+    i
+      color: $text
+    &:hover
+      background: $blue
+      i
+        color: $white
+    &-home
+      width: auto
+      padding: 0 18px
+      &::before
+        content: '\f015'
+        font-family: 'FontAwesome'
+        font-size: 16px
+        padding-right: 14px
+        line-height: 1
+    &-search
+      width: auto
+      padding: 0 17px
+      &::before
+        content: '\f002'
+        font-family: 'FontAwesome'
+        font-size: 16px
+        padding-right: 14px
+        line-height: 1
+    &-more
+      width: auto
+      padding: 0 17px
+      &::before
+        content: '\f142'
+        font-family: 'FontAwesome'
+        font-size: 18px
+        padding-right: 21px
+        padding-left: 5px
+        line-height: 1
+        position: relative
+        top: 2
+    &-forward
+      width: auto
+      padding: 0 17px 0 19px
+      &::after
+        content: '\f061'
+        font-family: 'FontAwesome'
+        font-size: 16px
+        padding-left: 17px
+        line-height: 1
+    &-backward
+      width: auto
+      padding: 0 17px
+      &::before
+        content: '\f060'
+        font-family: 'FontAwesome'
+        font-size: 16px
+        padding-right: 14px
+        line-height: 1
+    &-call
+      width: auto
+      padding: 0 17px
+      &::before
+        content: '\f095'
+        font-family: 'FontAwesome'
+        font-size: 16px
+        padding-left: 14px
+        line-height: 1
+        transform: scaleX(-1)
+        display: inline-block
+    &-check
+      width: auto
+      padding: 0 17px
+      &::before
+        content: '\f00c'
+        font-family: 'FontAwesome'
+        font-size: 16px
+        padding-right: 11px
+        line-height: 1
+        position: relative
+        left: -3px
+    &-menu
+      width: auto
+      padding: 0 17px
+      &::before
+        content: '\f0c9'
+        font-family: 'FontAwesome'
+        font-size: 16px
+        padding-right: 14px
+        line-height: 1
+    &-small
+      padding: 0
+      width: 48px
+      height: 48px
+      &::before,
+      &::after
+        padding: 0
+
+  &__submit
+    background: $blue
+    margin-right: 8px
+    &:hover
+      background: $blueHover
+    &:active
+      background: $blueActive
+    i
+      color: $white
+  &__add-file
+    background: $white
+    border: $border
+    box-shadow: $shadowLight
+    font-size: 16px
+
+  &__form
+    width: 45px
+    height: 38px
+    line-height: 45px
+    margin: 0
+    background: transparent
+    position: absolute
+    right: 0
+    top: 0
+    z-index: 3
+    &:hover
+      i
+        color: $blue
+    i
+      font-size: 24px
+      color: #cccccc
+      transition: $fast
+    &__blue
+      background: $blue
+      i
+        color: $white
+    &__search
+      border-left: 1px solid $border
+      line-height: 40px
+      border-top-right-radius: 2px
+      border-bottom-right-radius: 2px
+      &:hover
+        /* лучше один important, чем 2 раза переопределать - _custom.scss:35 */
+        background: $blueHover !important
+        i
+          color: $white
+      &:active
+        background: $blueActive !important
+        i
+          color: $white
+      i
+        font-size: 21px
+
+    &__date
+      line-height: 40px
+      border-top-right-radius: 2px
+      border-bottom-right-radius: 2px
+      &:hover
+        border-left: $border
+        background: $disabled !important
+        i
+          color: $text
+      &:active
+        border-left: $border
+        background: $blueActive !important
+        i
+          color: $white
+      i
+        font-size: 21px
+        color: $text
+
+  &:disabled
+    color: $disabled
+    background: $btnActive
+    box-shadow: $shadow
+    border: $borderDisabled
+    opacity: 1
+  
+  &:focus
+    outline: 0
+    box-shadow: none
+
+.__mh
+  &-2
+    margin: 0 2px
+  &-5
+    margin: 0 5px
+  &-10
+    margin: 0 10px
+
+.__mv
+  &-2
+    margin: 2px 0
+  &-5
+    margin: 5px 0
+  &-10
+    margin: 10px 0
+
+.__total-number
+  max-width: 100px
+  margin: 0 16px
+
+.__nav-drop
+  margin: 0 16px;
+  max-width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .dropdown
+    .select2-container--default 
+      .select2-selection--single 
+        .select2-selection__arrow 
+          b
+            border-color: #fff transparent transparent transparent
+    .select2-container
+      width: 170px !important
+      box-shadow: 0 0 0 0 transparent
+    .select2-container--default 
+      .select2-selection--single
+        background: transparent
+        border: 0
+        padding-right: 20px
+        span
+          color: #fff
+          &:hover
+            background: transparent
+            box-shadow: 0 0 0 0 transparent
+            border: 0
+        .select2-selection__rendered
+          text-align: right
+
+.form-buttons
+  @media screen and (max-width: 768px)
+    justify-content: space-between

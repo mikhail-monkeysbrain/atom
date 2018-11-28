@@ -1,0 +1,96 @@
+<form style="display: none;" name="upload_form" id="upload_form" enctype="multipart/form-data" action="/atom/filemanager/upload/">
+  <input type="file" name="files[]" id="files" multiple >
+</form>
+<div class="modal-content" id="filemanager" style="display: none;">
+  <div class="filemanager">
+    <div class="filemanager--heading __v-center">
+      <div class="col-md-5 col-8">
+        <div class="form-group">
+          <input type="text" class="form-control" id="fm-path" value="/">
+        </div>
+      </div>
+
+      <div class="filemanager--home filemanager--control">
+        <div class="btn btn__icon btn__add-file js-img-name">
+          <i class="fa fa-home" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="filemanager--up-dir filemanager--control">
+        <div class="btn btn__icon btn__add-file js-img-name">
+          <i class="fa fa-level-up" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="filemanager--add-dir filemanager--control">
+        <div class="btn btn__icon btn__add-file js-img-name">
+          <i class="fa fa-folder" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="filemanager--add-dir__name filemanager--control" style="display: none;">
+        <input type="text" placeholder="Имя папки" class="input__name-folder">
+        <div class="btn btn__icon btn__add-file js-img-name">
+          <i class="fa fa-check" aria-hidden="true"></i>
+        </div>
+      </div>
+
+      <div class="filemanager--add-files filemanager--control" style="position: relative;">
+        <div class="btn btn__icon btn__add-file js-img-name">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </div>
+      </div>
+
+
+      <div class="filemanager--del-file filemanager--control">
+        <div class="btn btn__icon btn__add-file js-img-name">
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </div>
+        <section class="filemanager--add-file--dialog">
+          <a class="filemanager--dialog-button"><i class="fa fa-folder" aria-hidden="true"></i></a>
+          <a class="filemanager--dialog-button"><i class="fa fa-file" aria-hidden="true"></i></a>
+        </section>
+      </div>
+
+      
+      <div class="filemanager--close-filemanager">
+        <div class="btn btn__icon btn__add-file js-img-name">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="filemanager--body">
+      <div class="filemanager--content">
+
+      </div>
+    </div>
+    <div class="col-12 col-sm8">
+      <div class="row filemanager--buttons">
+        <div class="btn btn__blue btn__append">Вставить</div>
+        <div class="btn btn__red">Отмена</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="append">
+  
+</div>
+
+
+<style>
+  .append img{
+    max-width: 100%;
+  }
+  .input__name-folder{
+    height: 34px;
+    position: relative;
+    top: 1px;
+    margin: 0 5px 0 0;
+    padding: 0 10px;
+    border-radius: 3px;
+    outline: none;
+    box-shadow: 0 0 0 0 transparent;
+    border: 1px solid #b8b8b8;
+  }
+  .filemanager .filemanager--control{
+    margin: 0 5px;
+  }
+</style>

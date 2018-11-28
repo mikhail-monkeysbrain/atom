@@ -1,0 +1,21 @@
+<% 
+  var data = {
+    title: "Atom",
+    author: "Hismith",
+    currentPage: "file-edit"
+  };
+%>
+<%= _.template(require('./../includes/header.html'))(data) %>
+<%= _.template(require('./../includes/menu.html'))(data) %>
+
+<main class="main">
+  <div class="container">
+    <%= _.template(require('./../includes/filemanager.html'))(data) %>
+    <!--<a data-fancybox data-src="#filemanager" href="javascript:;" class="btn btn-primary">Open demo</a>-->
+
+  <a href="./img/addphoto.jpg" class="fancy-gallery">
+    <img src="./img/addphoto.jpg" alt="" />asdsadsd
+  </a>
+  </div>
+</main>
+<%= _.template(require('./../includes/footer.html')) (data)%>

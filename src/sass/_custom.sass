@@ -1,0 +1,320 @@
+.btn
+  max-width: 130px
+  width: 100%
+  height: 40px
+  line-height: 40px
+  padding: 0
+  transition: $fast
+  margin: 2px 0
+
+  .input-group &
+    margin-right: 0
+
+button
+  .btn
+    .btn-outline-secondary
+      .dropdown-toggle
+        border: 0
+
+.row
+  padding: 12px 0
+
+.form-group
+  margin-bottom: 0
+  min-height: 38px
+  position: relative
+
+.form-text
+  font-size: 14px
+  color: #979797
+  line-height: 1.5
+
+.form-control
+  height: 38px
+  line-height: 1
+  transition: $fast
+
+  &:focus
+    box-shadow: none
+    border: 1px solid $blue
+
+.input-group
+  &__buttons,
+  &__search
+    position: relative
+    input
+      &:focus
+        & +.btn__form__search
+          background: $blue
+          i
+            color: $white
+    .form-control
+      padding-right: 38px
+    input
+      &:focus
+        & +.btn__form__search
+        & +.btn__form__date
+          background: $blue
+          i
+            color: $white
+  &__select
+    & >span
+      width: 100% !important
+
+
+.tooltip .arrow
+  transform: scale(3)
+.tooltip-inner
+  font-size: 14px
+  max-width: 260px
+  text-align: left
+  padding: 16px
+
+.select2-container--open,
+.select2-dropdown
+  box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.1)
+
+.select2-container
+  .select2-selection
+    &--single
+      height: 38px
+      border: 1px solid $border
+    &__rendered
+      line-height: 38px !important
+      padding: 0 16px !important
+
+.select2-search
+  &--dropdown
+    padding: 14px 16px
+    .select2-search
+      &__field
+        height: 38px
+        padding: 0 10px
+
+.select2-selection
+  &--multiple 
+    ul
+      &.select2-selection
+        &__rendered
+          padding: 0 5px !important
+
+span
+  &.select2-dropdown
+    &.select2-dropdown
+      &--above
+        transform: translateY(0px)
+
+.select2-results
+  &__option
+    height: 40px
+    line-height: 25px
+    padding: 6px 16px
+    &:hover
+      background: $blue
+
+.select2-container
+  &--default 
+    .select2-selection
+      &--single 
+        border-radius: 4px !important
+        .select2-selection
+          &__arrow
+            height: 36px
+            width: 45px
+            text-align: center
+            transition: $fast
+            border: 1px solid transparent
+            border-top-right-radius: 2px
+            border-bottom-right-radius: 2px
+            &:hover
+              background: $whiteActive
+              border-left: $border
+            &:active
+              background: $blueLight
+              border-left: $border
+              b
+                border-color: transparent transparent $white transparent
+            b
+              transition: $fast
+              transform: scale(1.25)
+
+  .select2-results
+    &__option
+      &--highlighted
+        &[aria-selected]
+          background: $blueLight
+
+.select2-dropdown
+  transform: translateY(10px)
+.select2-container
+  &--open 
+    .select2-dropdown
+      &--below
+        border-top: $border
+        border: $border
+        border-radius: 4px
+        &::before,
+        &::after
+          border-color: transparent transparent #fff
+          border-style: solid
+          border-width: 0 5px 5px
+          content: ""
+          display: block
+          height: 0
+          left: 10px
+          position: absolute
+          top: -5px
+          width: 0
+          z-index: 2
+        &::after
+          border-color: transparent transparent $text
+          top: -7px
+          left: 9px
+          border-width: 0 6px 7px
+          z-index: 1
+
+.note-btn-group
+  * 
+    font-size: 13px
+  .btn
+    padding: .375rem .75rem
+    height: auto
+    width: auto
+    line-height: 1.5
+span
+  &.note-icon-caret
+    display: none
+
+
+li
+  &.select2-selection
+    &__choice 
+      height: 30px
+      line-height: 30px
+      margin-top: 4px !important
+      display: flex
+      flex-direction: row-reverse
+
+span.select2-selection__choice__remove
+  order: -1  
+  transform: scale(1.5)
+  margin: 0px 0 -4px 2px
+
+
+.select2-container
+  &--default 
+    .select2-search
+      &--inline 
+        .select2-search
+          &__field
+            font-size: 13px
+            margin-top: 0
+
+.popover
+  display: none
+  #myTabContent &
+    display: block
+    transition: .25s ease-in-out all
+
+.nav-link
+  padding: 10px 16px
+  height: 51px
+  font-size: 16px
+  display: flex
+  align-items: center
+  color: $text
+  &:hover,
+  &:active
+    color: $blue
+
+.daterangepicker
+  .drp-buttons
+    .btn
+      padding: 0 8px
+
+.daterangepicker
+  &.show-calendar 
+    .drp-buttons
+      display: flex
+.jspVerticalBar
+  width: 13px
+  background: transparent
+  .jspDrag
+    width: 10px
+    left: 3px
+    border-radius: 10px
+    background: #808080
+.jspHorizontalBar
+  height: 13px
+  background: transparent
+  .jspDrag
+    height: 10px
+    top: 3px
+    border-radius: 10px
+    background: #808080
+.jspTrack,
+.jspCorner
+  background: #fff
+
+span
+  &.select2-selection
+    &.select2-selection
+      &--multiple
+        &:hover
+          &::after
+            background: #f6f6f6
+            border-left: 1px solid
+        &::after
+          color: $text
+          content: "\F0D7"
+          font-family: FontAwesome
+          font-size: 16px
+          position: absolute
+          right: 1px
+          top: 1px
+          height: calc(100% - 2px)
+          width: 45px
+          border-radius: 0 5px 5px 0px
+          display: flex
+          align-items: center
+          justify-content: center
+.select2-container
+  &--open
+    span
+      &.select2-selection
+        &.select2-selection
+          &--multiple
+            &::after
+              transform: scaleY(-1)
+
+.modal
+  &.show 
+    .modal-dialog
+      @media screen and (max-width: 552px)
+        max-width: calc(100% - 20px)
+
+.jspPane
+  max-width: 1550px
+
+.table-bordered 
+  td
+    padding-top: 1.1rem
+
+.overflow__custom
+  overflow: auto
+
+.d-sticky
+  position: sticky
+  top: 50px
+  position: relative
+  top: 0
+  height: calc(100vh - 50px)
+  overflow-y: auto
+  -ms-overflow-style: none
+  -moz-overflow-style: none
+  &::-webkit-scrollbar 
+    width: 0
+
+.note-editable.card-block img
+  width: auto !important
+  max-height: 175px

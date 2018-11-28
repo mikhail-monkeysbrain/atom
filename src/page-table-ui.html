@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="UTF-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" id="vp" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>table page</title>
+  <link href="css/main.css" rel="stylesheet">
+</head>
+
+<body class="page-table">
+  <header>
+    <nav class="navbar navbar-light bg-color-navbar text-nowrap pt-1 pb-1  fixed-top">
+      <div class="nav-container">
+        <a data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="true"
+          aria-label="Toggle navigation" class="btn bg-color-transparent btn-single-icon sidebar-toogler  mr-sm-4">
+          <i class="fa fa-bars"></i>
+          <i class="fa fa-times"></i>
+        </a>
+        <a href="#" class="navbar-brand m-0">
+          <img src="img/logo-navbar.png" alt="logo" />
+        </a>
+      </div>
+      <div class="form-inline navbar-indent ml-auto pr-0 pr-sm-4 text-nowrap">
+        <a class="btn btn-single-icon bg-color-transparent mr-2">
+          <i class="fa fa-plus"></i>
+        </a>
+        <a class="btn btn-single-icon bg-color-transparent">
+          <i class="fa fa-question"></i>
+        </a>
+      </div>
+      <div class="display-inline text-nowrap">
+        <div class="dropdown">
+          <a id="dropdown-user-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20" class="btn bg-color-transparent dropdown-toggle">
+            <i class="fa fa-user pr-4"></i>
+            <span class="pr-3 pb-2 d-sm-inline d-none user-name">Тестовый</span>
+          </a>
+          <div aria-labelledby="dropdown-user-menu" class="dropdown-menu dropdown-menu-right dropdown-menu-triangle-t-r mt-3">
+            <a href="#" class=" btn dropdown-item">Личный кабинет</a>
+            <div class="dropdown-divider col-9 mr-auto ml-auto"></div>
+            <a href="#" class="btn dropdown-item">Выход</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div id="navbarToggleExternalContent" class="accordion-side-bar collapse bg-color-navbar show fixed-top">
+      <div id="accordion" class="bg-color-navbar">
+        <div class="card">
+          <div id="headingOne" class="card-header p-0">
+            <a data-target="#collapseOne" data-toggle="collapse" aria-controls="collapseOne" aria-expanded="false" class="btn btn-link">
+              <i class="mr-3 fa fa-window-maximize"></i>
+              <span>Сайт</span>
+              <i class="fa fa-angle-down"></i>
+            </a>
+          </div>
+          <div id="collapseOne" data-parent="#accordion" aria-labelledby="headingOne" class="collapse">
+            <div class="card-body p-0 m-0">
+              <div class="col-12 card-header p-0">
+                <a class="btn btn-link sub-menu-link active link collapsed">
+                  <i class="mr-3 fa fa-car"></i>
+                  <span>Проверки</span>
+                </a>
+              </div>
+              <div class="col-12 card-header p-0">
+                <a class="btn btn-link sub-menu-link collapsed">
+                  <i class="mr-3 fa fa-building"></i>
+                  <span>Компании</span>
+                  <i class="ml-1 fa fa-angle-down"></i>
+                </a>
+              </div>
+              <div class="col-12 card-header p-0">
+                <a class="btn btn-link sub-menu-link collapsed">
+                  <i class="mr-3 fa fa-user"></i>
+                  <span>Контакты</span>
+                  <i class="ml-1 fa fa-angle-down"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="card ">
+            <div id="headingTwo" class="card-header p-0">
+              <div class="col-12 card-header p-0">
+                <a class="btn btn-link collapsed">
+                  <i class="mr-3 fa fa-window-restore"></i>
+                  <span>Страницы сайта</span>
+                  <i class="ml-1 fa fa-angle-down"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="card ">
+            <div id="headingThree" class="card-header p-0">
+              <a data-target="#collapseThree" data-toggle="collapse" aria-controls="collapseThree" aria-expanded="false" class="btn btn-link collapsed">
+                <i class="fa fa-sliders mr-3"></i>
+                <span>Настройки сайта</span>
+                <i class="fa fa-angle-down"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div id="headingFour" class="card-header p-0">
+            <a data-target="#collapseFour" data-toggle="collapse" aria-controls="collapseFour" aria-expanded="false" class="btn btn-link collapsed">
+              <i class="fa fa-cog mr-3"></i>
+              <span>Настройки</span>
+              <i class="fa fa-angle-down"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section class="with-sidebar js-padding-left">
+    <div class="main-container no-hover-effect">
+      <div class="row table-header">
+        <div class="table-search">
+          <form action="#" method="post" class="form-filter">
+            <div class="input-group input-group-search  mb-xl-0">
+              <input type="search" aria-label="Поиск" placeholder="Поиск..." class="form-control input-group-search__input-search" />
+              <div class="input-group-append input-group__button-search">
+                <button type="submit" class="btn btn-custom btn-single-icon">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="custom-button custom-button_bg-green custom-button_width-table-header">
+          <a class="btn btn-custom">Добавить</a>
+        </div>
+        <div class="custom-button custom-button_bg-blue custom-button_width-table-header">
+          <button type="submit" class="btn btn-custom" form="table-main-form" formaction="#" formmethod="post">Выгрузить</button>
+        </div>
+        <div class="custom-button custom-button_bg-red custom-button_width-table-header">
+          <button data-target="#modalDelete" data-toggle="modal" type="button" class="btn btn-custom" disabled>Удалить</button>
+        </div>
+      </div>
+      <div class = "row">
+        <div class="popover-with-input-type-text"></div>
+        <div class="popover-with-input-type-number"></div>
+        <div class="popover-with-input-type-date"></div>
+        <div class="popover-with-input-type-checkbox"></div>
+        <div class="popover-with-input-type-multi-select"></div>
+        <form id="table-main-form" class="table-main-form">
+      </div>
+      <div class="row table-body">
+          <table class="table" id = "table-main-page">
+            <thead class="t-head">
+              <tr>
+                <th>
+                  <input id="checkbox-select-all" type="checkbox" class="form-check-input" />
+                  <label for="checkbox-select-all" class="form-check-label"></label>
+                </th>
+                <th class="col-nowrap th-filter-id">
+                    <span class=" th-name">ID</span>
+                    <span class="filter ml-auto mr-4">
+                      <a class="btn-group active">
+                        <i class="fa fa-filter btn-filter" class="btn btn-secondary" data-container=".popover-with-input-type-text" data-toggle="popover"
+                          data-placement="right" data-content="
+                            <form class = 'd-inline-block popover-form'>
+                              <div class = 'popover-input-wrapper d-inline-block'>
+                                <input type='text' class = 'simple-search'>
+                              </div>
+                              <div class = 'popover-button-wrapper d-inline-block'>
+                                <button type='submit' class='btn  btn-ok' id='filter-id-submit'>
+                                </button>
+                              </div>
+                              <div class='btn-cancel d-inline-block'>
+                                <i class='fa fa-times'></i>
+                              </div>
+                            </form>">
+                        </i>
+                      </a>
+
+                      <a class="filter__sort-up active">
+                        <i class="fa fa-caret-up "></i>
+                      </a>
+                      <a class="filter__sort-down">
+                        <i class="fa fa-caret-down"></i>
+                      </a>
+                    </span>
+                </th>
+                <th>
+                    <span class=" th-name">Дата</span>
+                    <span class="filter ml-auto mr-4">
+
+                      <a class="btn-group">
+                        <i class="fa fa-filter btn-filter" class="btn btn-secondary" data-container=".popover-with-input-type-date" data-toggle="popover"
+                          data-placement="right" data-content="
+                          <form class = 'd-inline-block popover-form'>
+                            <span class='text-span-between-date-input overflow-hidden'>От</span>
+                            <div class='form-group input-datepicker input-datepicker_width-filter d-inline-block overflow-hidden'>
+                                <div class='input-group date ' id='datepicker1'>
+                                  <input type='text' class='form-control' />
+                                  <span class='input-group-addon'>
+                                    <span class='btn-single-icon'>
+                                      <i class='fa fa-calendar' aria-hidden='true'></i>
+                                    </span>
+                                  </span>
+                                </div>
+                              </div>
+                              <span class='text-span-between-date-input overflow-hidden'>До</span>
+                              <div class='form-group input-datepicker input-datepicker_width-filter d-inline-block overflow-hidden'>
+                                  <div class='input-group date ' id='datepicker2'>
+                                    <input type='text' class='form-control' />
+                                    <span class='input-group-addon'>
+                                      <span class='btn-single-icon'>
+                                        <i class='fa fa-calendar' aria-hidden='true'></i>
+                                      </span>
+                                    </span>
+                                  </div>
+                                </div>
+                            <div class = 'popover-button-wrapper d-inline-block'>
+                              <button type='submit' class='btn  btn-ok' id='filter-id-submit'>
+                              </button>
+                            </div>
+                            <div class='btn-cancel d-inline-block'>
+                              <i class='fa fa-times'></i>
+                            </div>
+                          </form>">
+                        </i>
+                      </a>
+                      <a class="filter__sort-up">
+                        <i class="fa fa-caret-up "></i>
+                      </a>
+                      <a class="filter__sort-down">
+                        <i class="fa fa-caret-down"></i>
+                      </a>
+                    </span>
+                </th>
+                <th>
+                    <span class=" th-name">Статус проверки</span>
+                    <span class="filter ml-auto mr-4">
+
+                      <a class="btn-group">
+                        <i class="fa fa-filter btn-filter" class="btn btn-secondary" data-container=".popover-with-input-type-multi-select" data-toggle="popover"
+                          data-placement="right" data-content="
+                            <form class = 'd-inline-block popover-form'>
+                                <div class ='popover-input-wrapper d-inline-block'>
+                                    <select class='select-work-status' id = 'select-work-status' name='status-work' multiple='multiple' tabindex='-1' >
+                                        <option value='on'>В работе</option>
+                                        <option value='off'>Ожидание</option>
+                                    </select>  
+                                </div>
+                              <div class = 'popover-button-wrapper d-inline-block'>
+                                <button type='submit' class='btn  btn-ok' id='filter-id-submit'>
+                                </button>
+                              </div>
+                              <div class='btn-cancel d-inline-block'>
+                                <i class='fa fa-times'></i>
+                              </div>
+                            </form>">
+                        </i>
+                      </a>
+                      <a class="filter__sort-up">
+                        <i class="fa fa-caret-up "></i>
+                      </a>
+                      <a class="filter__sort-down">
+                        <i class="fa fa-caret-down"></i>
+                      </a>
+                    </span>
+                </th>
+                <th>
+                    <span class=" th-name">ID</span>
+                    <span class="filter ml-auto mr-4">
+
+                      <a class="btn-group">
+                        <i class="fa fa-filter btn-filter" class="btn btn-secondary" data-container=".popover-with-input-type-number" data-toggle="popover"
+                          data-placement="right" data-content="
+                              <form class = 'd-inline-block popover-form'>
+                                  <div class ='popover-input-wrapper d-inline-block'>
+                                      <div class='simple-search-number-wrapper' >
+                                          <input type='number' min='1' max='9' step='1' value='0' class=' simple-search-number'>
+                                        </div>
+                                        <div class='simple-search-number-wrapper'>
+                                          <input type='number' min='1' max='9' step='1' value='0' class=' simple-search-number'>
+                                        </div>
+                                  </div>
+                                <div class = 'popover-button-wrapper d-inline-block'>
+                                  <button type='submit' class='btn  btn-ok' id='filter-id-submit'>
+                                  </button>
+                                </div>
+                                <div class='btn-cancel d-inline-block'>
+                                  <i class='fa fa-times'></i>
+                                </div>
+                              </form>">
+                        </i>
+                      </a>
+                      <a class="filter__sort-up">
+                        <i class="fa fa-caret-up "></i>
+                      </a>
+                      <a class="filter__sort-down">
+                        <i class="fa fa-caret-down"></i>
+                      </a>
+                    </span>
+                </th>
+                <th>
+                    <span class=" th-name">Имя</span>
+                    <span class="filter ml-auto mr-4">
+                      <a class="btn-group">
+                        <i class="fa fa-filter btn-filter" class="btn btn-secondary" data-container=".popover-with-input-type-text" data-toggle="popover"
+                          data-placement="right" data-content="
+                                <form class = 'd-inline-block popover-form'>
+                                  <div class = 'popover-input-wrapper d-inline-block'>
+                                    <input type='text' class = 'simple-search'>
+                                  </div>
+                                  <div class = 'popover-button-wrapper d-inline-block'>
+                                    <button type='submit' class='btn  btn-ok' id='filter-id-submit'>
+                                    </button>
+                                  </div>
+                                  <div class='btn-cancel d-inline-block'>
+                                    <i class='fa fa-times'></i>
+                                  </div>
+                                </form>">
+                        </i>
+                      </a>
+                      <a class="filter__sort-up">
+                        <i class="fa fa-caret-up "></i>
+                      </a>
+                      <a class="filter__sort-down">
+                        <i class="fa fa-caret-down"></i>
+                      </a>
+                    </span>
+                </th>
+                <th>
+                    <span class=" th-name">Изображение</span>
+                </th>
+                <th>
+                    <span class=" th-name">Компания</span>
+                    <span class="filter ml-auto mr-4">
+                      <a class="btn-group">
+                        <i class="fa fa-filter btn-filter" class="btn btn-secondary" data-container=".popover-with-input-type-text" data-toggle="popover"
+                          data-placement="right" data-content="
+                            <form class = 'd-inline-block popover-form'>
+                              <div class = 'popover-input-wrapper d-inline-block'>
+                                <input type='text' class = 'simple-search'>
+                              </div>
+                              <div class = 'popover-button-wrapper d-inline-block'>
+                                <button type='submit' class='btn  btn-ok' id='filter-id-submit'>
+                                </button>
+                              </div>
+                              <div class='btn-cancel d-inline-block'>
+                                <i class='fa fa-times'></i>
+                              </div>
+                            </form>">
+                        </i>
+                      </a>
+                      <a class="filter__sort-up">
+                        <i class="fa fa-caret-up "></i>
+                      </a>
+                      <a class="filter__sort-down">
+                        <i class="fa fa-caret-down"></i>
+                      </a>
+                    </span>
+                </th>
+                <th>
+                    <span class=" th-name">PDF</span>
+                </th>
+                <th>
+                    <span class=" th-name">Контакт</span>
+                    <span class="filter ml-auto mr-4">
+                      <a class="btn-group">
+                        <i class="fa fa-filter btn-filter" class="btn btn-secondary" data-container=".popover-with-input-type-text" data-toggle="popover"
+                          data-placement="right" data-content="
+                            <form class = 'd-inline-block popover-form'>
+                              <div class = 'popover-input-wrapper d-inline-block'>
+                                <input type='text' class = 'simple-search'>
+                              </div>
+                              <div class = 'popover-button-wrapper d-inline-block'>
+                                <button type='submit' class='btn  btn-ok' id='filter-id-submit'>
+                                </button>
+                              </div>
+                              <div class='btn-cancel d-inline-block'>
+                                <i class='fa fa-times'></i>
+                              </div>
+                            </form>">
+                        </i>
+                      </a>
+                      <a class="filter__sort-up">
+                        <i class="fa fa-caret-up "></i>
+                      </a>
+                      <a class="filter__sort-down">
+                        <i class="fa fa-caret-down"></i>
+                      </a>
+                    </span>
+                </th>
+                <th>
+                    <span class=" th-name">Доступность</span>
+                    <span class="filter ml-auto mr-4">
+
+                      <a class="btn-group">
+                        <i class="fa fa-filter btn-filter" class="btn btn-secondary" data-container=".popover-with-input-type-checkbox" data-toggle="popover"
+                          data-placement="left" data-content="
+                                <form class = 'd-inline-block popover-form'>
+                                    <div class ='popover-input-wrapper popover-button-wrapper_pt d-inline-block'>
+                                        <div class=' form-group d-inline-block m-0 '>
+                                            <span class='switch switch'>
+                                              <input type='checkbox' class='switch popover-input-type-checkbox' id='switchMain'>
+                                              <label for='switchMain '></label>
+                                            </span>
+                                          </div>
+                                    </div>
+                                  <div class = 'popover-button-wrapper d-inline-block'>
+                                    <button type='submit' class='btn  btn-ok' id='filter-id-submit'>
+                                    </button>
+                                  </div>
+                                  <div class='btn-cancel d-inline-block'>
+                                    <i class='fa fa-times'></i>
+                                  </div>
+                                </form>">
+                        </i>
+                      </a>
+                      <a class="filter__sort-up">
+                        <i class="fa fa-caret-up "></i>
+                      </a>
+                      <a class="filter__sort-down">
+                        <i class="fa fa-caret-down"></i>
+                      </a>
+                    </span>
+                </th>
+                <th>
+                    <span class=" th-name">ГЗ</span>
+                    <span class="filter ml-auto mr-4">
+                      <a class="btn-group">
+                        <i class="fa fa-filter btn-filter" class="btn btn-secondary" data-container=".popover-with-input-type-text" data-toggle="popover"
+                          data-placement="right" data-content="
+                            <form class = 'd-inline-block popover-form'>
+                              <div class = 'popover-input-wrapper d-inline-block'>
+                                <input type='text' class = 'simple-search'>
+                              </div>
+                              <div class = 'popover-button-wrapper d-inline-block'>
+                                <button type='submit' class='btn  btn-ok' id='filter-id-submit'>
+                                </button>
+                              </div>
+                              <div class='btn-cancel d-inline-block'>
+                                <i class='fa fa-times'></i>
+                              </div>
+                            </form>">
+                        </i>
+                      </a>
+                      <a class="filter__sort-up">
+                        <i class="fa fa-caret-up "></i>
+                      </a>
+                      <a class="filter__sort-down">
+                        <i class="fa fa-caret-down"></i>
+                      </a>
+                    </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="t-body">
+              <tr data-href="https://example.com/" class="edit-row not-locate">
+                <td class="not-locate">
+                  <input id="test-check2" type="checkbox" class="form-check-input" />
+                  <label for="test-check2" class="form-check-label"></label>
+                </td>
+                <td scope="row">00000000</td>
+                <td scope="row">30.08.2017
+                  <br/> 14:14</td>
+                <td scope="row">В работе</td>
+                <td scope="row">00000000</td>
+                <td scope="row">
+                  Имя
+                </td>
+                <td scope="row" width="100px" class="not-locate">
+                  <div class="td-row-image">
+                    <a data-fancybox="group-1" href="images/flamingo1.jpg" class="td-image-link">
+                      <img src="./img/flamingo1.jpg" alt="image" />
+                    </a>
+                  </div>
+                  <div class="td-row-image">
+                    <a data-fancybox="group-1" href="images/flamingo2.jpg" class="td-image-link">
+                      <img src="./img/flamingo2.jpg" alt="image" />
+                    </a>
+                  </div>
+                  <div class="td-row-image">
+                    <a data-fancybox="group-1" href="images/flamingo3.jpg" class="td-image-link">
+                      <img src="./img/flamingo3.jpg" alt="image" />
+                    </a>
+                  </div>
+                </td>
+                <td scope="row">Компания</td>
+                <td scope="row" class="not-locate">
+                  <i class="fa fa-file-pdf-o pr-2"></i>
+                  <a href="" class = "td-fille-name">book.pdf</a>
+                </td>
+                <td scope="row">Контакт</td>
+                <td scope="row" class="not-locate">
+                  <div class="form-group">
+                    <span class="switch switch-sm">
+                      <input type="checkbox" class="switch switch-input" id="switch1">
+                      <label for="switch1"></label>
+                    </span>
+                  </div>
+                </td>
+                <td scope="row">+</td>
+
+              </tr>
+              <tr data-href="https://example.com/" class="edit-row">
+                <td scope="row" class="not-locate">
+                  <input id="test-check3" type="checkbox" class="form-check-input" />
+                  <label for="test-check3" class="form-check-label"></label>
+                </td>
+                <td scope="row">00000000</td>
+                <td scope="row">30.08.2017
+                  <br/> 14:14</td>
+                <td scope="row">В работе</td>
+                <td scope="row">00000000</td>
+                <td scope="row">Имя</td>
+                <td scope="row " class=" not-locate"> </td>
+                <td scope="row">Компания</td>
+                <td scope="row" class="not-locate"> </td>
+                <td scope="row">Контакт</td>
+                <td scope="row" class="not-locate">
+                  <div class="form-group">
+                    <span class="switch switch-sm">
+                      <input type="checkbox" class="switch switch-input" id="switch2">
+                      <label for="switch2"></label>
+                    </span>
+                  </div>
+                </td>
+                <td scope="row">+</td>
+
+              </tr>
+              <tr data-href="https://example.com/" class="edit-row">
+                <td scope="row" class="not-locate">
+                  <input id="test-check4" type="checkbox" class="form-check-input" />
+                  <label for="test-check4" class="form-check-label"></label>
+                </td>
+                <td scope="row">00000000</td>
+                <td scope="row">30.08.2017
+                  <br/> 14:14</td>
+                <td scope="row">В работе</td>
+                <td scope="row">00000000</td>
+                <td scope="row">Имя</td>
+                <td scope="row" class=" not-locate"> </td>
+                <td scope="row">Компания</td>
+                <td scope="row"> </td>
+                <td scope="row">Контакт</td>
+                <td scope="row" class="not-locate">
+                  <div class="form-group">
+                    <span class="switch switch-sm">
+                      <input type="checkbox" class="switch switch-input" id="switch3">
+                      <label for="switch3"></label>
+                    </span>
+                  </div>
+                </td>
+                <td scope="row">+</td>
+
+              </tr>
+              <tr data-href="https://example.com/" class="edit-row">
+                <td scope="row" class="not-locate">
+                  <input id="test-check5" type="checkbox" class="form-check-input" />
+                  <label for="test-check5" class="form-check-label"></label>
+                </td>
+                <td scope="row">00000000</td>
+                <td scope="row">30.08.2017
+                  <br/> 14:14</td>
+                <td scope="row">В работе</td>
+                <td scope="row">00000000</td>
+                <td scope="row">Имя</td>
+                <td scope="row" class=" not-locate"> </td>
+                <td scope="row">Компания</td>
+                <td scope="row" class="not-locate"> </td>
+                <td scope="row">Контакт</td>
+                <td scope="row" class="not-locate">
+                  <div class="form-group">
+                    <span class="switch switch-sm">
+                      <input type="checkbox" class="switch switch-input" id="switch4">
+                      <label for="switch4"></label>
+                    </span>
+                  </div>
+                </td>
+                <td scope="row">+</td>
+
+              </tr>
+              <tr data-href="https://example.com/" class="edit-row">
+                <td scope="row" class="not-locate">
+                  <input id="test-check6" type="checkbox" class="form-check-input" />
+                  <label for="test-check6" class="form-check-label"></label>
+                </td>
+                <td scope="row">00000000</td>
+                <td scope="row">30.08.2017
+                  <br/> 14:14</td>
+                <td scope="row">В работе</td>
+                <td scope="row">00000000</td>
+                <td scope="row">Имя</td>
+                <td scope="row" class="not-locate">
+                  <div class="td-row-image">
+                    <a data-fancybox="group-6" href="images/cat.jpg" class="td-image-link">
+                      <img src="./img/cat.jpg" alt="image" />
+                    </a>
+                  </div>
+                </td>
+                <td scope="row">Компания</td>
+                <td scope="row" class="not-locate">
+                  <i class="fa fa-file-pdf-o pr-2"></i>
+                  <a href="" class = "td-fille-name">book.pdf</a>
+                </td>
+                <td scope="row">Контакт</td>
+                <td scope="row" class="not-locate">
+                  <div class="form-group">
+                    <span class="switch switch-sm">
+                      <input type="checkbox" class="switch switch-input" id="switch5">
+                      <label for="switch5"></label>
+                    </span>
+                  </div>
+                </td>
+                <td scope="row">+</td>
+
+              </tr>
+              <tr data-href="https://example.com/" class="edit-row">
+                <td scope="row" class="not-locate">
+                  <input id="test-check7" type="checkbox" class="form-check-input" />
+                  <label for="test-check7" class="form-check-label"></label>
+                </td>
+                <td scope="row">00000000</td>
+                <td scope="row">30.08.2017
+                  <br/> 14:14</td>
+                <td scope="row">В работе</td>
+                <td scope="row">00000000</td>
+                <td scope="row">Имя</td>
+                <td scope="row" class=" not-locate"> </td>
+                <td scope="row">Компания</td>
+                <td scope="row" class="not-locate"> </td>
+                <td scope="row">Контакт</td>
+                <td scope="row" class="not-locate">
+                  <div class="form-group">
+                    <span class="switch switch-sm">
+                      <input type="checkbox" class="switch switch-input" id="switch6">
+                      <label for="switch6"></label>
+                    </span>
+                  </div>
+                </td>
+                <td scope="row">+</td>
+
+              </tr>
+              <tr data-href="https://example.com/" class="edit-row">
+                <td scope="row" class="not-locate">
+                  <input id="test-check8" type="checkbox" class="form-check-input" />
+                  <label for="test-check8" class="form-check-label"></label>
+                </td>
+                <td scope="row">00000000</td>
+                <td scope="row">30.08.2017
+                  <br/> 14:14</td>
+                <td scope="row">В работе</td>
+                <td scope="row">00000000</td>
+                <td scope="row">Имя</td>
+                <td scope="row" class=" not-locate">
+                  <div class="td-row-image">
+                    <a data-fancybox="group-8" href="images/cat.jpg" class="td-image-link">
+                      <img src="./img/cat.jpg" alt="image" />
+                    </a>
+                  </div>
+                </td>
+                <td scope="row">Компания</td>
+                <td scope="row" class="not-locate">
+                  <i class="fa fa-file-pdf-o pr-2"></i>
+                  <a href="" class = "td-fille-name">book.pdf</a>
+                </td>
+                <td scope="row">Контакт</td>
+                <td scope="row" class="not-locate">
+                  <div class="form-group">
+                    <span class="switch switch-sm">
+                      <input type="checkbox" class="switch switch-input" id="switch7">
+                      <label for="switch7"></label>
+                    </span>
+                  </div>
+                </td>
+                <td scope="row">+</td>
+
+              </tr>
+              <tr data-href="https://example.com/" class="edit-row">
+                <td scope="row" class="not-locate">
+                  <input id="test-check9" type="checkbox" class="form-check-input" />
+                  <label for="test-check9" class="form-check-label"></label>
+                </td>
+                <td scope="row">00000000</td>
+                <td scope="row">30.08.2017
+                  <br/> 14:14</td>
+                <td scope="row">В работе</td>
+                <td scope="row">00000000</td>
+                <td scope="row">Имя</td>
+                <td scope="row" class=" not-locate"> </td>
+                <td scope="row">Компания</td>
+                <td scope="row" class="not-locate"> </td>
+                <td scope="row">Контакт</td>
+                <td scope="row" class="not-locate">
+                  <div class="form-group">
+                    <span class="switch switch-sm">
+                      <input type="checkbox" class="switch switch-input" id="switch8">
+                      <label for="switch8"></label>
+                    </span>
+                  </div>
+                </td>
+                <td scope="row">+</td>
+
+              </tr>
+              <tr data-href="https://example.com/" class="edit-row">
+                <td scope="row" class="not-locate">
+                  <input id="test-check10" type="checkbox" class="form-check-input" />
+                  <label for="test-check10" class="form-check-label"></label>
+                </td>
+                <td scope="row">00000000</td>
+                <td scope="row">30.08.2017
+                  <br/> 14:14</td>
+                <td scope="row">В работе</td>
+                <td scope="row">00000000</td>
+                <td scope="row" class=" not-locate">Имя</td>
+                <td scope="row"> </td>
+                <td scope="row">Компания</td>
+                <td scope="row" class="not-locate"> </td>
+                <td scope="row">Контакт</td>
+                <td scope="row" class="not-locate">
+                  <div class="form-group">
+                    <span class="switch switch-sm">
+                      <input type="checkbox" class="switch switch-input" id="switch9">
+                      <label for="switch9"></label>
+                    </span>
+                  </div>
+                </td>
+                <td scope="row">+</td>
+
+              </tr>
+              <tr data-href="https://example.com/" class="edit-row">
+                <td scope="row" class="not-locate">
+                  <input id="test-check11" type="checkbox" class="form-check-input" />
+                  <label for="test-check11" class="form-check-label"></label>
+                </td>
+                <td scope="row">00000000</td>
+                <td scope="row">30.08.2017
+                  <br/> 14:14</td>
+                <td scope="row">В работе</td>
+                <td scope="row">00000000</td>
+                <td scope="row">Имя</td>
+                <td scope="row" class=" not-locate"> </td>
+                <td scope="row">Компания</td>
+                <td scope="row" class="not-locate"> </td>
+                <td scope="row">Контакт</td>
+                <td scope="row" class="not-locate">
+                  <div class="form-group">
+                    <span class="switch switch-sm">
+                      <input type="checkbox" class="switch switch-input" id="switch10">
+                      <label for="switch10"></label>
+                    </span>
+                  </div>
+                </td>
+                <td scope="row">+</td>
+
+              </tr>
+              <tr data-href="https://example.com/" class="edit-row">
+                <td scope="row" class="not-locate">
+                  <input id="test-check12" type="checkbox" class="form-check-input" />
+                  <label for="test-check12" class="form-check-label"></label>
+                </td>
+                <td scope="row">00000000</td>
+                <td scope="row">30.08.2017
+                  <br/> 14:14</td>
+                <td scope="row">В работе</td>
+                <td scope="row">00000000</td>
+                <td scope="row">Имя</td>
+                <td scope="row" class=" not-locate"> </td>
+                <td scope="row">Компания</td>
+                <td scope="row" class="not-locate"> </td>
+                <td scope="row">Контакт</td>
+                <td scope="row" class="not-locate">
+                  <div class="form-group">
+                    <span class="switch switch-sm">
+                      <input type="checkbox" class="switch switch-input" id="switch11">
+                      <label for="switch11"></label>
+                    </span>
+                  </div>
+                </td>
+                <td scope="row">+</td>
+
+              </tr>
+              <tr data-href="https://example.com/" class="edit-row">
+                <td scope="row" class="not-locate">
+                  <input id="test-check13" type="checkbox" class="form-check-input" />
+                  <label for="test-check13" class="form-check-label"></label>
+                </td>
+                <td scope="row">00000000</td>
+                <td scope="row">30.08.2017
+                  <br/> 14:14</td>
+                <td scope="row">В работе</td>
+                <td scope="row">00000000</td>
+                <td scope="row">Имя</td>
+                <td scope="row" class=" not-locate"> </td>
+                <td scope="row">Компания</td>
+                <td scope="row" class="not-locate"> </td>
+                <td scope="row">Контакт</td>
+                <td scope="row" class="not-locate">
+                  <div class="form-group">
+                    <span class="switch switch-sm">
+                      <input type="checkbox" class="switch switch-input" id="switch12">
+                      <label for="switch12"></label>
+                    </span>
+                  </div>
+                </td>
+                <td scope="row">+</td>
+
+              </tr>
+              <tr data-href="https://example.com/" class="edit-row">
+                <td scope="row" class="not-locate">
+                  <input id="test-check14" type="checkbox" class="form-check-input" />
+                  <label for="test-check14" class="form-check-label"></label>
+                </td>
+                <td scope="row">00000000</td>
+                <td scope="row">30.08.2017
+                  <br/> 14:14</td>
+                <td scope="row">В работе</td>
+                <td scope="row">00000000</td>
+                <td scope="row">Имя</td>
+                <td scope="row" class=" not-locate"> </td>
+                <td scope="row">Компания</td>
+                <td scope="row" class="not-locate"> </td>
+                <td scope="row">Контакт</td>
+                <td scope="row" class="not-locate">
+                  <div class="form-group">
+                    <span class="switch switch-sm">
+                      <input type="checkbox" class="switch switch-input" id="switch13">
+                      <label for="switch13"></label>
+                    </span>
+                  </div>
+                </td>
+                <td scope="row">+</td>
+
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+      <nav class="navbar table-footer text-nowrap">
+        <div class="row paginator-handle">
+          <div class="col-5   paginator-handle__el-on-page-text">
+            <p>Элементов на странице:</p>
+          </div>
+          <div class="col-3 paginator-handle__selector-page single-selector">
+            <select id="js-el-on-page">
+              <option data-href = "testLinkElOnPage10"> 10 </option>
+              <option data-href = "testLinkElOnPage20"> 20 </option>
+              <option data-href = "testLinkElOnPage50"> 50 </option>
+              <option data-href = "testLinkElOnPage100"> 100 </option>
+            </select>
+          </div>
+          <div class="col-3  paginator-handle__el-on-page-display">
+            <p>
+              <span id="js-el-on-page-display">
+                10 </span>из
+              <span class="js-el-all">24000</span>
+            </p>
+          </div>
+        </div>
+        <div class="paginator">
+          <nav aria-label="Page-navigation">
+            <ul class="pagination justify-content-start">
+              <li class="page-item current-page">
+                <a href="#" class="page-link">1</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">2</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">3</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">4</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">5</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">6</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">7</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">8</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">9</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">10</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">11</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">12</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">13</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">14</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">15</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">16</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">17</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">18</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">19</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">20</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </nav>
+      <div id="modalDelete" role="dialog" aria-hidden="true" aria-labelledby="exampleModalCenterTitle" tabindex="-1" class="modal fade">
+        <div role="document" class="modal-dialog modal-dialog-centered">
+          <div class="modal-content modal-content-delete">
+            <div class="modal-body">
+              <div class="modal-description-wrapper">
+                <p class="modal-description">Вы действительно хотите удалить данный пункт?</p>
+              </div>
+              <div class="row button-row">
+                <div class=" custom-button custom-button_bg-grey-outline custom-button_width-modal-window">
+                  <a data-dismiss="modal" class="btn btn-custom">Отменить</a>
+                </div>
+                <div class="custom-button custom-button_bg-red custom-button_width-modal-window ml-auto">
+                  <button type="submit" form="table-main-form" formaction="#" formmethod="post" class="btn btn-custom">Удалить</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script type="text/javascript" src="js/main.js"></script>
+
+</body>
+
+</html>

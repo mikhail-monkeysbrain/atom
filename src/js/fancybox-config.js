@@ -1,0 +1,3 @@
+$('.th-image-link').fancybox({
+	
+});

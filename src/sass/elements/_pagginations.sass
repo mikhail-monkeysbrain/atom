@@ -1,0 +1,41 @@
+.paggination
+  display: flex
+  align-items: center
+  margin: 13px 0
+  &--item
+    background: $white
+    border: $border
+    color $blue
+    margin: 0
+    width: 41px
+    height: 41px
+    line-height: 41px
+    margin-right: -1px
+    border-radius: 0
+    font-size: 16px
+    text-align: center
+    transition: $fast
+    flex-shrink: 0
+    flex-grow: 0
+    &:hover,
+      color: $white
+      background: $blue
+      text-decoration: none
+    &__current
+      background: $blue
+      color: $white
+
+  
+  &--input
+    @extend .paggination--item
+    &:hover,
+    &__hover
+      background: #ffffff
+      border: 1px solid $blue
+      color: $blue
+
+  &--pointer
+    margin: 0 10px
+
+.total-number-current
+  display: inline-block

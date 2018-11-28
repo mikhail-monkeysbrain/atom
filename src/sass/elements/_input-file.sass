@@ -1,0 +1,118 @@
+.add-file
+  display: flex
+  align-items: flex-end
+  &--img
+    filter: blur(0)
+    transition: $fast
+    width: 80px
+    height: 80px
+    object-fit: cover
+    &__name
+      max-width: 80px
+      position: absolute
+      left: 0
+      bottom: 0
+      background: rgba(255,255,255, .7)
+      font-size: 12px
+      word-wrap: break-word
+      opacity: 0
+      transition: $fast
+    &--block
+      position: relative
+      cursor: pointer
+      display: inline-block
+      margin-right: 16px
+      margin-bottom: 16px
+      &:hover
+        .add-file--img
+          filter: blur(3px)
+          &__name
+            opacity: 1
+        .add-file--img--edit
+          opacity: 1
+      &.js-edit
+        .edit--dialog
+          display: block
+    &--edit
+      position: absolute
+      right: 0
+      top: 0
+      display: flex
+      opacity: 0
+      transition: $fast
+      .js-edit &
+        opacity: 1
+      &__name,
+      &__del
+        display: block
+        width: 16px
+        height: 16px
+        background: $light
+        margin-left: 10px
+        padding: 2px 3px
+        display: flex
+        justify-content: center
+        align-items: center
+        transition: $fast
+        position: relative
+        & >i
+          color: $text
+          transition: $fast
+          font-size: 11px
+        &:hover
+          background: $blue
+          & >i
+            color: $white
+  &--input
+    display: none
+
+.edit--dialog
+  display: none
+  position: absolute
+  right: -300px
+  z-index: 1
+  top: -25px
+  padding: 11px
+  box-sizing: content-box
+  background: $white
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15)
+  border: solid 1px rgba(160, 160, 160, 0.2)
+  &::after,
+  &::before
+    content: ''
+    position: absolute
+    left: -8px
+    top: calc(50% - 6px)
+    display: block
+    width: 0
+    height: 0
+    border-style: solid
+    border-width: 8px 8px 8px 0
+    border-color: transparent $white transparent transparent
+  &::before
+    border-width: 8px 10px 8px 0
+    border-color: transparent rgba(160, 160, 160, 0.2) transparent transparent
+    left: -10px
+  input
+    width: 198px
+    padding: 0 16px
+    margin-right: 8px
+    height: 38px
+    display: inline-block
+
+.modal.show
+  z-index: 9999
+
+.img-upload
+  & >a
+      height: 40px
+      line-height: 3
+
+.js-img-upload,
+.js-file-upload
+  display: flex
+  flex-wrap: wrap
+  align-items: flex-end
+
+.base64
+  display: none

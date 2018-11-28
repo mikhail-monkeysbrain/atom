@@ -1,0 +1,219 @@
+.table
+  &-form
+    height: calc(100vh - 70px)
+
+
+    .btn
+      max-width: 130px
+
+  &-responsive
+    max-height: calc(100vh - 235px)
+    padding: 10px
+    @media screen and (max-width: 992px)
+      max-height: calc(100vh - 300px)
+    @media screen and (max-width: 576px)
+      max-height: calc(100vh - 300px)
+  &--img
+    min-width: 185px
+    input
+      padding: 0 8px
+
+      
+  img
+    width: 80px
+    height: 80px
+    object-fit: cover
+
+  td
+    position: relative
+    overflow: hidden
+    .toggler
+      & +label
+        position: absolute
+        left: .75rem
+        top: 1.1rem
+  
+
+    a
+      &:not(.fancy-gallery)
+        position: relative
+        width: calc(100% + 1.5rem)
+        height: 100%
+        left: -.75rem
+        top: -1.1rem
+        padding: 1.1rem .75rem .75rem .75rem
+        text-decoration: none
+        color: $gray
+        &::after
+          content: ''
+          display: block
+          position: absolute
+          width: 100%
+          height: 100vh
+          left: 0
+          top: 0
+
+  &--sort
+    position: absolute
+    display: flex
+    flex-direction: column
+    right: 8px
+    top: 9px
+    a
+      &:hover,
+      &:focus
+        text-decoration: none
+    i
+      color: $text
+      display: block
+      transition: animation
+      font-size: 15px
+      &:first-child
+        margin-bottom: -2px
+      &:nth-child(2)
+        margin-top: -2px
+      &:hover
+        color: $blue
+
+    &__active
+      i
+        color: $blue;
+
+  .fa-filter
+    display: inline-flex
+    justify-content: center
+    align-items: center
+    color: $text
+    font-size: 20px
+    transition: $fast
+
+  &--open-filter
+    position: absolute
+    right: 26px
+    top: 13px
+    &:hover,
+    &:active,
+    &.filter__current
+      text-decoration: none
+      .fa-filter
+        color: $blue
+  .edit--dialog
+    right: -325px
+    top: -21px
+    .input-group
+      top: 2px
+      display: inline-flex
+    &__date
+      width: 303px
+      right: -340px
+      .input-group
+        width: 220px
+      .btn__form__date
+        right: 8px
+    &__contact-type
+      width: 213px
+      right: -250px
+      top: -20px
+      .input-group
+        width: 130px
+    &__toggler  
+      right: -185px
+      top: -24px
+      .btn
+        position: relative
+        top: -3px
+      .toggler
+        display: none
+      .input-group
+        width: 65px
+        top: 8px
+
+  thead
+    th
+      vertical-align: middle
+      position: relative
+      padding-right: 75px
+      &.table
+        &__check
+          max-width: 40px
+          width: 40px
+          padding-right: 0
+          input[type=checkbox]+label
+            padding: 0 14px
+
+  tbody 
+    tr
+      cursor: pointer
+      transition: $fast
+      &:nth-child(odd)
+        background: $odd
+      &:hover
+        background: #d5dbe7
+      th
+        max-width: 0
+
+  td
+    a
+      display: flex
+      &.fancy-gallery
+        display: inline-flex
+      i
+        font-size: 14px
+        margin-right: 5px
+
+.overflow
+  width: 100%
+  height: 60vh
+  overflow: auto
+
+// .paggination,
+// .table-responsive
+//   &::-webkit-scrollbar-track 
+//     border-radius: 4px
+//     height: 10px
+//     display: none
+//   &::-webkit-scrollbar
+//     width: 27px
+//     height: 10px
+//     display: none
+//   &::-webkit-scrollbar-thumb
+//     border-radius: 4px
+//     background: #f0f2f5
+//     height: 10px
+//     display: none
+//   &:hover::-webkit-scrollbar-thumb
+//     background: #6a7d9b
+//     display: none
+//     height: 10px
+
+.nowrap
+  white-space: nowrap
+
+.deleteEl
+  .modal-dialog
+    max-width: 410px
+  .modal-header,
+  .modal-footer
+    border: 0
+  .modal-header
+    padding: 30px 40px 0 30px
+  .modal-footer
+    padding: 30px 40px 30px 30px
+  .btn
+    max-width: 160px
+
+.no-overflow
+  overflow: hidden
+
+.width
+  &__fix
+    width: 100%
+    min-width: 250px
+  &__date
+    width: 100%
+    min-width: 125px
+
+a
+  &.table--sort__up,
+  &.table--sort__down
+    padding: 0 !important

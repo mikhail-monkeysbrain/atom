@@ -1,0 +1,96 @@
+#myTabContent
+  .corpus-config-row
+    margin: 0
+    padding: 0
+    label
+      margin: 0
+      padding: 0
+      width: 30px
+      height: 30px
+      input
+        width: 100%
+        min-width: 30px
+        max-width: 30px
+        min-height: 30px
+        max-height: 30px
+        text-align: center
+        background: #fff
+        cursor: pointer
+
+    .selected,
+    .selected input
+      background: $blue
+      color: #fff
+      
+  .js-plus,
+  .js-minus
+    display: none
+
+  .popover-body
+
+    .btn,
+    .mode-delete__btn
+      height: 34px
+      width: 34px
+      display: flex
+      justify-content: center
+      align-items: center
+      background: $blue
+      i
+        color: #fff
+        font-size: 14px
+
+    .btn-cancel
+      height: 34px
+      width: 34px
+      display: inline-flex !important
+      justify-content: center
+      align-items: center
+      i
+        color: $text
+        font-size: 14px
+        cursor: pointer
+
+  input.simple-search
+    height: 34px
+    max-height: 34px
+    width: 80px
+    padding-left: 14px
+
+  .popover-body
+    padding: 9px 9px 9px 14px
+    color: #212529
+
+  .bs-popover.bs-popover-left
+    &[x-placement^="right"]
+      left: 7px !important
+      right: inherit !important
+      .arrow
+        left: calc((0.5rem + 1px) * -1) !important
+        right: inherit !important
+        &:before
+          left: 0 !important
+          right: inherit !important
+          border-right-color: rgba(0, 0, 0, 0.25)
+          border-width: 0.5rem 0.5rem 0.5rem 0
+          top: 30px
+        &:after
+          left: 1px !important
+          right: inherit !important
+          border-right-color: #fff
+          border-width: 0.5rem 0.5rem 0.5rem 0
+          top: 30px
+    &[x-placement^="left"] .arrow
+      right: calc((0.5rem + 1px) * -1) !important
+      &:before
+        right: 0 !important
+        left: inherit !important
+        border-left-color: rgba(0, 0, 0, 0.25)
+        border-width: 0.5rem 0 0.5rem 0.5rem
+        top: 30px 
+      &:after
+        right: 1px !important
+        left: inherit !important
+        top: 30px 
+        border-left-color: #fff
+        border-width: 0.5rem 0 0.5rem 0.5rem

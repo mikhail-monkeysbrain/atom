@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="UTF-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta id="vp" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>table page</title>
+  <link href="css/main.css" rel="stylesheet">
+</head>
+
+<body class="edit-page edit-page-config ">
+  <header>
+    <nav class="navbar navbar-light bg-color-navbar text-nowrap pt-1 pb-1  fixed-top">
+      <div class="nav-container">
+        <a class="btn bg-color-transparent btn-single-icon sidebar-toogler mr-sm-4" data-target="#navbarToggleExternalContent" data-toggle="collapse"
+          aria-controls="navbarToggleExternalContent" aria-expanded="true" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+          <i class="fa fa-times"></i>
+        </a>
+        <a class="navbar-brand m-0" href="#">
+          <img src="img/logo-navbar.png" alt="logo">
+        </a>
+      </div>
+      <div class="form-inline navbar-indent ml-auto pr-0 pr-sm-4 text-nowrap">
+        <a class="btn btn-single-icon bg-color-transparent mr-2">
+          <i class="fa fa-plus"></i>
+        </a>
+        <a class="btn btn-single-icon bg-color-transparent">
+          <i class="fa fa-question"></i>
+        </a>
+      </div>
+      <div class="display-inline text-nowrap">
+        <div class="dropdown">
+          <a class="btn bg-color-transparent dropdown-toggle" id="dropdown-user-menu" data-offset="10,20" data-toggle="dropdown" aria-expanded="false"
+            aria-haspopup="true">
+            <i class="fa fa-user pr-4"></i>
+            <span class="pr-3 pb-2 d-sm-inline d-none user-name">Тестовый</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-menu-triangle-t-r mt-3" aria-labelledby="dropdown-user-menu">
+            <a class="dropdown-item" href="#">Личный кабинет</a>
+            <div class="dropdown-divider col-9 mr-auto ml-auto"></div>
+            <a class="dropdown-item" href="#">Выход</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="accordion-side-bar collapse bg-color-navbar show fixed-top" id="navbarToggleExternalContent">
+      <div class="bg-color-navbar" id="accordion">
+        <div class="card">
+          <div class="card-header p-0" id="headingOne">
+            <a class="btn btn-link" data-target="#collapseOne" data-toggle="collapse" aria-controls="collapseOne" aria-expanded="true">
+              <i class="mr-3 fa fa-window-maximize"></i>
+              <span>Сайт</span>
+              <i class="fa fa-angle-down"></i>
+            </a>
+          </div>
+          <div class="collapse show" id="collapseOne" data-parent="#accordion" aria-labelledby="headingOne">
+            <div class="card-body p-0 m-0">
+              <div class="col-12 card-header p-0">
+                <a class="btn btn-link sub-menu-link active link collapsed">
+                  <i class="mr-3 fa  fa-building-o"></i>
+                  <span>Корпус</span>
+                </a>
+              </div>
+              <div class="col-12 card-header p-0">
+                <a class="btn btn-link sub-menu-link collapsed">
+                  <i class="mr-3 fa fa-building"></i>
+                  <span>О компании</span>
+                  <i class="ml-1 fa fa-angle-down"></i>
+                </a>
+              </div>
+              <div class="col-12 card-header p-0">
+                <a class="btn btn-link sub-menu-link collapsed">
+                  <i class="mr-3 fa fa-user"></i>
+                  <span>Контакты</span>
+                  <i class="ml-1 fa fa-angle-down"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="card ">
+            <div class="card-header p-0" id="headingTwo">
+              <div class="col-12 card-header p-0">
+                <a class="btn btn-link collapsed">
+                  <i class="mr-3 fa fa-window-restore"></i>
+                  <span>Страницы сайта</span>
+                  <i class="ml-1 fa fa-angle-down"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="card ">
+            <div class="card-header p-0" id="headingThree">
+              <a class="btn btn-link collapsed" data-target="#collapseThree" data-toggle="collapse" aria-controls="collapseThree" aria-expanded="false">
+                <i class="fa fa-sliders mr-3"></i>
+                <span>Настройки сайта</span>
+                <i class="fa fa-angle-down"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card ">
+          <div class="card-header p-0" id="headingFour">
+            <a class="btn btn-link collapsed" data-target="#collapseFour" data-toggle="collapse" aria-controls="collapseFour" aria-expanded="false">
+              <i class="fa fa-cog mr-3"></i>
+              <span>Настройки</span>
+              <i class="fa fa-angle-down"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section class="with-sidebar with-config js-padding-left">
+    <div class="main-container main-container_height-max no-hover-effect">
+      <ul class="nav nav-tabs edit-page-nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Создание плана корпуса</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Hover</a>
+        </li> -->
+      </ul>
+      <div class="tab-content edit-page-tab-content edit-page-tab-content-config" id="myTabContent">
+
+        <div class="popover popover-config-corpus bs-popover d-none bs-popover-left">
+          <div class="arrow" style="top: 17px;"></div>
+          <h3 class="popover-header"></h3>
+          <div class="popover-body">
+            <!-- <form class="d-inline-block popover-form"> -->
+              <div class="mode-write d-none d-inline-block">
+                <div class="popover-input-wrapper d-inline-block">
+                  <input type="number" class="simple-search js-item-value">
+                </div>
+                <div class="popover-button-wrapper d-inline-block">
+                  <div class="btn  btn-ok">
+                  </div>
+                </div>
+              </div>
+              <div class = "mode-delete d-none">
+                <div class = "mode-delete__btn d-flex justify-content-center align-items-center">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="btn-cancel d-inline-block">
+                <i class="fa fa-times"></i>
+              </div>
+              
+            <!-- </form> -->
+          </div>
+        </div>
+
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <div class="popover-with-input-type-text popover-zindex"></div>
+
+          <form class="main-form-page-config-corpus">
+
+            <div class="row field-row field-row_config-corpus">
+              <div class="name-field">
+                <span class="name-field__name">Конфигурация</span>
+                <!-- <span class="name-field__asterisk">*</span> -->
+              </div>
+              <div class="field pl-0">
+                <div class="field-input-group">
+                  <div class="corpus-config-selector col-nowrap">
+                    <div class="corpus-config-row row">
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "A1" class="selected" value="1"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "A2"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "A3"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "A4"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "A5"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "A6"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "A7"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "A8"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "A9"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "A10"/></label>
+                    </div>
+                    <div class="corpus-config-row row">
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "B1" class="selected" value="1"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "B2"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "B3"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "B4"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "B5"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "B6"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "B7"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "B8"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "B9"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "B10"/></label>
+                    </div>
+
+                    <div class="corpus-config-row row">
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "C1"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "C2"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "C3"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "C4"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "C5"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "C6"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "C7"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "C8"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "C9"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "C10"/></label>
+                    </div>
+
+                    <div class="corpus-config-row row">
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "D1"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "D2"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "D3"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "D4"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "D5"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "D6"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "D7"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "D8"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "D9"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "D10"/></label>
+                    </div>
+
+                    <div class="corpus-config-row row">
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "E1"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "E2"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "E3"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "E4"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "E5"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "E6"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "E7"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "E8"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "E9"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "E10"/></label>
+                    </div>
+
+                    <div class="corpus-config-row row">
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "F1"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "F2"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "F3"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "F4"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "F5"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "F6"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "F7"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "F8"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "F9"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "F10"/></label>
+                    </div>
+
+
+                    <div class="corpus-config-row row">
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "G1"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "G2"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "G3"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "G4"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "G5"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "G6"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "G7"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "G8"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "G9"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "G10"/></label>
+                    </div>
+
+                    <div class="corpus-config-row row">
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "H1"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "H2"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "H3"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "H4"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "H5"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "H6"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "H7"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "H8"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "H9"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "H10"/></label>
+                    </div>
+
+                    <div class="corpus-config-row row">
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "I1"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "I2"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "I3"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "I4"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "I5"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "I6"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "I7"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "I8"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "I9"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "I10"/></label>
+                    </div>
+                    
+                    <div class="corpus-config-row row">
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "J1"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "J2"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "J3"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "J4"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "J5"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "J6"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "J7"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "J8"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "J9"/></label>
+                      <label class="corpus-config-selector__item"><input readonly="readonly" id = "J10"/></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row field-row field-row_corpus">
+              <div class="name-field">
+                <span class="name-field__name">Корпус</span>
+                <!-- <span class="name-field__asterisk">*</span> -->
+              </div>
+              <div class="field pl-0">
+                <div class="field-input-group">
+
+                  <div class="single-selector single-selector_full-width single-selector_with-search">
+                    <select id="simple-select" class="form-contorl">
+                      <option></option>
+                      <option> 10/1</option>
+                      <option> 10/2 </option>
+                      <option> 4/1 </option>
+                      <option> 4/2 </option>
+                    </select>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row field-row field-row_form-handle-buttons field-row_button-row">
+              <div class="custom-button custom-button_bg-blue custom-button_width-page-edit">
+                <button type="submit" class="btn btn-custom">Сохранить</button>
+              </div>
+              <div class="custom-button custom-button_bg-red custom-button_width-page-edit">
+                <button data-toggle="modal" type="button" class="btn btn-custom">Удалить</button>
+              </div>
+              <div class=" custom-button custom-button_bg-grey-outline custom-button_width-page-edit">
+                <a class="btn btn-custom">Отменить</a>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Контент таба Hover</div> -->
+      </div>
+    </div>
+
+
+  </section>
+  <script src="js/main.js" type="text/javascript"></script>
+
+
+</body>
+
+</html>

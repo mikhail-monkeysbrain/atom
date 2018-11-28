@@ -1,0 +1,104 @@
+*
+  box-sizing: border-box
+
+html
+  font-size: 13px
+  overflow-x: hidden
+
+body
+  background: $body
+  display: flex
+  flex-direction: column
+  height: 100vh
+  font-family: $font
+  padding-top: 70px
+
+main
+  padding: 20px 0
+  width: 100%
+  margin: 0 auto
+
+p
+  line-height: 1.08
+  color: $gray
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  color: $text
+
+h2
+  font-weight: 600
+
+a
+  color: $blue
+  transition: $slow
+  &:hover,
+  &.link__hover
+    color: $blueHover
+    text-decoration: underline
+  &:active,
+  &.link__active
+    color: $blueActive
+    text-decoration: underline
+
+.section
+  box-shadow: $shadow
+  margin-bottom: 20px
+  background: $white
+  @media screen and (max-width: 992px)
+    margin-left: -15px
+    margin-right: -15px
+  @media screen and (max-width: 552px)
+    padding: 0 15px
+  
+  &--heading
+    background: $light
+    padding: 20px 25px
+    text-transform: uppercase
+
+    &__tab
+      height: 51px
+      background: $light
+      position: relative
+      display: flex
+      padding-left: 49px
+      @media screen and (max-width: 552px)
+        padding-left: 15px
+        margin-left: -15px
+        margin-right: -15px
+
+    &__table
+      height: auto
+      display: block
+      padding-left: 16px
+      &__buttons
+        display: flex
+        justify-content: flex-end
+        margin-right: -5px
+        @media screen and (max-width: 992px)
+          justify-content: flex-end
+          margin-top: 10px
+          margin-left: -5px
+
+    &--tab
+      background: $white
+
+  &--content
+    padding: 25px 49px
+    background: $white
+    .btn
+      max-width: 130px
+      margin-left: 16px
+      &:first-child
+        margin-left: 0
+      @media screen and (max-width: 552px)
+        max-width: 100%
+    @media screen and (max-width: 992px)
+      padding: 25px 0 0
+
+.no-scroll
+  overflow: hidden
